@@ -1,0 +1,55 @@
+---
+title: "EDA"
+author: "Melody Jiang"
+date: "1/23/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+set.seed(42)
+```
+
+```{r}
+df <- read.csv("AB_NYC_2019.csv")
+```
+
+```{r}
+str(df)
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+summary(df)
+```
+
+# Thoughts and observations
+
+How do we characterize popularity? num_of_reviews, last_review, reviews_per_month, availability.
+
+The problem with reviews per month might be it is not popular initially and that dilutes stuffs. Maybe take something like number_of_reviews / reviews_per_month gives us how long the listing have been having reviews - how long this listing have been "open". Maybe use this and take out number_of_reviews.
+
+It is also possible that people rent but doesn't leave review. availability_365 & minimum_nights might give a sense of number of visits. However, what's the interpretation of availability_365? Number of unbooked days in 2019? Seems a better characterization of "popularity" than traffic, since I charge by days.
+
+Reviews might boost my popularity, so do consider that. Maybe as an aspect to include but not putting too much emphasize on it for our goal.
+
+Price is in price per night right?
+
+To characterize our desired goal, we might want to maximize total profit, taking both popularity and price into account. 
+
+Aspects of naming - length, diction. Maybe just eyeball and find pattern for top listings.
+
+
+
+
+
+
+
+
+
