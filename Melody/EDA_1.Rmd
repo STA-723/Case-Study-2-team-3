@@ -45,6 +45,8 @@ To characterize our desired goal, we might want to maximize total profit, taking
 
 Aspects of naming - length, diction. Maybe just eyeball and find pattern for top listings.
 
+Goal - identify desired objectives and identify features that best describes / predicts such objective.
+
 
 
 
