@@ -5,9 +5,3 @@ d <- read_csv(
     neighbourhood_group = col_factor(),
     neighbourhood = col_factor(),
     room_type = col_factor()))
-
-
-
-
-
-
