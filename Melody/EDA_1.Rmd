@@ -29,6 +29,10 @@ head(df)
 summary(df)
 ```
 
+```{r}
+
+```
+
 # Thoughts and observations
 
 How do we characterize popularity? num_of_reviews, last_review, reviews_per_month, availability.
@@ -54,7 +58,28 @@ But actually, one does not need to own the property to host an airbnb. There is 
 * https://learnbnb.com/airbnb-landlord-permission-negotiation/
 
 
+Saturday discussion:
+* Indicator for length of stay
+* Distance to manhatan, distance to metro-station
+* Common names
+* host_id for future directions
+* neighbourhood & group - nested
+* reviews for month - popularity outcome
+* last review - maybe cleaning of data, August 2018 - August 2019
+* Cleaning - based on last review, listings that have only one review
+* Outcome variable - reviews per month / availability
 
+
+* Potential prices
+  * (i) Random forest, BMA
+  * (ii) Most common way that people do this is mixed effects models
+  * (iii) Chi-square test
+  * (iv) BMA
+  
+  
+  
+  * Attractions: https://globalstorybook.org/new-york-city-top-50-sights/
+  
 
 
 

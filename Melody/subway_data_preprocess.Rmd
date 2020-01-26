@@ -1,0 +1,53 @@
+---
+title: "Subway data"
+author: "Melody Jiang"
+date: "1/25/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+df <- read.csv("Subway_raw.csv")
+```
+
+```{r}
+summary(df)
+```
+
+```{r}
+df_metro <- df %>% select(Station.Name, Station.Latitude, Station.Longitude)
+```
+
+```{r}
+df_metro_unique <- unique(df_metro)
+```
+
+```{r}
+write.csv(df_metro_unique,'subway_loc.csv')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
