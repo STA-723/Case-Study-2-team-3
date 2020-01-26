@@ -1,0 +1,71 @@
+---
+title: "Data_prep"
+author: "Raphaël Morsomme"
+date: "January 25, 2020"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo=FALSE, warning=FALSE}
+#knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(tidytext) # sentiment analysis
+library(corrplot) # Q3 figure
+
+
+# Read in data
+d <- read_csv("AB_NYC_2019.csv",
+              col_types =  cols(neighbourhood_group = col_factor(),
+                                neighbourhood = col_factor(),
+                                room_type = col_factor()))
+
+
+# Sentiment analysis
+dictionnary <- get_sentiments("afinn") # ranges between -5 and 5.
+compute_sentiment <- function(x){
+  tibble(term = x) %>%
+    unnest_tokens(word, term) %>%
+    left_join(dictionnary, by = "word") %>% replace_na(list(score = 0)) %>%
+    pull(score) %>% mean }
+
+
+# Name frquency
+freq <- d %>% distinct(host_id, host_name) %>% pull(host_name) %>% table # only count each id once (do not count people with multiple listing muliple times)
+name_freq <- tibble(host_name = names(freq), name_host_freq = as.vector(freq) / sum(freq)) %>% arrange(-name_host_freq)
+```
+
+
+
+```{r data prep sentiment, cache = TRUE}
+d <- d %>%
+  mutate(name_listing_sentiment = name %>% map_dbl(compute_sentiment)) # takes a while so I cached it
+```
+
+```{r data prep}
+d_test <- d %>%
+  
+  # Popularity
+  mutate(popularity = if_else(availability_365 > 0, reviews_per_month / availability_365, NA_real_)) %>%
+  
+  # Host name
+  left_join(name_freq, by = "host_name") %>%
+  mutate(name_host_special = grepl('[^[:alpha:]]', host_name)) %>% # check if name contains a special character (not a letter)
+  
+  # Listing name
+  mutate(name_listing_length = nchar(name)) %>%
+  # sentiment computed in previous chunk
+
+  # Short v. long stays
+  mutate(type_stay = if_else(minimum_nights >= 29, "Long", "Short")) %>%
+  
+  # Last review
+  mutate(days_since_last = max(last_review, na.rm = TRUE) - last_review) %>%
+  
+  # Cleaning
+  filter(!is.na(last_review))  %>% # removes 10,000 (effectively removes people with no review)
+  filter(days_since_last <= 365) # removes 9,000
+
+# TODO: compute proximity to attraction
+```
