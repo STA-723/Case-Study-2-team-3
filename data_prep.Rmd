@@ -20,7 +20,8 @@ d <- read_csv("AB_NYC_2019.csv",
               col_types =  cols(neighbourhood_group = col_factor(),
                                 neighbourhood = col_factor(),
                                 room_type = col_factor()))
-d_metro <- read_csv("Melody/subway_loc.csv")
+d_attraction <- read_csv("subway and attractions data/attrac_loc.csv")
+d_metro      <- read_csv("subway and attractions data/subway_loc.csv")
 
 # Sentiment analysis
 dictionnary <- get_sentiments("afinn") # ranges between -5 and 5.
@@ -35,17 +36,32 @@ compute_distance_closest_metro <- function(longitude, latitude){
   dist <- abs(longitude - d_metro$Station.Longitude) + abs(latitude - d_metro$Station.Latitude) # manhattan distance (instead of euclidean distance)
   min(dist) }
 
+# Distance to attraction
+compute_proximity_5_closest_attractions <- function(longitude, latitude){
+  d_attraction %>% 
+    rename(long = longitude, lat = latitude) %>% # prevents use of same names
+    mutate(distance  = abs(long - longitude) + abs(lat - latitude),
+           proximity = 1 / (distance + 0.01)) %>%
+    top_n(5, desc(proximity)) %>%
+    summarize(proximity = mean(proximity)) %>%
+    pull(proximity) }
+
 
 # Name frquency
 freq <- d %>% distinct(host_id, host_name) %>% pull(host_name) %>% table # only count each id once (do not count people with multiple listing muliple times)
 name_freq <- tibble(host_name = names(freq), name_host_freq = as.vector(freq) / sum(freq)) %>% arrange(-name_host_freq)
 ```
 
-
-
 ```{r data prep sentiment, cache = TRUE}
 d <- d %>%
-  mutate(name_listing_sentiment = name %>% map_dbl(compute_sentiment)) # takes a while so I cached it
+  
+  # takes a while so I cached these
+  
+  # Sentiment of listing name
+  mutate(name_listing_sentiment = name %>% map_dbl(compute_sentiment)) %>%
+  
+  # Proximity to 5 closest attrications
+  mutate(proximity_attraction = list(longitude, latitude) %>% pmap_dbl(compute_proximity_5_closest_attractions))
 ```
 
 ```{r data prep}
