@@ -1,0 +1,73 @@
+---
+title: "Models"
+author: "Ezinne Nwankwo"
+date: "1/26/2020"
+output: pdf_document
+---
+
+```{r libraries, include=FALSE}
+
+library(BMA)
+library(BMS)
+#install.packages("BAS")
+devtools::install_github("merliseclyde/BAS");
+library(BAS)
+library("tidyverse")
+#install.packages("randomForest")
+library(randomForest)
+set.seed(2020)
+
+```
+
+```{r lm}
+
+##removing variables not used for price model and moving price to front of dataframe
+df_pricemod <- d_test %>% 
+  select(-id,-name,-host_id, -host_name, -neighbourhood, -days_since_last, -last_review, -popularity) %>% 
+  mutate(type_stay = recode_factor(type_stay, 
+                                   "Short" = "Short", 
+                                   "Long" = "Long")) %>% 
+  select(price, everything()) %>% 
+  drop_na()
+
+
+#simple lm model 
+lm_price<-lm(price ~ .,data = df_pricemod)
+summary(lm_price)
+
+
+```
+
+```{r bma}
+
+#BMA model 1
+price_bma <- bms(df_pricemod, burn=100000, iter=200000, g="BRIC", mprior="uniform", nmodel=2000, mcmc="bd", user.int=FALSE)
+coef(price_bma,exact=TRUE)
+
+price_bma <- bas.lm(price ~ minimum_nights, data = df_pricemod, prior = "JZS", 
+                    alpha = 1, 
+                    n.models = 2^15,
+                    initprobs = "eplogp",
+                    method = "BAS")
+
+#BMA model 2
+x <- df_pricemod %>% select(-price) %>% as.data.frame()
+y <- df_pricemod %>% select(price) %>% as.data.frame()
+
+bayes1<-bicreg(x,y)
+
+```
+
+
+
+```{r rf}
+
+
+rf.price = randomForest(price ~ ., ntree = 1000, data = df_pricemod)
+rf.residuals <- df_pricemod$price - predict(rf.price) 
+plot(rf.residuals, ylim = c(-20,30),main = "Residuals from Random Forest Model")
+
+
+round(importance(rf.price), 2)
+```
+
