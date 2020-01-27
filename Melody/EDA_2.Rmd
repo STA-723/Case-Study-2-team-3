@@ -1,0 +1,26 @@
+---
+title: "EDA 2"
+author: "Melody Jiang"
+date: "1/26/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+set.seed(42)
+```
+
+```{r}
+
+```
+
+
+
+
+
+
+
+

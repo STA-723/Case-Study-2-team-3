@@ -33,11 +33,18 @@ df_metro_unique <- unique(df_metro)
 write.csv(df_metro_unique,'subway_loc.csv')
 ```
 
+```{r}
+attrac_df <- read.csv("attrac_loc.csv")
+```
 
+```{r}
+attrac_df <- attrac_df[,1:3]
+attrac_df$longitude <- -attrac_df$longitude
+```
 
-
-
-
+```{r}
+write.csv(attrac_df,'attrac_loc.csv')
+```
 
 
 

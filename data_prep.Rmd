@@ -20,7 +20,8 @@ d <- read_csv("AB_NYC_2019.csv",
               col_types =  cols(neighbourhood_group = col_factor(),
                                 neighbourhood = col_factor(),
                                 room_type = col_factor()))
-
+d_attraction <- read_csv("subway and attractions data/attrac_loc.csv")
+d_metro      <- read_csv("subway and attractions data/subway_loc.csv")
 
 # Sentiment analysis
 dictionnary <- get_sentiments("afinn") # ranges between -5 and 5.
@@ -30,42 +31,71 @@ compute_sentiment <- function(x){
     left_join(dictionnary, by = "word") %>% replace_na(list(score = 0)) %>%
     pull(score) %>% mean }
 
+# Distance to closest metro
+compute_distance_closest_metro <- function(longitude, latitude){
+  dist <- abs(longitude - d_metro$Station.Longitude) + abs(latitude - d_metro$Station.Latitude) # manhattan distance (instead of euclidean distance)
+  min(dist) }
+
+# Distance to attraction
+compute_proximity_5_closest_attractions <- function(longitude, latitude){
+  d_attraction %>% 
+    rename(long = longitude, lat = latitude) %>% # prevents use of same names
+    mutate(distance  = abs(long - longitude) + abs(lat - latitude),
+           proximity = 1 / (distance + 0.01)) %>%
+    top_n(5, desc(proximity)) %>%
+    summarize(proximity = mean(proximity)) %>%
+    pull(proximity) }
+
 
 # Name frquency
 freq <- d %>% distinct(host_id, host_name) %>% pull(host_name) %>% table # only count each id once (do not count people with multiple listing muliple times)
 name_freq <- tibble(host_name = names(freq), name_host_freq = as.vector(freq) / sum(freq)) %>% arrange(-name_host_freq)
 ```
 
-
-
 ```{r data prep sentiment, cache = TRUE}
 d <- d %>%
-  mutate(name_listing_sentiment = name %>% map_dbl(compute_sentiment)) # takes a while so I cached it
+  
+  # takes a while so I cached these
+  
+  # Sentiment of listing name
+  mutate(name_listing_sentiment = name %>% map_dbl(compute_sentiment)) %>%
+  
+  # Proximity to 5 closest attrications
+  mutate(proximity_attraction = list(longitude, latitude) %>% pmap_dbl(compute_proximity_5_closest_attractions))
 ```
 
 ```{r data prep}
-d_test <- d %>%
+d_clean <- d %>%
   
-  # Popularity
+  ## Cleaning
+  mutate(days_since_last = max(last_review, na.rm = TRUE) - last_review) %>%
+  filter(!is.na(last_review))  %>% # removes 10,000 (effectively removes people with no review)
+  filter(days_since_last <= 365) %>% # removes 9,000
+
+  ## Feature engineering
+  
+  # Y1: Popularity
   mutate(popularity = if_else(availability_365 > 0, reviews_per_month / availability_365, NA_real_)) %>%
+  # Y2: price
+  mutate(price_log = log(price + 1)) %>%
   
   # Host name
-  left_join(name_freq, by = "host_name") %>%
+  left_join(name_freq, by = "host_name") %>% # frequency
   mutate(name_host_special = grepl('[^[:alpha:]]', host_name)) %>% # check if name contains a special character (not a letter)
   
   # Listing name
-  mutate(name_listing_length = nchar(name)) %>%
+  mutate(name_listing_length = nchar(name)) %>% # number of character
   # sentiment computed in previous chunk
 
   # Short v. long stays
   mutate(type_stay = if_else(minimum_nights >= 29, "Long", "Short")) %>%
   
-  # Last review
-  mutate(days_since_last = max(last_review, na.rm = TRUE) - last_review) %>%
-  
-  # Cleaning
-  filter(!is.na(last_review))  %>% # removes 10,000 (effectively removes people with no review)
-  filter(days_since_last <= 365) # removes 9,000
-
-# TODO: compute proximity to attraction
+  # Proximity to closest metro station
+  mutate(dist_closest_metro = list(longitude, latitude) %>% pmap_dbl(compute_distance_closest_metro),
+         proximity_metro = 1 / (dist_closest_metro + 0.01) )
 ```
+
+```{r}
+save(d_clean, file = "d_clean.RDATA")
+```
+
