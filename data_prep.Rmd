@@ -37,12 +37,12 @@ compute_distance_closest_metro <- function(longitude, latitude){
   min(dist) }
 
 # Distance to attraction
-compute_proximity_5_closest_attractions <- function(longitude, latitude){
+compute_proximity_attractions <- function(longitude, latitude){
   d_attraction %>% 
     rename(long = longitude, lat = latitude) %>% # prevents use of same names
     mutate(distance  = abs(long - longitude) + abs(lat - latitude),
            proximity = 1 / (distance + 0.01)) %>%
-    top_n(5, desc(proximity)) %>%
+#    top_n(5, proximity) %>%
     summarize(proximity = mean(proximity)) %>%
     pull(proximity) }
 
@@ -61,7 +61,7 @@ d <- d %>%
   mutate(name_listing_sentiment = name %>% map_dbl(compute_sentiment)) %>%
   
   # Proximity to 5 closest attrications
-  mutate(proximity_attraction = list(longitude, latitude) %>% pmap_dbl(compute_proximity_5_closest_attractions))
+  mutate(proximity_attraction = list(longitude, latitude) %>% pmap_dbl(compute_proximity_attractions))
 ```
 
 ```{r data prep}
@@ -84,7 +84,7 @@ d_clean <- d %>%
   mutate(name_host_special = grepl('[^[:alpha:]]', host_name)) %>% # check if name contains a special character (not a letter)
   
   # Listing name
-  mutate(name_listing_length = nchar(name)) %>% # number of character
+  mutate(name_listing_length = nchar(name)) %>% # number of characters
   # sentiment computed in previous chunk
 
   # Short v. long stays
@@ -98,4 +98,3 @@ d_clean <- d %>%
 ```{r}
 save(d_clean, file = "d_clean.RDATA")
 ```
-

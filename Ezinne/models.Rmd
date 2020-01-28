@@ -19,17 +19,30 @@ set.seed(2020)
 
 ```
 
+<<<<<<< HEAD
 ```{r load_data, include=FALSE}
 load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean.RDATA")
 ```
 
+=======
+```{r}
+load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean.RDATA")
+```
+
+
+```{r lm}
+>>>>>>> 7a7ced12af6e35cbe2646b8d1a8b0cc1214d0391
 
 ### Simple Linear Model 
 
 ```{r lm_models}
 ##removing variables not used for price model and moving price to front of dataframe
 df_pricemod <- d_clean%>% 
+<<<<<<< HEAD
   select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood) %>% 
+=======
+  select(-id,-name,-host_id, -host_name, -popularity) %>% 
+>>>>>>> 7a7ced12af6e35cbe2646b8d1a8b0cc1214d0391
   mutate(type_stay = recode_factor(type_stay, 
                                    "Short" = "Short", 
                                    "Long" = "Long")) %>% 
@@ -80,10 +93,18 @@ pop_bma <- bas.lm(log(popularity) ~ ., data = df_popmod, prior = "JZS",
                     initprobs = "marg-eplogp",
                     method = "MCMC")
 
+<<<<<<< HEAD
 print(pop_bma)
 image(pop_bma, rotate = F)
 #par(mfrow=c(2,2))
 plot(pop_bma)
+=======
+print(price_bma)
+
+#BMA model 2
+x <- df_pricemod %>% select(-price) %>% as.data.frame()
+y <- df_pricemod %>% select(price) %>% as.data.frame()
+>>>>>>> 7a7ced12af6e35cbe2646b8d1a8b0cc1214d0391
 
 #Lets remove the outliers
 pop_sumstats <- df_popmod %>% summarise(avg_pop = mean(log(popularity)), sd_pop = sd(log(popularity)), min_pop = min(log(popularity)), max_pop = max(log(popularity)))
