@@ -7,10 +7,10 @@ output: pdf_document
 
 ```{r libraries, include=FALSE}
 
-library(BMA)
-library(BMS)
+#library(BMA)
+#library(BMS)
 #install.packages("BAS")
-devtools::install_github("merliseclyde/BAS");
+#devtools::install_github("merliseclyde/BAS");
 library(BAS)
 library("tidyverse")
 #install.packages("randomForest")
@@ -19,55 +19,119 @@ set.seed(2020)
 
 ```
 
-```{r lm}
+```{r load_data, include=FALSE}
+load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean.RDATA")
+```
 
+
+### Simple Linear Model 
+
+```{r lm_models}
 ##removing variables not used for price model and moving price to front of dataframe
-df_pricemod <- d_test %>% 
-  select(-id,-name,-host_id, -host_name, -neighbourhood, -days_since_last, -last_review, -popularity) %>% 
+df_pricemod <- d_clean%>% 
+  select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood) %>% 
   mutate(type_stay = recode_factor(type_stay, 
                                    "Short" = "Short", 
                                    "Long" = "Long")) %>% 
-  select(price, everything()) %>% 
+  select(price_log, everything()) %>% 
+  drop_na()
+
+df_popmod <- d_clean%>% 
+  select(-id,-name,-host_id, -host_name, -price, -neighbourhood) %>% 
+  mutate(type_stay = recode_factor(type_stay, 
+                                   "Short" = "Short", 
+                                   "Long" = "Long")) %>% 
+  select(popularity, everything()) %>% 
   drop_na()
 
 
-#simple lm model 
-lm_price<-lm(price ~ .,data = df_pricemod)
+#simple lm model for price
+lm_price<-lm(price_log ~ .,data = df_pricemod)
 summary(lm_price)
+
+#simple lm model for popularity
+lm_pop<-lm(popularity ~ .,data = df_popmod)
+summary(lm_pop)
 
 
 ```
+
+### BMA models
 
 ```{r bma}
 
-#BMA model 1
-price_bma <- bms(df_pricemod, burn=100000, iter=200000, g="BRIC", mprior="uniform", nmodel=2000, mcmc="bd", user.int=FALSE)
-coef(price_bma,exact=TRUE)
-
-price_bma <- bas.lm(price ~ minimum_nights, data = df_pricemod, prior = "JZS", 
+#BMA model 1 with method BAS
+price_bma <- bas.lm(price_log ~ ., data = df_pricemod, prior = "JZS", 
                     alpha = 1, 
                     n.models = 2^15,
-                    initprobs = "eplogp",
-                    method = "BAS")
+                    initprobs = "marg-eplogp",
+                    method = "MCMC")
 
-#BMA model 2
-x <- df_pricemod %>% select(-price) %>% as.data.frame()
-y <- df_pricemod %>% select(price) %>% as.data.frame()
+print(price_bma)
+image(price_bma, rotate = F)
+#par(mfrow=c(2,2))
+plot(price_bma)
 
-bayes1<-bicreg(x,y)
+#BMA model 2 with method MCMC
+#There seems to be an outlier that is really impacting the model
+pop_bma <- bas.lm(log(popularity) ~ ., data = df_popmod, prior = "JZS", 
+                    alpha = 1, 
+                    n.models = 2^15,
+                    initprobs = "marg-eplogp",
+                    method = "MCMC")
+
+print(pop_bma)
+image(pop_bma, rotate = F)
+#par(mfrow=c(2,2))
+plot(pop_bma)
+
+#Lets remove the outliers
+pop_sumstats <- df_popmod %>% summarise(avg_pop = mean(log(popularity)), sd_pop = sd(log(popularity)), min_pop = min(log(popularity)), max_pop = max(log(popularity)))
+
+df_popmod_no_outliers <- df_popmod %>% 
+  mutate(log_popularity =  log(popularity)) %>% 
+  select(-popularity) %>% 
+  select(log_popularity,  everything()) %>% 
+  filter(near(log_popularity, pop_sumstats$avg_pop, tol = 3*pop_sumstats$sd_pop))
+
+#Rerun model with no outliers
+pop_bma2 <- bas.lm(log_popularity ~ ., data = df_popmod_no_outliers, prior = "JZS", 
+                    alpha = 1, 
+                    n.models = 2^15,
+                    initprobs = "marg-eplogp",
+                    method = "MCMC")
+
+print(pop_bma2)
+image(pop_bma2, rotate = F)
+#par(mfrow=c(2,2))
+plot(pop_bma2)
+
+```
+
+
+### Random Forest 
+
+```{r rf}
+
+## random forest takes a long time to run so will train on random samples of dataset instead
+price_randsamp1 <- sample_n(df_pricemod,  100)
+
+## random forest model for price
+rf.price.samp1 = randomForest(price_log ~ ., ntree = 1000, data = price_randsamp1, do.trace = 10)
+rf.residuals <- price_randsamp1$price_log - predict(rf.price.samp1) 
+plot(rf.residuals, ylim = c(-20,30),main = "Residuals from Random Forest Model")
+round(importance(rf.price.samp1), 2)
+
+## random forest model for popularity
+
 
 ```
 
 
 
-```{r rf}
+### Residual Heat Maps
 
+```{r}
 
-rf.price = randomForest(price ~ ., ntree = 1000, data = df_pricemod)
-rf.residuals <- df_pricemod$price - predict(rf.price) 
-plot(rf.residuals, ylim = c(-20,30),main = "Residuals from Random Forest Model")
-
-
-round(importance(rf.price), 2)
 ```
 

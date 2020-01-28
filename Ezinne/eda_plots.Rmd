@@ -43,9 +43,10 @@ d_test %>%
     
 #popularity by price and neighborhood
 #there seems to be a clear layering in terms of neighborhood groups
-d_test %>% 
+d_clean %>% 
   ggplot(aes(x = log(popularity), y = log(price), color = neighbourhood_group)) +
-    geom_point() + 
+    geom_point(alpha = 0.1) + 
+    facet_wrap(.~neighbourhood_group) +
     theme_bw()
 
 #number of reviews by popularity 
