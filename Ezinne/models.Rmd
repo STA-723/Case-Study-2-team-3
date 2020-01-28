@@ -7,10 +7,10 @@ output: pdf_document
 
 ```{r libraries, include=FALSE}
 
-library(BMA)
-library(BMS)
+#library(BMA)
+#library(BMS)
 #install.packages("BAS")
-devtools::install_github("merliseclyde/BAS");
+#devtools::install_github("merliseclyde/BAS");
 library(BAS)
 library("tidyverse")
 #install.packages("randomForest")
@@ -19,11 +19,16 @@ set.seed(2020)
 
 ```
 
+```{r}
+load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean.RDATA")
+```
+
+
 ```{r lm}
 
 ##removing variables not used for price model and moving price to front of dataframe
-df_pricemod <- d_test %>% 
-  select(-id,-name,-host_id, -host_name, -neighbourhood, -days_since_last, -last_review, -popularity) %>% 
+df_pricemod <- d_clean%>% 
+  select(-id,-name,-host_id, -host_name, -popularity) %>% 
   mutate(type_stay = recode_factor(type_stay, 
                                    "Short" = "Short", 
                                    "Long" = "Long")) %>% 
@@ -49,6 +54,8 @@ price_bma <- bas.lm(price ~ minimum_nights, data = df_pricemod, prior = "JZS",
                     n.models = 2^15,
                     initprobs = "eplogp",
                     method = "BAS")
+
+print(price_bma)
 
 #BMA model 2
 x <- df_pricemod %>% select(-price) %>% as.data.frame()
