@@ -14,12 +14,115 @@ set.seed(42)
 ```
 
 ```{r}
+library(dplyr)
+library(reshape)
+library(ggplot2)
+library(broom)
+```
 
+```{r}
+load("d_clean.RDATA")
+```
+
+```{r}
+summary(d_clean)
+```
+
+```{r}
+d_clean <- d_clean %>% mutate(type_stay = as.factor(type_stay))
+```
+
+```{r}
+plot(d_clean$type_stay)
+```
+
+```{r}
+hist(d_clean$minimum_nights)
+```
+
+```{r}
+pairs(~popularity + room_type + neighbourhood_group + price + reviews_per_month,data=d_clean, 
+   main="Simple Scatterplot Matrix")
+```
+
+Maybe we shouldn't devide by availability when calculating popularity? Seems it shrinks popularity too much
+
+```{r}
+model1 <- lm(popularity ~ room_type + neighbourhood_group + price, data = d_clean[((d_clean$price != 0) && (d_clean$availability_365 != 0) ),])
+```
+
+```{r}
+summary(model1)
+```
+
+```{r}
+pairs(~price + room_type + neighbourhood_group + availability_365,data=d_clean[d_clean$availability_365 != 0,], 
+   main="Simple Scatterplot Matrix")
+```
+
+```{r}
+model2 <- lm(price ~ room_type + neighbourhood_group + availability_365, data = d_clean[d_clean$availability_365 != 0,])
+summary(model2)
+```
+
+```{r}
+pairs(~popularity + room_type + neighbourhood_group + log(availability_365),data=d_clean[d_clean$availability_365 != 0,], 
+   main="Simple Scatterplot Matrix")
+```
+
+Seems we want to leave out those with zeros.
+
+```{r}
+model3 <- lm(price ~ room_type + neighbourhood_group + log(availability_365), data = d_clean[d_clean$availability_365 != 0,])
+summary(model3)
+```
+
+From R-sqared, model shows poor fit and log transformation does not show visible improvement.
+
+```{r}
+# Examine residuals for model haven't been log-transformed
+plot(x = d_clean[d_clean$availability_365 != 0,]$availability_365, y = resid(model2))
+```
+
+```{r}
+# Try weighted least squares that give less weight to large availability ones
+model2.weighted = lm(price ~ room_type + neighbourhood_group + availability_365, data = d_clean[d_clean$availability_365 != 0,], weights=1/(availability_365)^2)
+summary(model2.weighted)
+```
+
+Exhibits improvement. What about popularity? Code does not work. How about we get rid of nonsensical zero entries...
+
+```{r}
+# Examine residuals for model, exhibits bug
+plot(x = d_clean[((d_clean$price != 0) && (d_clean$availability_365 != 0) ),]$price, y = resid(model1))
+```
+
+```{r}
+length(resid(model1))
+```
+
+```{r}
+model1.weighted <- lm(popularity ~ room_type + neighbourhood_group + price, data = d_clean[((d_clean$price != 0) && (d_clean$availability_365 != 0) ),])
+summary(model1.weighted)
 ```
 
 
 
 
+# Questions
+
+* Data cleaning NA's in popularity
+* How long was characterized as short stay?
+* Differences between dist_closest_metro and proximity_metro
+* Weighted least squares - what variables do we care particularly about
+* Not sure how to deal with big variabce in response due to small number of data in that range
+
+* General question: how do you deal with lack of data points at certain values of x.
+
+
+# To familiarize
+* Procedures for sentiment analysis
+* getting freq of names
 
 
 

@@ -25,10 +25,10 @@ set.seed(2020)
 
 ```
 
+
 ```{r load_data, include=FALSE}
 load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean.RDATA")
 ```
-
 
 ### Simple Linear Model 
 
@@ -67,7 +67,6 @@ summary(lm_price)
 #simple lm model for popularity
 lm_pop<-lm(popularity_log ~ .,data = df_popmod)
 summary(lm_pop)
-
 
 ```
 
@@ -182,6 +181,7 @@ saveRDS(rf.pop, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/pop
 ```
 
 
+### Random Forest 
 
 ```{r}
 ## residuals for price model
@@ -196,7 +196,6 @@ plot(rf.residuals.pop, ylim = c(-20,30),main = "Residuals from Random Forest Mod
 round(importance(rf.pop), 2)
 
 ```
-
 
 
 
