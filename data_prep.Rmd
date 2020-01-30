@@ -60,7 +60,7 @@ d <- d %>%
   # Sentiment of listing name
   mutate(name_listing_sentiment = name %>% map_dbl(compute_sentiment)) %>%
   
-  # Proximity to 5 closest attrications
+  # Proximity to attractions
   mutate(proximity_attraction = list(longitude, latitude) %>% pmap_dbl(compute_proximity_attractions))
 ```
 
@@ -98,3 +98,12 @@ d_clean <- d %>%
 ```{r}
 save(d_clean, file = "d_clean.RDATA")
 ```
+
+
+
+```{r example ggsave}
+d <- ggplot(diamonds, aes(carat, price))
+d + geom_point(alpha = 1/10)
+ggsave("MyPlotName.jpeg", path = "Deliverables/Figures", width = 5, height = 3.5)
+```
+
