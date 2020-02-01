@@ -134,10 +134,8 @@ d_clean_pop_bma <- d_clean%>%
 
 
 ```{r}
-save(d_clean_price_rf, file = "d_clean_price_rf.RDATA")
-save(d_clean_pop_rf, file = "d_clean_pop_rf.RDATA")
-save(d_clean_price_bma, file = "d_clean_price_bma.RDATA")
-save(d_clean_pop_bma, file = "d_clean_pop_bma.RDATA")
+save(d_clean_price_rf,d_clean_pop_rf, file = "d_clean_rf.RDATA")
+save(d_clean_price_bma,d_clean_pop_bma, file = "d_clean_bma.RDATA")
 ```
 
 ```{r datasets no outliers}
@@ -157,10 +155,8 @@ d_clean_pop_bma_no_outliers <- d_clean_pop_bma %>%
 ```
 
 ```{r}
-save(d_clean_price_rf_no_outliers, file = "d_clean_price_rf_no_outliers.RDATA")
-save(d_clean_price_bma_no_outliers, file = "d_clean_price_bma_no_outliers.RDATA")
-save(d_clean_pop_rf_no_outliers, file = "d_clean_pop_rf_no_outliers.RDATA")
-save(d_clean_pop_bma_no_outliers, file = "d_clean_pop_bma_no_outliers.RDATA")
+save(d_clean_price_rf_no_outliers,d_clean_pop_rf_no_outliers, file = "d_clean_rf_no_outliers.RDATA")
+save(d_clean_pop_bma_no_outliers,d_clean_price_bma_no_outliers, file = "d_clean_bma_no_outliers.RDATA")
 ```
 
 
