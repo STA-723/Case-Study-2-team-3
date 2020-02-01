@@ -7,6 +7,20 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 library(purrr)
+
+library(dplyr)
+library(reshape)
+library(ggplot2)
+library(broom)
+library(corrplot)
+
+library(ggmap)
+library(maps)
+library(mapdata)
+library(geojsonio) # to read geojson files
+library(ggthemes)
+library(sf)
+
 my_ggsave <- partial(ggsave, path = "Deliverables/Figures", width = 5, height = 3.5)
 ```
 
@@ -16,3 +30,123 @@ ggplot(diamonds, aes(carat, price)) +
   geom_point(alpha = 1/10)
 my_ggsave("MyPlotName.jpeg")
 ```
+
+# Distributiton of length stay
+
+```{r}
+ggplot(data = d_clean, aes(x = minimum_nights)) + 
+  geom_density() +
+  geom_vline(xintercept=30, color = "red", size = 0.3) +
+  scale_x_continuous(breaks=c(0, 30, 100, 200, 300))
+
+my_ggsave("length_stay_density.jpeg")
+```
+
+# Justification of metro
+
+```{r}
+ggplot(data = d_clean, aes(x = proximity_metro, y = price_log)) +
+  geom_point(size = 0.2, alpha = 0.3) +
+  geom_smooth()
+my_ggsave("log_price_vs_prox_metro.jpeg")
+```
+
+```{r}
+ggplot(data = d_clean, aes(x = proximity_metro, y = popularity )) +
+  geom_point(size = 0.3, alpha = 0.3)
+my_ggsave("popularity_vs_prox_metro.jpeg")
+```
+
+```{r}
+ggplot(data = d_clean, aes(x = proximity_metro, y = log(popularity) )) +
+  geom_point(size = 0.3, alpha = 0.3) +
+  geom_smooth()
+my_ggsave("log_popularity_vs_prox_metro.jpeg")
+```
+
+# Justification of attraction
+
+```{r}
+ggplot(data = d_clean, aes(x = proximity_attraction, y = price_log)) +
+  geom_point(size = 0.2, alpha = 0.3) +
+  geom_smooth()
+my_ggsave("log_price_vs_prox_attr.jpeg")
+```
+
+```{r}
+ggplot(data = d_clean, aes(x = proximity_attraction, y = popularity )) +
+  geom_point(size = 0.3, alpha = 0.3)
+my_ggsave("popularity_vs_prox_attr.jpeg")
+```
+
+```{r}
+ggplot(data = d_clean, aes(x = proximity_attraction, y = log(popularity) )) +
+  geom_point(size = 0.3, alpha = 0.4) +
+  geom_smooth()
+
+my_ggsave("log_popularity_vs_prox_attr.jpeg")
+```
+
+# Map of metro and price
+
+```{r}
+metro_loc <- read.csv("subway and attractions data/subway_loc.csv")
+```
+
+```{r}
+metro_loc <- metro_loc %>% mutate(color = rep("metro", times = nrow(metro_loc)))
+
+ggplot()+
+  theme_dark() +
+  geom_point(data = d_clean[d_clean$price != 0, ], aes(x = longitude, y = latitude, color = price_log), size = 0.5, alpha = 0.5)+
+  scale_color_gradient2(midpoint = 4) +
+  # scale_color_gradientn(colours = rainbow(7)) +
+  geom_point(data = metro_loc, mapping = aes(x = Station.Longitude, y = Station.Latitude, shape = factor(color)), size = 0.7, color = "orange") +
+  labs(shape = "")
+
+my_ggsave("map_price_metro.jpeg")
+```
+
+# Map of attractions and price
+
+```{r}
+df_attr_loc <- read.csv("subway and attractions data/attrac_loc.csv")
+```
+
+```{r}
+df_attr_loc <- df_attr_loc %>% mutate(color = rep("attractions", times = nrow(df_attr_loc)))
+
+ggplot()+
+  theme_dark() +
+  geom_point(data = d_clean[d_clean$price != 0, ], aes(x = longitude, y = latitude, color = price_log), size = 0.8, alpha = 0.5)+
+    scale_color_gradient2(midpoint = 4.5) +
+#  scale_color_gradientn(colours = rainbow(7)) +
+    geom_point(data = df_attr_loc, mapping = aes(x = longitude, y = latitude, shape = factor(color)), color = "orange") +
+  labs(shape = "")
+
+my_ggsave("map_price_attractions.jpeg")
+```
+
+# Host names
+
+```{r}
+ggplot(data = d_clean, aes(x = name_host_special, y = price_log, fill = name_host_special)) +
+  geom_boxplot()
+my_ggsave("log_price_vs_name_spec.jpeg")
+```
+
+```{r}
+ggplot(data = d_clean, aes(x = name_host_special, y = log(popularity), fill = name_host_special)) +
+  geom_boxplot()
+my_ggsave("popularity_vs_name_spec.jpeg")
+```
+
+
+
+
+
+
+
+
+
+

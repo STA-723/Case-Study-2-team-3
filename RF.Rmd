@@ -1,0 +1,25 @@
+---
+title: "RF"
+author: "Raphaël Morsomme"
+date: "February 1, 2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(randomForest)
+
+load("d_clean.RDATA")
+```
+
+
+
+```{r train}
+rf.price = randomForest(price_log ~ latitude + longitude, ntree = 1500, sampsize = 1e3, data = d_clean, do.trace = 1e2)
+saveRDS(rf.price, "Ezinne/saved_Models/price_rf_test.rds")
+
+## random forest model for popularity
+#rf.pop = randomForest(popularity_log ~ ., ntree = 1500, sampsize = 4000, data = df_popmod_no_outliers, do.trace = 100)
+#saveRDS(rf.pop, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/pop_rf.rds")
+pop_rf <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/pop_rf.rds")
+```
+
