@@ -132,35 +132,3 @@ df_popmod_bma <- d_clean%>%
 
 ```
 
-
-```{r}
-save(d_mod_price, file = "df_pricemod.RDATA")
-```
-
-```{r}
-save(d_mod_pop, file = "d_popmod.RDATA")
-```
-
-```{r no outliers}
-
-##Removing outliers from model 
-price_sumstats <- df_pricemod %>% summarise(avg_price = mean(price_log), sd_price = sd(price_log), min_price = min(price_log), max_price = max(price_log))
-df_pricemod_no_outliers <- df_pricemod %>% 
-  filter(near(price_log, price_sumstats$avg_price, tol = 3*price_sumstats$sd_price)) #%>% 
-  #ggplot(aes(price_log)) + geom_histogram()
-
-pop_sumstats <- df_popmod %>% summarise(avg_pop = mean(popularity_log), sd_pop = sd(popularity_log), min_pop = min(popularity_log), max_pop = max(popularity_log))
-
-df_popmod_no_outliers <- df_popmod %>% 
-  filter(near(popularity_log, pop_sumstats$avg_pop, tol = 3*pop_sumstats$sd_pop)) #%>% 
-  #ggplot(aes(popularity_log)) + geom_histogram()
-```
-
-```{r}
-save(df_pricemod_no_outliers, file = "dprice_no_outliers.RDATA")
-```
-
-```{r}
-save(df_popemod_no_outliers, file = "dpop_no_outliers.RDATA")
-```
-
