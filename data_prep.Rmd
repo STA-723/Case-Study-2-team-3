@@ -75,14 +75,11 @@ d_clean <- d %>%
   filter(!is.na(last_review))  %>% # removes 10,000 (effectively removes people with no review)
   filter(days_since_last <= 365) %>% # removes 9,000
   
-  # short term listing
-  filter(minimum_nights < 29) %>%
-
-  
   ## Feature engineering
   
   # Y1: Popularity
-  mutate(popularity = if_else(availability_365 > 0, reviews_per_month / availability_365, NA_real_)) %>%
+  mutate(popularity = if_else(availability_365 > 10, reviews_per_month / availability_365, NA_real_)) %>%
+  mutate(popularity_log = log(popularity + 1)) %>% 
   
   # Y2: price
   mutate(price_log = log(price + 1)) %>%
@@ -103,3 +100,67 @@ d_clean <- d %>%
 ```{r}
 save(d_clean, file = "d_clean.RDATA")
 ```
+
+```{r}
+d_clean_rf_price <- d_clean%>% 
+  select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -popularity_log) %>% 
+   # short term listing
+  filter(minimum_nights < 29) %>%
+  select(price_log, everything()) %>% 
+  filter(!is.na(price_log))
+
+d_clean_rf <- d_clean%>% 
+  select(-id,-name,-host_id, -host_name, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -price_log, -popularity) %>% 
+  # short term listing
+  filter(minimum_nights < 29) %>%
+  select(popularity_log, everything()) %>% 
+  filter(!is.na(popularity_log))
+
+df_pricemod_bma <- d_clean%>% 
+  select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -popularity_log, -longitude, -latitude) %>% 
+  # short term listing
+  filter(minimum_nights < 29) %>%
+  select(price_log, everything()) %>% 
+  filter(!is.na(price_log))
+
+df_popmod_bma <- d_clean%>% 
+  select(-id,-name,-host_id, -host_name, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -price_log, -popularity, -longitude, -latitude) %>% 
+    # short term listing
+  filter(minimum_nights < 29) %>%
+  select(popularity_log, everything()) %>% 
+  filter(!is.na(popularity_log))
+
+```
+
+
+```{r}
+save(d_mod_price, file = "df_pricemod.RDATA")
+```
+
+```{r}
+save(d_mod_pop, file = "d_popmod.RDATA")
+```
+
+```{r no outliers}
+
+##Removing outliers from model 
+price_sumstats <- df_pricemod %>% summarise(avg_price = mean(price_log), sd_price = sd(price_log), min_price = min(price_log), max_price = max(price_log))
+df_pricemod_no_outliers <- df_pricemod %>% 
+  filter(near(price_log, price_sumstats$avg_price, tol = 3*price_sumstats$sd_price)) #%>% 
+  #ggplot(aes(price_log)) + geom_histogram()
+
+pop_sumstats <- df_popmod %>% summarise(avg_pop = mean(popularity_log), sd_pop = sd(popularity_log), min_pop = min(popularity_log), max_pop = max(popularity_log))
+
+df_popmod_no_outliers <- df_popmod %>% 
+  filter(near(popularity_log, pop_sumstats$avg_pop, tol = 3*pop_sumstats$sd_pop)) #%>% 
+  #ggplot(aes(popularity_log)) + geom_histogram()
+```
+
+```{r}
+save(df_pricemod_no_outliers, file = "dprice_no_outliers.RDATA")
+```
+
+```{r}
+save(df_popemod_no_outliers, file = "dpop_no_outliers.RDATA")
+```
+
