@@ -101,29 +101,29 @@ d_clean <- d %>%
 save(d_clean, file = "d_clean.RDATA")
 ```
 
-```{r}
-d_clean_rf_price <- d_clean%>% 
+```{r, eval = FALSE}
+d_clean_price_rf <- d_clean%>% 
   select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -popularity_log) %>% 
    # short term listing
   filter(minimum_nights < 29) %>%
   select(price_log, everything()) %>% 
   filter(!is.na(price_log))
 
-d_clean_rf <- d_clean%>% 
+d_clean_pop_rf <- d_clean%>% 
   select(-id,-name,-host_id, -host_name, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -price_log, -popularity) %>% 
   # short term listing
   filter(minimum_nights < 29) %>%
   select(popularity_log, everything()) %>% 
   filter(!is.na(popularity_log))
 
-df_pricemod_bma <- d_clean%>% 
+d_clean_price_bma<- d_clean%>% 
   select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -popularity_log, -longitude, -latitude) %>% 
   # short term listing
   filter(minimum_nights < 29) %>%
   select(price_log, everything()) %>% 
   filter(!is.na(price_log))
 
-df_popmod_bma <- d_clean%>% 
+d_clean_pop_bma <- d_clean%>% 
   select(-id,-name,-host_id, -host_name, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -price_log, -popularity, -longitude, -latitude) %>% 
     # short term listing
   filter(minimum_nights < 29) %>%
@@ -131,4 +131,36 @@ df_popmod_bma <- d_clean%>%
   filter(!is.na(popularity_log))
 
 ```
+
+
+```{r}
+save(d_clean_price_rf, file = "d_clean_price_rf.RDATA")
+save(d_clean_pop_rf, file = "d_clean_pop_rf.RDATA")
+save(d_clean_price_bma, file = "d_clean_price_bma.RDATA")
+save(d_clean_pop_bma, file = "d_clean_pop_bma.RDATA")
+```
+
+```{r datasets no outliers}
+price_sumstats <- d_clean_price_rf%>% summarise(avg_price = mean(price_log), sd_price = sd(price_log), min_price = min(price_log), max_price = max(price_log))
+d_clean_price_rf_no_outliers <- d_clean_price_rf %>% 
+  filter(near(price_log, price_sumstats$avg_price, tol = 3*price_sumstats$sd_price)) #%>% 
+d_clean_price_bma_no_outliers <- d_clean_price_bma %>% 
+  filter(near(price_log, price_sumstats$avg_price, tol = 3*price_sumstats$sd_price)) #%>% 
+
+pop_sumstats <- d_clean_pop_rf %>% summarise(avg_pop = mean(popularity_log), sd_pop = sd(popularity_log), min_pop = min(popularity_log), max_pop = max(popularity_log))
+
+d_clean_pop_rf_no_outliers <- d_clean_pop_rf %>% 
+  filter(near(popularity_log, pop_sumstats$avg_pop, tol = 3*pop_sumstats$sd_pop)) 
+d_clean_pop_bma_no_outliers <- d_clean_pop_bma %>% 
+  filter(near(popularity_log, pop_sumstats$avg_pop, tol = 3*pop_sumstats$sd_pop)) 
+
+```
+
+```{r}
+save(d_clean_price_rf_no_outliers, file = "d_clean_price_rf_no_outliers.RDATA")
+save(d_clean_price_bma_no_outliers, file = "d_clean_price_bma_no_outliers.RDATA")
+save(d_clean_pop_rf_no_outliers, file = "d_clean_pop_rf_no_outliers.RDATA")
+save(d_clean_pop_bma_no_outliers, file = "d_clean_pop_bma_no_outliers.RDATA")
+```
+
 
