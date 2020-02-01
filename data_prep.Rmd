@@ -103,15 +103,3 @@ d_clean <- d %>%
 ```{r}
 save(d_clean, file = "d_clean.RDATA")
 ```
-
-
-# Example
-
-```{r example ggsave}
-library(purrr)
-my_ggsave <- partial(ggsave, path = "Deliverables/Figures", width = 5, height = 3.5)
-ggplot(diamonds, aes(carat, price)) +
-  geom_point(alpha = 1/10)
-my_ggsave("MyPlotName.jpeg")
-```
-
