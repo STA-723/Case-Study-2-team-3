@@ -13,6 +13,13 @@ my_ggsave <- partial(ggsave, path = "Deliverables/Figures", width = 5, height = 
 
 ```{r}
 ggplot(diamonds, aes(carat, price)) +
-  geom_point(alpha = 1/10)
+  geom_point()
 my_ggsave("MyPlotName.jpeg")
 ```
+
+How to saving a table objective:
+
+```{r}
+#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
+```
+
