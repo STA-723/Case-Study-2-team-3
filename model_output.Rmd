@@ -1,0 +1,18 @@
+---
+title: "EDA_ok"
+author: "Raphaël Morsomme"
+date: "February 1, 2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(purrr)
+my_ggsave <- partial(ggsave, path = "Deliverables/Figures", width = 5, height = 3.5)
+```
+
+
+```{r}
+ggplot(diamonds, aes(carat, price)) +
+  geom_point(alpha = 1/10)
+my_ggsave("MyPlotName.jpeg")
+```
