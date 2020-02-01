@@ -1,0 +1,117 @@
+---
+title: "EDA 3"
+author: "Melody Jiang"
+date: "1/30/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+set.seed(42)
+```
+
+```{r}
+library(dplyr)
+library(reshape)
+library(ggplot2)
+library(broom)
+library(corrplot)
+library(RegClust)
+library(flexmix)
+library(fpc)
+```
+
+```{r}
+load("d_clean.RDATA")
+```
+
+```{r}
+# number of listings of host
+df_host <- d_clean[!duplicated(d_clean$host_id), ]
+df_host <- df_host[order(-df_host$calculated_host_listings_count), ]
+nrow(df_host) # 21871 unique hosts
+ggplot(df_host, aes(x = calculated_host_listings_count) )+
+  geom_histogram()
+```
+
+```{r}
+df_big_host <- df_host[df_host$calculated_host_listings_count >= 50, ]
+```
+
+```{r}
+d_Blueground <- d_clean[d_clean$host_name == "Blueground", ]
+```
+
+These hosts with numeraous listings seem to be located in manhattan, long stay, few reviews. From below, most of them are cheap per night.
+
+```{r}
+ggplot(d_clean, aes(x =d_clean$neighbourhood_group, y = d_clean$price)) + 
+  geom_violin()
+```
+
+```{r}
+ggplot(d_clean, aes(x =d_clean$neighbourhood_group, y = d_clean$price_log)) + 
+  geom_violin()
+```
+
+There is a ridiculous 8000 and long stay one...
+
+
+```{r}
+summary(d_clean)
+```
+
+```{r}
+corrplot::corrplot(cor(d_clean %>% dplyr::select(-c("room_type", "name", "id", "host_id", "host_name","neighbourhood_group", "neighbourhood", "last_review", "popularity", "price_log", "name_host_special", "type_stay", "days_since_last", "name_host_freq", "name_listing_length", "longitude", "latitude"))))
+```
+
+```{r}
+d_try <- d_clean %>% dplyr::select(-c("room_type", "name", "id", "host_id", "host_name","neighbourhood_group", "neighbourhood", "last_review", "popularity", "price_log", "name_host_special", "type_stay", "days_since_last", "name_host_freq", "name_listing_length", "longitude", "latitude"))
+```
+
+```{r}
+model_reg_clust <- cluster.reg(Y = d_try %>% dplyr::select(price, reviews_per_month), X = d_try %>% dplyr::select(minimum_nights, availability_365, proximity_attraction))
+```
+
+```{r}
+ex1 <- flexmix(price ~ minimum_nights + availability_365 + proximity_attraction, data = d_try, k = 2,
+               control = list(verb = 5, iter = 100))
+```
+
+
+```{r}
+summary(ex1)
+plot(ex1)
+```
+
+```{r}
+km.boot <- clusterboot(d_try, B=20, bootmethod="boot",
+                       clustermethod=kmeansCBI,
+                       krange=3, seed=15555)
+```
+
+```{r}
+km.boot
+```
+
+# Observations
+* Probability should exclude those with price 0
+* Should we even look at those with too little reviews, since we want to be popular?
+* Regression clustering / mixture of regressions?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
