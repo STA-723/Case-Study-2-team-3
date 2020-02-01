@@ -204,6 +204,7 @@ image(pop_bma_JZS2, rotate = F)
 par(mfrow=c(2,2))
 plot(pop_bma2)
 
+
 ```
 
 
@@ -226,7 +227,7 @@ residuals_price_bma <- df_pricemod_no_outliers$price_log - predicted_price_bma$f
 df_pricemod_no_outliers %>% 
   mutate(residuals_price_bma = residuals_price_bma) %>% 
   mutate(residuals_price_bma_ind = ifelse(residuals_price_bma < 2*sd(residuals_price_bma) & residuals_price_bma > -2*sd(residuals_price_bma) , "Small Residual", "Large Residual")) %>% 
-  ggplot(aes(x = longitude, y = latitude)) + geom_point(aes(color = residuals_price_bma_ind))
+  ggplot(aes(x = longitude, y = latitude, color = residuals_price_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 4) 
 
 #Saving posterior mean and interval estimates 
 price_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx", "Room_type:Entire home/apt", "Room_type:Shared room", "number of reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365", "name_listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length", "type_stay:Long","proximity_metro") 
