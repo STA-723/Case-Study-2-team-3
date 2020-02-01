@@ -67,15 +67,23 @@ d <- d %>%
 ```{r data prep}
 d_clean <- d %>%
   
+  
   ## Cleaning
+  
+  # Active listings
   mutate(days_since_last = max(last_review, na.rm = TRUE) - last_review) %>%
   filter(!is.na(last_review))  %>% # removes 10,000 (effectively removes people with no review)
   filter(days_since_last <= 365) %>% # removes 9,000
+  
+  # short term listing
+  filter(minimum_nights < 29) %>%
 
+  
   ## Feature engineering
   
   # Y1: Popularity
   mutate(popularity = if_else(availability_365 > 0, reviews_per_month / availability_365, NA_real_)) %>%
+  
   # Y2: price
   mutate(price_log = log(price + 1)) %>%
   
@@ -87,9 +95,6 @@ d_clean <- d %>%
   mutate(name_listing_length = nchar(name)) %>% # number of characters
   # sentiment computed in previous chunk
 
-  # Short v. long stays
-  mutate(type_stay = if_else(minimum_nights >= 29, "Long", "Short")) %>%
-  
   # Proximity to closest metro station
   mutate(dist_closest_metro = list(longitude, latitude) %>% pmap_dbl(compute_distance_closest_metro),
          proximity_metro = 1 / (dist_closest_metro + 0.01) )
@@ -100,10 +105,13 @@ save(d_clean, file = "d_clean.RDATA")
 ```
 
 
+# Example
 
 ```{r example ggsave}
-d <- ggplot(diamonds, aes(carat, price))
-d + geom_point(alpha = 1/10)
-ggsave("MyPlotName.jpeg", path = "Deliverables/Figures", width = 5, height = 3.5)
+library(purrr)
+my_ggsave <- partial(ggsave, path = "Deliverables/Figures", width = 5, height = 3.5)
+ggplot(diamonds, aes(carat, price)) +
+  geom_point(alpha = 1/10)
+my_ggsave("MyPlotName.jpeg")
 ```
 
