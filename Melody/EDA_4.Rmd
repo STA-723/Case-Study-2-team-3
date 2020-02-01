@@ -66,10 +66,16 @@ ggplot(data = df_short, aes(x = proximity_metro, y = price_log)) +
 ```
 
 ```{r}
-plt_popularity_vs_prox_metro <- ggplot(data = d_clean, aes(x = proximity_metro, y = popularity)) +
+plt_popularity_vs_prox_metro <- ggplot(data = d_clean, aes(x = proximity_metro, y = popularity )) +
   geom_point()
 plt_popularity_vs_prox_metro
-``` 
+```
+
+```{r}
+plt_log_popularity_vs_prox_metro <- ggplot(data = d_clean, aes(x = proximity_metro, y = log(popularity) ), size = 0.1) +
+  geom_point()
+plt_log_popularity_vs_prox_metro
+```
 
 ```{r}
 ggplot(data = df_short, aes(x = proximity_metro, y = popularity)) +
@@ -83,7 +89,7 @@ plt_review_vs_prox_metro
 ```
 
 ```{r}
-ggplot(data = df_short, aes(x = proximity_metro, y = reviews_per_month)) +
+ggplot(data = df_short, aes(x = proximity_metro, y = log(reviews_per_month) )) +
   geom_point()
 ```
 
@@ -96,7 +102,7 @@ plt_log_price_vs_prox_attr
 ```
 
 ```{r}
-plt_popularity_vs_prox_attr <- ggplot(data = d_clean, aes(x = proximity_attraction, y = popularity)) +
+plt_popularity_vs_prox_attr <- ggplot(data = d_clean, aes(x = proximity_attraction, y = log(popularity) )) +
   geom_point()
 plt_popularity_vs_prox_attr
 ``` 
@@ -155,6 +161,10 @@ hist(log(na.omit(d_clean$popularity)))
 ```
 
 # Map justification of including metro
+
+```{r}
+metro_loc <- read.csv("subway and attrctions data/subway_loc.csv")
+```
 
 ```{r}
 # This does not work.
