@@ -105,6 +105,8 @@ save(d_clean, file = "d_clean.RDATA")
 d_clean_inter <- d_clean %>%
   filter(minimum_nights < 29) %>% 
   filter(calculated_host_listings_count <= 5) %>%
+  filter(!is.na(name_listing_length)) %>%
+  filter(!is.na(name_host_freq)) %>%
   select(-id,-name,-host_id, -host_name, -price, -neighbourhood, -last_review,
          -days_since_last,-availability_365, -dist_closest_metro, -popularity) %>% 
   rename(listing_count = calculated_host_listings_count) %>% 
