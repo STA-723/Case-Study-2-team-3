@@ -73,7 +73,7 @@ d_clean <- d %>%
   # Active listings
   mutate(days_since_last = max(last_review, na.rm = TRUE) - last_review) %>%
   filter(!is.na(last_review))  %>% # removes 10,000 (effectively removes people with no review)
-  filter(days_since_last <= 365) %>% # removes 9,000
+  filter(days_since_last <= 365) # removes 9,000 %>% 
   
   ## Feature engineering
   
@@ -103,32 +103,44 @@ save(d_clean, file = "d_clean.RDATA")
 
 ```{r, eval = FALSE}
 d_clean_price_rf <- d_clean%>% 
-  select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -popularity_log) %>% 
+  select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood, -last_review, -days_since_last,-availability_365, -dist_closest_metro, -popularity_log) %>% 
    # short term listing
   filter(minimum_nights < 29) %>%
   select(price_log, everything()) %>% 
-  filter(!is.na(price_log))
+  filter(!is.na(price_log)) %>% 
+  filter(calculated_host_listings_count <= 5) %>% 
+  rename(listing_count = calculated_host_listings_count) %>% 
+  rename(listing_sentiment= name_listings_sentiment) 
 
 d_clean_pop_rf <- d_clean%>% 
-  select(-id,-name,-host_id, -host_name, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -price_log, -popularity) %>% 
+  select(-id,-name,-host_id, -host_name, -price, -neighbourhood, -last_review, -days_since_last,-availability_365,-dist_closest_metro, -price_log, -popularity) %>% 
   # short term listing
   filter(minimum_nights < 29) %>%
   select(popularity_log, everything()) %>% 
-  filter(!is.na(popularity_log))
+  filter(!is.na(popularity_log)) %>% 
+  filter(calculated_host_listings_count <= 5) %>% 
+  rename(listing_count = calculated_host_listings_count) %>% 
+  rename(listing_sentiment= name_listings_sentiment) 
 
 d_clean_price_bma<- d_clean%>% 
-  select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -popularity_log, -longitude, -latitude) %>% 
+  select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood, -last_review,-days_since_last, -availability_365, -dist_closest_metro, -popularity_log, -longitude, -latitude) %>% 
   # short term listing
   filter(minimum_nights < 29) %>%
   select(price_log, everything()) %>% 
-  filter(!is.na(price_log))
+  filter(!is.na(price_log)) %>% 
+  filter(calculated_host_listings_count <= 5) %>% 
+  rename(listing_count = calculated_host_listings_count) %>% 
+  rename(listing_sentiment= name_listings_sentiment) 
 
 d_clean_pop_bma <- d_clean%>% 
-  select(-id,-name,-host_id, -host_name, -price, -neighbourhood, -days_since_last, -dist_closest_metro, -price_log, -popularity, -longitude, -latitude) %>% 
+  select(-id,-name,-host_id, -host_name, -price, -neighbourhood,-days_since_last, -last_review,-availability_365, -dist_closest_metro, -price_log, -popularity, -longitude, -latitude) %>% 
     # short term listing
   filter(minimum_nights < 29) %>%
   select(popularity_log, everything()) %>% 
-  filter(!is.na(popularity_log))
+  filter(!is.na(popularity_log)) %>% 
+  filter(calculated_host_listings_count <= 5) %>% 
+  rename(listing_count = calculated_host_listings_count) %>% 
+  rename(listing_sentiment= name_listings_sentiment) 
 
 ```
 
