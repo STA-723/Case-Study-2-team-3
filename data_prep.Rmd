@@ -118,17 +118,17 @@ d_clean_price_rf <- d_clean_inter %>%
   select(price_log, everything()) %>% 
   filter(!is.na(price_log))
 
-d_clean_pop_rf <- d_clean_inter%>% 
+d_clean_pop_rf <- d_clean_inter %>% 
   select(-price_log) %>% 
   select(popularity_log, everything()) %>% 
   filter(!is.na(popularity_log))
 
-d_clean_price_bma<- d_clean_inter%>% 
+d_clean_price_bma<- d_clean_inter %>% 
   select(-popularity_log, -longitude, -latitude) %>% 
   select(price_log, everything()) %>% 
   filter(!is.na(price_log))
 
-d_clean_pop_bma <- d_clean_inter%>% 
+d_clean_pop_bma <- d_clean_inter %>% 
   select(-price_log, -longitude, -latitude) %>%
   select(popularity_log, everything()) %>% 
   filter(!is.na(popularity_log))
