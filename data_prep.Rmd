@@ -112,7 +112,6 @@ d_clean_inter <- d_clean %>%
   rename(listing_count = calculated_host_listings_count) %>% 
   rename(listing_sentiment= name_listing_sentiment)
 
-
 d_clean_price_rf <- d_clean_inter %>% 
   select(-popularity_log) %>% 
   select(price_log, everything()) %>% 
