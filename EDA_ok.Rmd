@@ -23,7 +23,7 @@ library(geojsonio) # to read geojson files
 library(ggthemes)
 library(sf)
 
-my_ggsave <- partial(ggsave, path = "Deliverables/Figures", width = 5, height = 3.5)
+my_ggsave <- partial(ggsave, path = "Deliverables_2/Figures", width = 5, height = 3.5)
 
 load("d_clean.RDATA")
 d_metro <- read_csv("subway and attractions data/subway_loc.csv") %>% 
