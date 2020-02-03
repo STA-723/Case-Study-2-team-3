@@ -10,11 +10,12 @@ editor_options:
 ```{r setup, include=FALSE}
 library(randomForest)
 library(purrr)
+library(tidyverse)
 
 load("d_clean_rf.RDATA")
 
 my_rf <- partial(randomForest,
-                 ntree = 2000, sampsize = 1500, do.trace = 1e1, importance = TRUE)
+                 ntree = 1900, sampsize = 15000, do.trace = 250, importance = TRUE)
 
 my_rf_pop   <- partial(my_rf, popularity_log ~ ., data = d_clean_pop_rf)
 my_rf_price <- partial(my_rf, price_log      ~ ., data = d_clean_price_rf)
@@ -28,11 +29,10 @@ my_rf_pop(nodesize = 5, mtry = 4) %>% saveRDS("Ezinne/saved_Models/pop_rf.rds")
 
 # Sensitivity: nodesize = 10
 my_rf_price(nodesize = 10, mtry = 4) %>% saveRDS("Ezinne/saved_Models/price_rf_ns10.rds")
-
-my_rf_pop(nodesize = 10, mtry = 4) %>% saveRDS("Ezinne/saved_Models/pop_rf_ns10.rds")
+my_rf_pop  (nodesize = 10, mtry = 4) %>% saveRDS("Ezinne/saved_Models/pop_rf_ns10.rds")
 
 # Sensitivity: mtry = 6
 my_rf_price(nodesize = 5, mtry = 6) %>% saveRDS("Ezinne/saved_Models/price_rf_mtry6.rds")
-my_rf_pop(nodesize = 5, mtry = 6) %>% saveRDS("Ezinne/saved_Models/pop_rf_mtry6.rds")
+my_rf_pop  (nodesize = 5, mtry = 6) %>% saveRDS("Ezinne/saved_Models/pop_rf_mtry6.rds")
 ```
 
