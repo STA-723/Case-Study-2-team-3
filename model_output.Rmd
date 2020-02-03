@@ -11,15 +11,91 @@ my_ggsave <- partial(ggsave, path = "Deliverables/Figures", width = 5, height = 
 ```
 
 
-```{r}
+```{r load data}
+price_bma_JZS <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_final.rds")
+pop_bma_JZS <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/pop_bma_final.rds")
+
+```
+
+
+
+```{r example}
 ggplot(diamonds, aes(carat, price)) +
   geom_point()
 my_ggsave("MyPlotName.jpeg")
 ```
 
-How to saving a table objective:
+```{r price bma diagnostic plots}
+image(price_bma_JZS , rotate = F)
+#par(mfrow=c(2,2))
+plot(price_bma_JZS)
+coef.priceJZS <- coef(price_bma_JZS)
+plot(confint(coef.priceJZS, estimator = "HPM"))
 
-```{r}
-#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
+```
+```{r price bma posterior distributions}
+plot(coef.priceJZS, subset = c(4,10,14), ask = F)
+
+
 ```
 
+
+
+```{r price bma residual map}
+#price_bma 
+d_merge_price <- left_join(d_clean_price_bma_no_outliers, d_clean)
+d_merge_price%>% 
+  mutate(residuals_price_bma = residuals_price_bma) %>% 
+  ggplot(aes(x = longitude, y = latitude, color = residuals_price_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) 
+
+```
+
+```{r pop bma diagnostics}
+image(pop_bma_JZS2 , rotate = F)
+#par(mfrow=c(2,2))
+plot(pop_bma_JZS2 )
+coef.popJZS2 <- coef(pop_bma_JZS2)
+plot(confint(coef.popJZS2, estimator = "HPM"))
+
+```
+
+```{r pop bma posterior distns}
+plot(coef.priceJZS, subset = c(2:5,7,12, 14:18), ask = F)
+```
+
+
+
+```{r pop bma residuals map}
+#pop_bma
+d_merge_pop <- left_join(d_clean_pop_bma_no_outliers, d_clean)
+d_merge_pop %>% 
+  mutate(residuals_pop_bma = residuals_pop_bma) %>% 
+  mutate(residuals_pop_bma_ind = ifelse(residuals_pop_bma < 2*sd(residuals_pop_bma) & residuals_pop_bma > -2*sd(residuals_pop_bma) , "Small Residual", "Large Residual")) %>% 
+  ggplot(aes(x = longitude, y = latitude, color = residuals_pop_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) 
+
+
+```
+
+
+
+How to saving a table objective:
+
+```{r price bma estimates and confint}
+#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
+library(xtable)
+load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/price_confint.RDATA")
+tab1<-xtable(price_confint, caption= "Coeffients and 95% Confidence Intervals from Price BMA model")
+
+print(tab1,file="price_bma_coef_confint.tex",append=T,table.placement = "h",
+ caption.placement="bottom", hline.after=seq(from=-1,to=nrow(tab),by=1))
+```
+
+```{r pop bma estimates and confint}
+#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
+library(xtable)
+load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_confint.RDATA")
+tab2<-xtable(pop_confint, caption= "Coeffients and 95% Confidence Intervals from Popularity BMA model")
+
+print(ta2b,file="pop_bma_coef_confint.tex",append=T,table.placement = "h",
+ caption.placement="bottom", hline.after=seq(from=-1,to=nrow(tab),by=1))
+```

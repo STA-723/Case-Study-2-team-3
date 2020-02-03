@@ -10,23 +10,25 @@ output: pdf_document
 #library(BMA)
 #library(BMS)
 #install.packages("BAS")
-devtools::install_github("merliseclyde/BAS");
+devtools::install_github("merliseclyde/BAS", force = TRUE);
 library(BAS)
 library("tidyverse")
 #install.packages("randomForest")
 library(randomForest)
-install.packages(c("maps", "mapdata"))
-devtools::install_github("dkahle/ggmap")
+#install.packages(c("maps", "mapdata"))
+#devtools::install_github("dkahle/ggmap")
 #install.packages("rlang")
-library(ggmap)
-library(maps)
-library(mapdata)
+#library(ggmap)
+#library(maps)
+#library(mapdata)
 #install.packages("sf")
-library(sf)
-install.packages("sp")
-sp
-rgdal
-raster
+#library(sf)
+#install.packages("sp")
+#library(sp)
+#install.packages("rgdal")
+#library(rgdal)
+#install.packages("raster")
+#library(raster)
 
 set.seed(2020)
 
@@ -35,37 +37,24 @@ set.seed(2020)
 
 ```{r load_data, include=FALSE}
 load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean.RDATA")
+load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean_bma.RDATA")
+load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean_rf.RDATA")
+
 ```
 
 ### Simple Linear Model 
 
 ```{r lm_models}
-##removing variables not used for price model and moving price to front of dataframe
-df_pricemod <- d_clean%>% 
-  select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood, -minimum_nights, -days_since_last, -dist_closest_metro) %>% 
-  mutate(type_stay = recode_factor(type_stay, 
-                                   "Short" = "Short", 
-                                   "Long" = "Long")) %>% 
-  select(price_log, everything()) %>% 
-  drop_na()
-
-df_popmod <- d_clean%>% 
-  mutate(popularity_log =  log(popularity)) %>% 
-  select(-id,-name,-host_id, -host_name, -price, -neighbourhood, -minimum_nights, -days_since_last, -dist_closest_metro, -price_log, -popularity) %>% 
-  mutate(type_stay = recode_factor(type_stay, 
-                                   "Short" = "Short", 
-                                   "Long" = "Long")) %>% 
-  select(popularity_log, everything()) %>% 
-  drop_na()
-
 
 #simple lm model for price
-lm_price<-lm(price_log ~ .,data = df_pricemod)
+lm_price<-lm(price_log ~ .,data = d_clean_price_bma_no_outliers)
 summary(lm_price)
 
 #simple lm model for popularity
 lm_pop<-lm(popularity_log ~ .,data = df_popmod)
 summary(lm_pop)
+
+
 
 ```
 
@@ -75,32 +64,33 @@ Decided to run models with cauchy prior instead of g prior because we'd rather h
 ```{r bma, eval = FALSE, include = FALSE}
 ############### Price Models #######################
 #BMA model with Cauchy prior
-# price_bma_JZS <- bas.lm(price_log ~ ., data = df_pricemod, prior = "JZS", 
-#                     alpha = 1, 
-#                     n.models = 2^15,
-#                     modelprior = uniform(),
-#                     initprobs = "marg-eplogp",
-#                     method = "MCMC")
+price_bma_JZS <- bas.lm(price_log ~ ., data = d_clean_price_bma_no_outliers, prior = "JZS",
+                    alpha = 1,
+                    n.models = 2^15,
+                    modelprior = uniform(),
+                    initprobs = "marg-eplogp",
+                    method = "MCMC",
+                    MCMC.iterations = 10^6)
 #Save Model
-#saveRDS(price_bma_JZS, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_JZS.rds")
-# price_bma_JZS <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_JZS.rds")
-# #print(price_bma_JZS )
+saveRDS(price_bma_JZS, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_final.rds")
+price_bma_JZS <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_final.rds")
+print(price_bma_JZS )
 # image(price_bma_JZS , rotate = F)
-# par(mfrow=c(2,2))
-# plot(price_bma_JZS )
-# coef.priceJZS <- coef(price_bma_JZS)
-# confint(coef.priceJZS)
-# plot(confint(coef.priceJZS, estimator = "HPM"))
-
+par(mfrow=c(2,2))
+plot(price_bma_JZS )
+coef.priceJZS <- coef(price_bma_JZS)
+confint(coef.priceJZS)
+plot(confint(coef.priceJZS))
+# 
 
 #BMA model with g  prior
-# price.g <- bas.lm(price_log ~ ., data = df_pricemod, prior = "g-prior", 
-#                     alpha = 1, 
-#                     n.models = 2^15,
-#                     modelprior = uniform(),
-#                     initprobs = "marg-eplogp",
-#                     method = "MCMC")
-#Save Model
+price.g <- bas.lm(price_log ~ ., data = df_pricemod, prior = "g-prior",
+                    alpha = 1,
+                    n.models = 2^15,
+                    modelprior = uniform(),
+                    initprobs = "marg-eplogp",
+                    method = "MCMC")
+Save Model
 #saveRDS(price.g, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_g.rds")
 
 # price_bma_g <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_g.rds")
@@ -112,11 +102,11 @@ Decided to run models with cauchy prior instead of g prior because we'd rather h
 # confint(coef.priceg)
 # plot(confint(coef.priceg, estimator = "HPM"))
 
-##Removing outliers from model 
-price_sumstats <- df_pricemod %>% summarise(avg_price = mean(price_log), sd_price = sd(price_log), min_price = min(price_log), max_price = max(price_log))
-df_pricemod_no_outliers <- df_pricemod %>% 
-  filter(near(price_log, price_sumstats$avg_price, tol = 3*price_sumstats$sd_price)) #%>% 
-  #ggplot(aes(price_log)) + geom_histogram()
+# ##Removing outliers from model 
+# price_sumstats <- df_pricemod %>% summarise(avg_price = mean(price_log), sd_price = sd(price_log), min_price = min(price_log), max_price = max(price_log))
+# df_pricemod_no_outliers <- df_pricemod %>% 
+#   filter(near(price_log, price_sumstats$avg_price, tol = 3*price_sumstats$sd_price)) #%>% 
+#   #ggplot(aes(price_log)) + geom_histogram()
 
 #BMA model with Cauchy prior
 # price_bma_JZS2 <- bas.lm(price_log ~ neighbourhood_group + room_type + number_of_reviews+last_review + reviews_per_month + calculated_host_listings_count + availability_365 + name_listing_sentiment + proximity_attraction + name_host_freq + name_host_special + name_listing_length + type_stay + proximity_metro ,
@@ -131,15 +121,15 @@ df_pricemod_no_outliers <- df_pricemod %>%
 #Save Model
 #saveRDS(price_bma_JZS2, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_JZS2.rds")
 #Reading in saved model
-price_bma_JZS2 <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_JZS2.rds")
-
-#print(price_bma_JZS2 )
-image(price_bma_JZS2 , rotate = F)
-par(mfrow=c(2,2))
-plot(price_bma_JZS2 )
-coef.priceJZS2 <- coef(price_bma_JZS2)
-confint(coef.priceJZS2)
-plot(confint(coef.priceJZS2, estimator = "HPM"))
+# price_bma_JZS2 <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_JZS2.rds")
+# 
+# #print(price_bma_JZS2 )
+# image(price_bma_JZS2 , rotate = F)
+# par(mfrow=c(2,2))
+# plot(price_bma_JZS2 )
+# coef.priceJZS2 <- coef(price_bma_JZS2)
+# confint(coef.priceJZS2)
+# plot(confint(coef.priceJZS2, estimator = "HPM"))
 
 
 ######## Popularity Models #################
@@ -181,28 +171,29 @@ plot(confint(coef.priceJZS2, estimator = "HPM"))
 # saveRDS(pop_bma_g, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/pop_bma_g.rds")
 
 #Lets remove the outliers
-pop_sumstats <- df_popmod %>% summarise(avg_pop = mean(popularity_log), sd_pop = sd(popularity_log), min_pop = min(popularity_log), max_pop = max(popularity_log))
-
-df_popmod_no_outliers <- df_popmod %>% 
-  filter(near(popularity_log, pop_sumstats$avg_pop, tol = 3*pop_sumstats$sd_pop)) #%>% 
+# pop_sumstats <- df_popmod %>% summarise(avg_pop = mean(popularity_log), sd_pop = sd(popularity_log), min_pop = min(popularity_log), max_pop = max(popularity_log))
+# 
+# df_popmod_no_outliers <- df_popmod %>% 
+#   filter(near(popularity_log, pop_sumstats$avg_pop, tol = 3*pop_sumstats$sd_pop)) #%>% 
   #ggplot(aes(popularity_log)) + geom_histogram()
 
 #Rerun model with no outliers
-pop_bma2 <- bas.lm(popularity_log ~ ., data = df_popmod_no_outliers, prior = "JZS", 
-                    alpha = 1, 
-                    n.models = 2^15,
-                    initprobs = "marg-eplogp",
-                    method = "MCMC",
-                    MCMC.iterations = 10^6)
+pop_bma_JZS2 <- bas.lm(popularity_log ~ ., data = d_clean_pop_bma_no_outliers, prior = "JZS",
+                     alpha = 1,
+                     n.models = 2^15,
+                     initprobs = "marg-eplogp",
+                     method = "MCMC",
+                     MCMC.iterations = 10^6)
 
 #Save Model
-#saveRDS(pop_bma2, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/pop_bma_JZS2.rds")
+saveRDS(pop_bma_JZS2, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/pop_bma_final.rds")
 #Reading in saved model
-pop_bma_JZS2 <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/pop_bma_JZS2.rds")
-#print(pop_bma_JZS2)
+pop_bma_JZS2 <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/pop_bma_final.rds")
+print(pop_bma_JZS2)
 image(pop_bma_JZS2, rotate = F)
 par(mfrow=c(2,2))
-plot(pop_bma2)
+plot(pop_bma_JZS2)
+
 
 
 ```
@@ -211,27 +202,31 @@ plot(pop_bma2)
 ```{r bma_final_price}
 #final model 
 #price_bma_JZS2 <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_JZS2.rds")
-print(price_bma_JZS2)
-image(price_bma_JZS2 , rotate = F)
+print(price_bma_JZS)
+image(price_bma_JZS , rotate = F)
 par(mfrow=c(2,2))
-plot(price_bma_JZS2 )
-coef.priceJZS2 <- coef(price_bma_JZS2)
-confint(coef.priceJZS2)
-plot(confint(coef.priceJZS2, estimator = "HPM"))
+plot(price_bma_JZS)
+coef.priceJZS <- coef(price_bma_JZS)
+confint(coef.priceJZS)
+plot(confint(coef.priceJZS, estimator = "HPM"))
+plot(coef.priceJZS, subset = c(19), ask = F)
 
 #Calculating residuals by hand
-predicted_price_bma <- predict(price_bma_JZS2, estimator = "BPM")
-residuals_price_bma <- df_pricemod_no_outliers$price_log - predicted_price_bma$fit
+predicted_price_bma <- predict(price_bma_JZS, estimator = "BPM")
+residuals_price_bma <- d_clean_price_bma_no_outliers$price_log - predicted_price_bma$fit
 
 #Plot of residuals and map of NY 
-df_pricemod_no_outliers %>% 
+d_merge_price <- left_join(d_clean_price_bma_no_outliers, d_clean)
+d_merge_price%>% 
   mutate(residuals_price_bma = residuals_price_bma) %>% 
   mutate(residuals_price_bma_ind = ifelse(residuals_price_bma < 2*sd(residuals_price_bma) & residuals_price_bma > -2*sd(residuals_price_bma) , "Small Residual", "Large Residual")) %>% 
-  ggplot(aes(x = longitude, y = latitude, color = residuals_price_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 4) 
+  ggplot(aes(x = longitude, y = latitude, color = residuals_price_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) 
+
+library(gridExtra)
+library(grid)
 
 #Saving posterior mean and interval estimates 
 price_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx", "Room_type:Entire home/apt", "Room_type:Shared room", "number of reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365", "name_listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length", "type_stay:Long","proximity_metro") 
-
 #Extracting betas and confint values
 price_lower_bound = c()
 price_upper_bound = c()
@@ -243,7 +238,8 @@ for (i in 1:dim(confint(coef.priceJZS2))[1]){
 }
 
 price_confint <- data.frame(price_var_names, price_betas, price_lower_bound, price_upper_bound)
-View(price_confint)
+#grid.table(price_confint)
+#View(price_confint)
 
 save(price_confint, file = "price_confint.RDATA")
 
@@ -262,16 +258,19 @@ plot(confint(coef.popJZS2, estimator = "HPM"))
 
 #Calculating residuals by hand
 predicted_pop_bma <- predict(pop_bma_JZS2, estimator = "BPM")
-residuals_pop_bma <- df_popmod_no_outliers$popularity_log - predicted_pop_bma$fit
+residuals_pop_bma <- d_clean_pop_bma_no_outliers$popularity_log - predicted_pop_bma$fit
 
 #Plot of residuals and map of NY 
-df_popmod_no_outliers %>% 
+d_merge_pop <- left_join(d_clean_pop_bma_no_outliers, d_clean)
+d_merge_pop %>% 
   mutate(residuals_pop_bma = residuals_pop_bma) %>% 
   mutate(residuals_pop_bma_ind = ifelse(residuals_pop_bma < 2*sd(residuals_pop_bma) & residuals_pop_bma > -2*sd(residuals_pop_bma) , "Small Residual", "Large Residual")) %>% 
-  ggplot(aes(x = longitude, y = latitude)) + geom_point(aes(color = residuals_pop_bma_ind))
+  ggplot(aes(x = longitude, y = latitude, color = residuals_pop_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) 
+
+
 
 #Saving posterior mean and interval estimates 
-pop_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx","latitude","longitude", "Room_type:Entire home/apt", "Room_type:Shared room", "number of reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365", "name_listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length", "type_stay:Long","proximity_metro") 
+pop_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx", "Room_type:Entire home/apt", "Room_type:Shared room", "number of reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365", "name_listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length", "type_stay:Long","proximity_metro") 
 
 #Extracting betas and confint values
 pop_lower_bound = c()
@@ -402,7 +401,7 @@ xtable(pop_importance)
 ### Residual Heat Maps
 
 https://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html
-```{r}
+```{r, eval=FALSE}
 
 df.residuals.rf <- df_pricemod1 %>% 
   select(price_log, latitude,longitude, neighbourhood_group) %>% 

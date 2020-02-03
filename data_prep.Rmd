@@ -110,7 +110,7 @@ d_clean_price_rf <- d_clean%>%
   filter(!is.na(price_log)) %>% 
   filter(calculated_host_listings_count <= 5) %>% 
   rename(listing_count = calculated_host_listings_count) %>% 
-  rename(listing_sentiment= name_listings_sentiment) 
+  rename(listing_sentiment= name_listing_sentiment) 
 
 d_clean_pop_rf <- d_clean%>% 
   select(-id,-name,-host_id, -host_name, -price, -neighbourhood, -last_review, -days_since_last,-availability_365,-dist_closest_metro, -price_log, -popularity) %>% 
@@ -120,7 +120,7 @@ d_clean_pop_rf <- d_clean%>%
   filter(!is.na(popularity_log)) %>% 
   filter(calculated_host_listings_count <= 5) %>% 
   rename(listing_count = calculated_host_listings_count) %>% 
-  rename(listing_sentiment= name_listings_sentiment) 
+  rename(listing_sentiment= name_listing_sentiment) 
 
 d_clean_price_bma<- d_clean%>% 
   select(-id,-name,-host_id, -host_name, -popularity, -price, -neighbourhood, -last_review,-days_since_last, -availability_365, -dist_closest_metro, -popularity_log, -longitude, -latitude) %>% 
@@ -130,7 +130,7 @@ d_clean_price_bma<- d_clean%>%
   filter(!is.na(price_log)) %>% 
   filter(calculated_host_listings_count <= 5) %>% 
   rename(listing_count = calculated_host_listings_count) %>% 
-  rename(listing_sentiment= name_listings_sentiment) 
+  rename(listing_sentiment= name_listing_sentiment) 
 
 d_clean_pop_bma <- d_clean%>% 
   select(-id,-name,-host_id, -host_name, -price, -neighbourhood,-days_since_last, -last_review,-availability_365, -dist_closest_metro, -price_log, -popularity, -longitude, -latitude) %>% 
@@ -140,7 +140,7 @@ d_clean_pop_bma <- d_clean%>%
   filter(!is.na(popularity_log)) %>% 
   filter(calculated_host_listings_count <= 5) %>% 
   rename(listing_count = calculated_host_listings_count) %>% 
-  rename(listing_sentiment= name_listings_sentiment) 
+  rename(listing_sentiment= name_listing_sentiment) 
 
 ```
 
