@@ -97,8 +97,8 @@ my_ggsave("map_price_bma.jpeg")
 ```{r pop bma diagnostics}
 jpeg("Deliverables_2/Figures/diagnostics_pop_bma.jpeg")
 #image(pop_bma_JZS2 , rotate = F)
-par(mfrow=c(1,2))
-plot(pop_bma_JZS2, which = c(1,4) )
+#par(mfrow=c(1,2))
+plot(pop_bma_JZS2, which = 1 )
 dev.off()
 ```
 

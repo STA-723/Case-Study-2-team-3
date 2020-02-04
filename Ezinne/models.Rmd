@@ -280,7 +280,10 @@ price_confint <- data.frame("Predictors" = price_var_names, "Estimate" = price_b
 #grid.table(price_confint)
 #View(price_confint)
 price_confint <- price_confint %>% 
-  mutate(Significance = if_else((Lower.Confint*Upper.Confint) > 0, "*",""))
+  mutate(Significance = if_else((Lower.Confint*Upper.Confint) > 0, "*","")) %>% 
+  mutate(PIP = price_bma_JZS$probne0.MCMC) %>% 
+  select(Predictors,PIP, everything()) %>% 
+  arrange(-PIP)
 
 
 View(price_confint)
@@ -328,7 +331,10 @@ for (i in 1:dim(confint(coef.popJZS2))[1]){
 pop_confint <- data.frame("Predictors" = pop_var_names, "Estimate"=pop_betas, "Lower Confint" = pop_lower_bound,"Upper Confint" = pop_upper_bound)
 
 pop_confint <- pop_confint %>% 
-  mutate(Significance = if_else((Lower.Confint*Upper.Confint) > 0, "*",""))
+  mutate(Significance = if_else((Lower.Confint*Upper.Confint) > 0, "*","")) %>% 
+  mutate(PIP = pop_bma_JZS2$probne0.MCMC) %>% 
+  select(Predictors,PIP, everything()) %>% 
+  arrange(-PIP)
 View(pop_confint)
 
 save(pop_confint, file = "pop_confint.RDATA")
