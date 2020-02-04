@@ -377,12 +377,21 @@ pop_rf <- readRDS("~/Homework/STAT 723/pop_rf.rds")
 
 ```{r residuals and variable importance}
 ## residuals for price model
+<<<<<<< HEAD
 rf.residuals.price <- d_clean_price_rf_no_outliers$price_log - predict(price_rf) 
 # plot(rf.residuals.price, ylim = c(-20,30),main = "Residuals from Random Forest Model")
 # df_pricemod_no_outliers %>% 
 #   mutate(residuals_price_rf = rf.residuals.price) %>% 
 #   mutate(residuals_price_rf_ind = ifelse(residuals_price_rf < 2*sd(residuals_price_rf) & residuals_price_rf > -2*sd(residuals_price_rf) , "Small Residual", "Large Residual")) %>% 
 #   ggplot(aes(x = longitude, y = latitude)) + geom_point(aes(color = residuals_price_rf_ind)) + facet_wrap(.~neighbourhood_group)
+=======
+rf.residuals.price <- d_clean_price_rf$price_log - predict(price_rf) 
+plot(rf.residuals.price, ylim = c(-20,30),main = "Residuals from Random Forest Model")
+d_clean_price_rf %>% 
+  mutate(residuals_price_rf = rf.residuals.price) %>% 
+  mutate(residuals_price_rf_ind = ifelse(residuals_price_rf < 2*sd(residuals_price_rf) & residuals_price_rf > -2*sd(residuals_price_rf) , "Small Residual", "Large Residual")) %>% 
+  ggplot(aes(x = longitude, y = latitude)) + geom_point(aes(color = residuals_price_rf_ind)) + facet_wrap(.~neighbourhood_group)
+>>>>>>> 61bd00829fd711f2bd362c0788096ba59b4d8a44
 
 
 #Saving importance  variables
@@ -407,6 +416,7 @@ varImpPlot(price_rf)
 
 ## residuals for popularity model
 
+<<<<<<< HEAD
 rf.residuals.pop <- d_clean_pop_rf_no_outliers$popularity_log - predict(pop_rf) 
 # plot(rf.residuals.pop, ylim = c(-20,30),main = "Residuals from Random Forest Model")
 # 
@@ -414,6 +424,15 @@ rf.residuals.pop <- d_clean_pop_rf_no_outliers$popularity_log - predict(pop_rf)
 #   mutate(residuals_pop_rf = rf.residuals.pop) %>% 
 #   mutate(residuals_pop_rf_ind = ifelse(residuals_pop_rf < 2*sd(residuals_pop_rf) & residuals_pop_rf > -2*sd(residuals_pop_rf) , "Small Residual", "Large Residual")) %>% 
 #   ggplot(aes(x = longitude, y = latitude)) + geom_point(aes(color = residuals_pop_rf_ind), alpha = 0.1) + facet_wrap(.~neighbourhood_group)
+=======
+rf.residuals.pop <- d_clean_pop_rf$popularity_log - predict(pop_rf) 
+plot(rf.residuals.pop, ylim = c(-20,30),main = "Residuals from Random Forest Model")
+
+df_popmod_no_outliers %>% 
+  mutate(residuals_pop_rf = rf.residuals.pop) %>% 
+  mutate(residuals_pop_rf_ind = ifelse(residuals_pop_rf < 2*sd(residuals_pop_rf) & residuals_pop_rf > -2*sd(residuals_pop_rf) , "Small Residual", "Large Residual")) %>% 
+  ggplot(aes(x = longitude, y = latitude)) + geom_point(aes(color = residuals_pop_rf_ind), alpha = 0.1) + facet_wrap(.~neighbourhood_group)
+>>>>>>> 61bd00829fd711f2bd362c0788096ba59b4d8a44
 
 
 #Saving posterior mean and interval estimates 
@@ -454,6 +473,70 @@ xtable(pop_importance)
 
 ### Residual Heat Maps
 
+```{r}
+library(ggpubr)
+library("ggmap")
+library("jpeg")
+
+
+
+img = readJPEG("New_York_City_.png")
+#jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
+d_merge_price%>% 
+  mutate(residuals_price_bma = residuals_price_bma) %>% 
+  ggplot(aes(x=longitude, y = latitude, color = residuals_price_bma))+
+    annotation_custom(rasterGrob(img, 
+                                 width = unit(1,"npc"), 
+                                 height = unit(1,"npc")), 
+                      -74.258, -73.69, 40.49,40.92) + 
+    geom_point(cex = 0.4,alpha=0.5) +
+    #scale_colour_gradientn(colors = jet.colors(7)) 
+    scale_colour_gradient2(midpoint = 0, low = "blue", mid = "white",
+                            high = "red", space = "Lab" )
+  
+
+d_merge_pop %>% 
+  mutate(residuals_pop_bma = residuals_pop_bma) %>% 
+  ggplot(aes(x=longitude, y = latitude, color = residuals_pop_bma))+
+    annotation_custom(rasterGrob(img, 
+                                 width = unit(1,"npc"), 
+                                 height = unit(1,"npc")), 
+                      -74.258, -73.69, 40.49,40.92) + 
+    geom_point(cex = 0.4,alpha=0.5) +
+    #scale_colour_gradientn(colors = jet.colors(3)) 
+    scale_colour_gradient2(midpoint = 0, low = "blue", mid = "white",
+                            high = "red", space = "Lab" )
+
+
+
+d_clean_price_rf%>% 
+  mutate(residuals_price_rf = rf.residuals.price) %>% 
+  ggplot(aes(x=longitude, y = latitude, color = residuals_price_rf))+
+    annotation_custom(rasterGrob(img, 
+                                 width = unit(1,"npc"), 
+                                 height = unit(1,"npc")), 
+                      -74.258, -73.69, 40.49,40.92) + 
+    geom_point(cex = 0.4,alpha=0.5) +
+    #scale_colour_gradientn(colors = jet.colors(7)) 
+    scale_colour_gradient2(midpoint = 0, low = "blue", mid = "white",
+                            high = "red", space = "Lab" ) + 
+  theme_bw()
+
+
+d_clean_pop_rf%>% 
+  mutate(residuals_pop_rf = rf.residuals.pop) %>% 
+  ggplot(aes(x=longitude, y = latitude, color = residuals_pop_rf))+
+    annotation_custom(rasterGrob(img, 
+                                 width = unit(1,"npc"), 
+                                 height = unit(1,"npc")), 
+                      -74.258, -73.69, 40.49,40.92) + 
+    geom_point(cex = 0.4,alpha=0.5) +
+    scale_colour_gradient2(midpoint = 0, low = "blue", mid = "white",
+                            high = "red", space = "Lab" )
+
+```
+
+
 https://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html
 ```{r, eval=FALSE}
 
@@ -490,4 +573,7 @@ ny_base + theme_nothing() +
 
 
 ```
+
+
+
 
