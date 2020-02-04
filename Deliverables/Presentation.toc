@@ -1,6 +1,0 @@
-\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{EDA}{4}{0}{2}
-\beamer@sectionintoc {3}{Data Cleaning}{7}{0}{3}
-\beamer@sectionintoc {4}{Feature Engineering}{8}{0}{4}
-\beamer@sectionintoc {5}{Models}{10}{0}{5}
-\beamer@sectionintoc {6}{Results}{13}{0}{6}

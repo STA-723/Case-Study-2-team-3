@@ -1,9 +1,9 @@
-PWD /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables
+PWD /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections
 INPUT /usr/local/texlive/2018/texmf.cnf
 INPUT /usr/local/texlive/2018/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.tex
-OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.log
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.tex
+OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.log
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamer.cls
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamer.cls
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerbasemodes.sty
@@ -210,7 +210,7 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamercolorthemedefaul
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerinnerthemedefault.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerinnerthemedefault.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamericonbook.pdf
-OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.pdf
+OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.pdf
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamericonbook.pdf
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamericonbook.20.pdf
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamericonbook.20.pdf
@@ -224,93 +224,11 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamericononline.20.pd
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamericononline.20.pdf
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerthemeMadrid.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerthemeMadrid.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/booktabs/booktabs.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/booktabs/booktabs.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/algorithms/algorithm.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/algorithms/algorithm.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/float/float.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/float/float.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.def
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.def
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.cfg
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.cfg
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/natbib/natbib.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/natbib/natbib.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/algorithms/algorithmic.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/algorithms/algorithmic.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/utilities/pgfpages.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/utilities/pgfpages.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/tools/calc.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/tools/calc.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/ms/ragged2e.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/ms/ragged2e.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/ms/everysel.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/ms/everysel.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/lipsum/lipsum.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/lipsum/lipsum.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/subfig/subfig.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/doublestroke/dsfont.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/doublestroke/dsfont.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/mathtools/mathtools.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/mathtools/mathtools.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/mathtools/mhsetup.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/mathtools/mhsetup.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/comment/comment.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/comment/comment.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/appendixnumberbeamer/appendixnumberbeamer.sty
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/appendixnumberbeamer/appendixnumberbeamer.sty
-INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.aux
-INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.aux
-OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.aux
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/base/inputenc.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/base/inputenc.sty
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.aux
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.aux
+OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.aux
 INPUT /usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
@@ -323,7 +241,7 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.out
+OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.out
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
@@ -341,46 +259,3 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
-INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi8.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi8.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmssi10.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmssi9.tfm
-OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.nav
-OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.toc
-OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.snm
-INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.aux
-INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.out
-INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.out
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb

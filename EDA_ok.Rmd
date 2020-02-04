@@ -105,6 +105,30 @@ d_clean %>%
 my_ggsave("log_price_vs_sentiment.jpeg")
 ```
 
+```{r availability}
+d_clean %>%
+  ggplot(aes(x = availability_365)) + 
+  geom_density(adjust = 0.1) +
+  #geom_vline(xintercept=30, color = "red", size = 0.3, alpha = 0.3) +
+  labs(y = NULL, x = "Availability in a year")
+  #scale_x_continuous(breaks=c(0, 7, 14, 30), limits = c(0,50))
+
+my_ggsave("availability_density.jpeg")
+```
+
+
+```{r availability}
+d_clean %>%
+  filter(price<600)%>%
+  ggplot(aes(x = price)) + 
+  geom_density(adjust = .4) +
+  #geom_vline(xintercept=30, color = "red", size = 0.3, alpha = 0.3) +
+  labs(y = NULL, x = "Price")
+  #scale_x_continuous(breaks=c(0, 7, 14, 30), limits = c(0,50))
+
+my_ggsave("price.jpeg")
+```
+
 # Others
 
 ```{r}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  3 FEB 2020 02:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  3 FEB 2020 22:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -599,6 +599,7 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 12.
 LaTeX Info: Redefining \pageref on input line 12.
 LaTeX Info: Redefining \nameref on input line 12.
+ (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/main.out) (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
@@ -663,111 +664,122 @@ Dictionary: translator-months-dictionary, Language: English
 Dictionary: translator-numbers-dictionary, Language: English 
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/translator/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
-)
-No file main.nav.
-[1
+) (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/main.nav) [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for U+msa on input line 38.
+<./Figures/length_stay_density.jpeg, id=44, 1505.625pt x 1053.9375pt>
+File: ./Figures/length_stay_density.jpeg Graphic file (type jpg)
+<use ./Figures/length_stay_density.jpeg>
+Package pdftex.def Info: ./Figures/length_stay_density.jpeg  used on input line 28.
+(pdftex.def)             Requested size: 301.11966pt x 210.78377pt.
+ [2
+
+ <./Figures/length_stay_density.jpeg>]
+<./Figures/availability_density.jpeg, id=70, 1505.625pt x 1053.9375pt>
+File: ./Figures/availability_density.jpeg Graphic file (type jpg)
+<use ./Figures/availability_density.jpeg>
+Package pdftex.def Info: ./Figures/availability_density.jpeg  used on input line 34.
+(pdftex.def)             Requested size: 301.11966pt x 210.78377pt.
+ [3
+
+ <./Figures/availability_density.jpeg>]
+LaTeX Font Info:    Try loading font information for U+msa on input line 44.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 38.
+LaTeX Font Info:    Try loading font information for U+msb on input line 44.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 38.
+LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 44.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/mathkerncmss.
-) [2
-
-] [3
-
-]
-<./Figures/length_stay_density.jpeg, id=93, 361.35pt x 252.945pt>
-File: ./Figures/length_stay_density.jpeg Graphic file (type jpg)
-<use ./Figures/length_stay_density.jpeg>
-Package pdftex.def Info: ./Figures/length_stay_density.jpeg  used on input line 56.
-(pdftex.def)             Requested size: 289.0804pt x 202.35626pt.
+)
+<./Figures/room_type_chi.jpeg, id=96, 1505.625pt x 1053.9375pt>
+File: ./Figures/room_type_chi.jpeg Graphic file (type jpg)
+<use ./Figures/room_type_chi.jpeg>
+Package pdftex.def Info: ./Figures/room_type_chi.jpeg  used on input line 44.
+(pdftex.def)             Requested size: 195.73811pt x 137.01668pt.
  [4
 
- <./Figures/length_stay_density.jpeg>] [5
-
-]
-<./Figures/map_eda.jpeg, id=145, 361.35pt x 252.945pt>
+ <./Figures/room_type_chi.jpeg>]
+<./Figures/map_eda.jpeg, id=126, 361.35pt x 252.945pt>
 File: ./Figures/map_eda.jpeg Graphic file (type jpg)
 <use ./Figures/map_eda.jpeg>
-Package pdftex.def Info: ./Figures/map_eda.jpeg  used on input line 67.
+Package pdftex.def Info: ./Figures/map_eda.jpeg  used on input line 49.
 (pdftex.def)             Requested size: 289.0804pt x 202.35626pt.
- [6
+ [5
 
- <./Figures/map_eda.jpeg>]
-<./Figures/log_price_vs_prox_attr.jpeg, id=171, 361.35pt x 252.945pt>
+ <./Figures/map_eda.jpeg>] [6
+
+] [7
+
+] [8
+
+]
+<./Figures/log_price_vs_prox_attr.jpeg, id=232, 361.35pt x 252.945pt>
 File: ./Figures/log_price_vs_prox_attr.jpeg Graphic file (type jpg)
 <use ./Figures/log_price_vs_prox_attr.jpeg>
-Package pdftex.def Info: ./Figures/log_price_vs_prox_attr.jpeg  used on input line 72.
+Package pdftex.def Info: ./Figures/log_price_vs_prox_attr.jpeg  used on input line 99.
 (pdftex.def)             Requested size: 289.0804pt x 202.35626pt.
- [7
+ [9
 
  <./Figures/log_price_vs_prox_attr.jpeg>]
-<./Figures/log_price_vs_prox_metro.jpeg, id=198, 361.35pt x 252.945pt>
+<./Figures/log_price_vs_prox_metro.jpeg, id=259, 361.35pt x 252.945pt>
 File: ./Figures/log_price_vs_prox_metro.jpeg Graphic file (type jpg)
 <use ./Figures/log_price_vs_prox_metro.jpeg>
-Package pdftex.def Info: ./Figures/log_price_vs_prox_metro.jpeg  used on input line 77.
+Package pdftex.def Info: ./Figures/log_price_vs_prox_metro.jpeg  used on input line 104.
 (pdftex.def)             Requested size: 289.0804pt x 202.35626pt.
- [8
+ [10
 
- <./Figures/log_price_vs_prox_metro.jpeg>] [9
-
-] [10
-
-] [11
+ <./Figures/log_price_vs_prox_metro.jpeg>] [11
 
 ] [12
 
-] [13
+] (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/price_rf_importance.tex) [13
 
-] [14
+] (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/pop_rf_importance.tex) [14
 
-] [15
+] (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/price_bma_coef_confint.tex) [15
 
-] [16
-
-] [17
+] (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/pop_bma_coef_confint.tex) [16
 
 ]
-/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/main.tex:195: Misplaced alignment tab character &.
-\beamer@doifinframe ...ownload?doi=10.1.1.532.451&
-                                                  rep=rep1&type=pdf) \item S...
-l.195 \end{frame}
-                 
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
+<./Figures/diagnostics_pop_bma.jpeg, id=438, 481.8pt x 481.8pt>
+File: ./Figures/diagnostics_pop_bma.jpeg Graphic file (type jpg)
+<use ./Figures/diagnostics_pop_bma.jpeg>
+Package pdftex.def Info: ./Figures/diagnostics_pop_bma.jpeg  used on input line 187.
+(pdftex.def)             Requested size: 240.8994pt x 240.8994pt.
 
-/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/main.tex:195: Misplaced alignment tab character &.
-\beamer@doifinframe ...oi=10.1.1.532.451&rep=rep1&
-                                                  type=pdf) \item Submarkets...
-l.195 \end{frame}
-                 
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
+Overfull \vbox (7.62628pt too high) detected at line 187
+ []
 
+[17
 
-Overfull \hbox (150.93796pt too wide) in paragraph at lines 195--195
-\OT1/cmss/m/n/10.95 houses.(http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.532.451rep=rep1type=pdf)  
+ <./Figures/diagnostics_pop_bma.jpeg>]
+<./Figures/map_price_bma.jpeg, id=465, 361.35pt x 252.945pt>
+File: ./Figures/map_price_bma.jpeg Graphic file (type jpg)
+<use ./Figures/map_price_bma.jpeg>
+Package pdftex.def Info: ./Figures/map_price_bma.jpeg  used on input line 194.
+(pdftex.def)             Requested size: 325.21199pt x 227.64839pt.
+
+Overfull \hbox (17.92212pt too wide) in paragraph at lines 194--194
+[][]  
  []
 
 [18
 
-] [19
+ <./Figures/map_price_bma.jpeg>] [19
+
+]
+<./Figures/price.jpeg, id=517, 1505.625pt x 1053.9375pt>
+File: ./Figures/price.jpeg Graphic file (type jpg)
+<use ./Figures/price.jpeg>
+Package pdftex.def Info: ./Figures/price.jpeg  used on input line 226.
+(pdftex.def)             Requested size: 301.11966pt x 210.78377pt.
+ [20
+
+ <./Figures/price.jpeg>] [21
 
  </usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>]
 \tf@nav=\write6
@@ -779,37 +791,27 @@ Overfull \hbox (150.93796pt too wide) in paragraph at lines 195--195
 \tf@snm=\write8
 \openout8 = `main.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 218.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 218.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 265.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 265.
  (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 218.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 218.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  3122DA0A302C29942FA6ED867F952DF5;185.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 265.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 265.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16931 strings out of 492649
- 324344 string characters out of 6129622
- 397850 words of memory out of 5000000
- 20393 multiletter control sequences out of 15000+600000
- 15203 words of font info for 55 fonts, out of 8000000 for 9000
+ 17071 strings out of 492649
+ 328197 string characters out of 6129622
+ 415058 words of memory out of 5000000
+ 20502 multiletter control sequences out of 15000+600000
+ 16850 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,14n,55p,771b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/main.pdf" (19 pages, 578529 bytes).
+Output written on "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/main.pdf" (21 pages, 1103863 bytes).
 PDF statistics:
- 574 PDF objects out of 1000 (max. 8388607)
- 523 compressed objects within 6 object streams
- 44 named destinations out of 1000 (max. 500000)
- 63 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 627 PDF objects out of 1000 (max. 8388607)
+ 569 compressed objects within 6 object streams
+ 46 named destinations out of 1000 (max. 500000)
+ 88 words of extra memory for PDF output out of 10000 (max. 10000000)
 

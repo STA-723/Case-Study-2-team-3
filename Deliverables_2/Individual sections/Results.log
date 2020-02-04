@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  1 FEB 2020 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  3 FEB 2020 21:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.tex"
-(/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.tex
+**Results.tex
+(/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.tex
 LaTeX2e <2018-04-01> patch level 2
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamer.cls
@@ -506,241 +506,27 @@ Package: amsthm 2017/10/31 v2.20.4
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerbasethemes.sty)) (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerthemedefault.sty (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerfontthemedefault.sty) (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamercolorthemedefault.sty) (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerinnerthemedefault.sty
 \beamer@dima=\dimen188
 \beamer@dimb=\dimen189
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty))) (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerthemeMadrid.sty (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty) (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty) (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty) (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty)) (/usr/local/texlive/2018/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2016/04/27 v1.618033 publication quality tables
-\heavyrulewidth=\dimen190
-\lightrulewidth=\dimen191
-\cmidrulewidth=\dimen192
-\belowrulesep=\dimen193
-\belowbottomsep=\dimen194
-\aboverulesep=\dimen195
-\abovetopsep=\dimen196
-\cmidrulesep=\dimen197
-\cmidrulekern=\dimen198
-\defaultaddspace=\dimen199
-\@cmidla=\count155
-\@cmidlb=\count156
-\@aboverulesep=\dimen256
-\@belowrulesep=\dimen257
-\@thisruleclass=\count157
-\@lastruleclass=\count158
-\@thisrulewidth=\dimen258
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/algorithms/algorithm.sty
-Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
- (/usr/local/texlive/2018/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count159
-\float@exts=\toks43
-\float@box=\box53
-\@float@everytoks=\toks44
-\@floatcapt=\box54
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-)
-\@float@every@algorithm=\toks45
-\c@algorithm=\count160
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.sty
-Package: csquotes 2018/02/11 v5.2c context-sensitive quotations (JAW)
-\csq@reset=\count161
-\csq@gtype=\count162
-\csq@glevel=\count163
-\csq@qlevel=\count164
-\csq@maxlvl=\count165
-\csq@tshold=\count166
-\csq@ltx@everypar=\toks46
- (/usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.def
-File: csquotes.def 2018/02/11 v5.2c csquotes generic definitions (JAW)
-)
-Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
-Package csquotes Info: ... configuration file loaded successfully.
- (/usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.cfg
-File: csquotes.cfg 
-)) (/usr/local/texlive/2018/texmf-dist/tex/latex/natbib/natbib.sty
-Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip57
-\bibsep=\skip58
-LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count167
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/algorithms/algorithmic.sty
-Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
-\c@ALC@unique=\count168
-\c@ALC@line=\count169
-\c@ALC@rem=\count170
-\c@ALC@depth=\count171
-\ALC@tlm=\skip59
-\algorithmicindent=\skip60
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/utilities/pgfpages.sty
-Package: pgfpages 2011/01/05 ver 0.02
- (/usr/local/texlive/2018/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count172
-\calc@Bcount=\count173
-\calc@Adimen=\dimen259
-\calc@Bdimen=\dimen260
-\calc@Askip=\skip61
-\calc@Bskip=\skip62
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count174
-\calc@Cskip=\skip63
-)
-\pgf@logicalpages=\count175
-\pgf@firstshipout=\count176
-\pgf@lastshipout=\count177
-\pgf@currentshipout=\count178
-\pgf@cpn=\count179
-\pgf@shipoutnextto=\count180
-\pgfphysicalheight=\dimen261
-\pgfphysicalwidth=\dimen262
-\pgfpages@shipoutbox=\box55
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/ms/ragged2e.sty
-Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
- (/usr/local/texlive/2018/texmf-dist/tex/latex/ms/everysel.sty
-Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
-)
-\CenteringLeftskip=\skip64
-\RaggedLeftLeftskip=\skip65
-\RaggedRightLeftskip=\skip66
-\CenteringRightskip=\skip67
-\RaggedLeftRightskip=\skip68
-\RaggedRightRightskip=\skip69
-\CenteringParfillskip=\skip70
-\RaggedLeftParfillskip=\skip71
-\RaggedRightParfillskip=\skip72
-\JustifyingParfillskip=\skip73
-\CenteringParindent=\skip74
-\RaggedLeftParindent=\skip75
-\RaggedRightParindent=\skip76
-\JustifyingParindent=\skip77
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/lipsum/lipsum.sty
-Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count181
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/subfig/subfig.sty
-Package: subfig 2005/06/28 ver: 1.3 subfig package
- (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
- (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen263
-\captionmargin@=\dimen264
-\captionwidth=\dimen265
-\caption@tempdima=\dimen266
-\caption@indent=\dimen267
-\caption@parindent=\dimen268
-\caption@hangindent=\dimen269
-)
-\c@ContinuedFloat=\count182
-Package caption Info: beamer document class.
-Package caption Info: float package is loaded.
-Package caption Info: hyperref package is loaded.
-Package caption Info: Hyperref support is turned off
-(caption)             because hyperref has stopped early.
-)
-\c@KVtest=\count183
-\sf@farskip=\skip78
-\sf@captopadj=\dimen270
-\sf@capskip=\skip79
-\sf@nearskip=\skip80
-\c@subfigure=\count184
-\c@subfigure@save=\count185
-\c@depth=\count186
-\c@subtable=\count187
-\c@subtable@save=\count188
-\sf@top=\skip81
-\sf@bottom=\skip82
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/doublestroke/dsfont.sty
-Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
- (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
-\pgfnodeparttextbox=\box56
-) (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
-Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen271
-\pgf@nodesepend=\dimen272
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
-Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
-)) (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/usr/local/texlive/2018/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
- (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
-\pgffor@iter=\dimen273
-\pgffor@skip=\dimen274
-\pgffor@stack=\toks47
-\pgffor@toks=\toks48
-)) (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
- (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
-File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count189
-\pgfplotmarksize=\dimen275
-)
-\tikz@lastx=\dimen276
-\tikz@lasty=\dimen277
-\tikz@lastxsaved=\dimen278
-\tikz@lastysaved=\dimen279
-\tikzleveldistance=\dimen280
-\tikzsiblingdistance=\dimen281
-\tikz@figbox=\box57
-\tikz@figbox@bg=\box58
-\tikz@tempbox=\box59
-\tikz@tempbox@bg=\box60
-\tikztreelevel=\count190
-\tikznumberofchildren=\count191
-\tikznumberofcurrentchild=\count192
-\tikz@fig@count=\count193
- (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count194
-\pgfmatrixcurrentcolumn=\count195
-\pgf@matrix@numberofcolumns=\count196
-)
-\tikz@expandcount=\count197
- (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
-File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
-))) (/usr/local/texlive/2018/texmf-dist/tex/latex/mathtools/mathtools.sty
-Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
- (/usr/local/texlive/2018/texmf-dist/tex/latex/mathtools/mhsetup.sty
-Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
-)
-LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count198
-\l_MT_multwidth_dim=\dimen282
-\origjot=\skip83
-\l_MT_shortvdotswithinadjustabove_dim=\dimen283
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen284
-\l_MT_above_intertext_sep=\dimen285
-\l_MT_below_intertext_sep=\dimen286
-\l_MT_above_shortintertext_sep=\dimen287
-\l_MT_below_shortintertext_sep=\dimen288
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/comment/comment.sty
-\CommentStream=\write5
- Excluding comment 'comment') (/usr/local/texlive/2018/texmf-dist/tex/latex/appendixnumberbeamer/appendixnumberbeamer.sty)
-Package csquotes Info: Checking for multilingual support...
-Package csquotes Info: ... none found.
- (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.aux)
-\openout1 = `Presentation.aux'.
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty))) (/usr/local/texlive/2018/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/04/06 v1.3b Input encoding file
+\inpenc@prehook=\toks43
+\inpenc@posthook=\toks44
+) (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.aux)
+\openout1 = `Results.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 135.
-LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -750,14 +536,14 @@ LaTeX Font Info:    ... okay on input line 135.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(10.95003pt, 342.2953pt, 10.95003pt)
+* h-part:(L,W,R)=(28.45274pt, 307.28987pt, 28.45274pt)
 * v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
 * \paperwidth=364.19536pt
 * \paperheight=273.14662pt
-* \textwidth=342.2953pt
+* \textwidth=307.28987pt
 * \textheight=244.6939pt
-* \oddsidemargin=-61.31996pt
-* \evensidemargin=-61.31996pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
@@ -778,17 +564,17 @@ LaTeX Font Info:    ... okay on input line 135.
 
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count199
-\scratchdimen=\dimen289
-\scratchbox=\box61
-\nofMPsegments=\count266
-\nofMParguments=\count267
-\everyMPshowfont=\toks49
-\MPscratchCnt=\count268
-\MPscratchDim=\dimen290
-\MPnumerator=\count269
-\makeMPintoPDFobject=\count270
-\everyMPtoPDFconversion=\toks50
+\scratchcounter=\count155
+\scratchdimen=\dimen190
+\scratchbox=\box53
+\nofMPsegments=\count156
+\nofMParguments=\count157
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count158
+\MPscratchDim=\dimen191
+\MPnumerator=\count159
+\makeMPintoPDFobject=\count160
+\everyMPtoPDFconversion=\toks46
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -801,70 +587,70 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2018/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box62
-Package hyperref Info: Link coloring OFF on input line 135.
+\AtBeginShipoutBox=\box54
+Package hyperref Info: Link coloring OFF on input line 12.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count271
+\c@section@level=\count161
 )
-LaTeX Info: Redefining \ref on input line 135.
-LaTeX Info: Redefining \pageref on input line 135.
-LaTeX Info: Redefining \nameref on input line 135.
-\@outlinefile=\write6
-\openout6 = `Presentation.out'.
+LaTeX Info: Redefining \ref on input line 12.
+LaTeX Info: Redefining \pageref on input line 12.
+LaTeX Info: Redefining \nameref on input line 12.
+\@outlinefile=\write5
+\openout5 = `Results.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 135.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 12.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 135.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 12.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 135.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 135.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 135.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 135.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 135.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 12.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 135.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 135.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 135.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 12.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 135.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 135.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 135.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 12.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 135.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 135.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 12.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 135.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 12.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 135.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 135.
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 135.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 135.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 135.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 12.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 135.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 135.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 12.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 12.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 135.
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 12.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 135.
+(Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 12.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 135.
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 12.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
@@ -877,201 +663,32 @@ Dictionary: translator-months-dictionary, Language: English
 Dictionary: translator-numbers-dictionary, Language: English 
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/translator/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
-) ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 135.
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: subfig package v1.3 is loaded.
-Package caption Info: End \AtBeginDocument code.
-
-/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.tex:135: Undefined control sequence.
-<argument> \@@magyar@captionfix 
-                                
-l.135 \begin{document}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-No file Presentation.nav.
-
-Overfull \hbox (8.61745pt too wide) in paragraph at lines 135--135
- [][][][]  
- []
-
-
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
+)
+No file Results.nav.
 [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-No file Presentation.toc.
 
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
+! LaTeX Error: File `"Figures/price_rf_importance.tex"' not found.
 
-[2
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: tex")
 
-]
-LaTeX Font Info:    Try loading font information for U+msa on input line 169.
- (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 169.
- (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 169.
- (/usr/local/texlive/2018/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
-File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/mathkerncmss.
-)
-Overfull \hbox (27.90721pt too wide) in paragraph at lines 169--169
-[]\OT1/cmss/m/n/10.95 - even the de-pen-dent vari-ables are shaky: $\OT1/mathkerncmss/m/sl/10.95 popularity \OT1/cmss/m/n/10.95 = \OT1/mathkerncmss/m/sl/10.95 numberbooking\OML/cmm/m/it/10.95 =\OT1/mathkerncmss/m/sl/10.95 availabiliy$
- []
+Enter file name: 
+/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.tex:22: Emergency stop.
+<read *> 
+         
+l.22 \end{frame}
+                ^^M
+*** (cannot \read from terminal in nonstop modes)
 
-
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[3
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[4
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[5
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[6
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[7
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[8
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[9
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[10
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[11
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[12
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[13
-
-]
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[14
-
-]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\translate ' on input line 289.
-
-
-Overfull \hbox (8.61745pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[15
-
-]
-\tf@nav=\write7
-\openout7 = `Presentation.nav'.
-
-\tf@toc=\write8
-\openout8 = `Presentation.toc'.
-
-\tf@snm=\write9
-\openout9 = `Presentation.snm'.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 291.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 291.
- (/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 291.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 291.
-
-
-Package rerunfilecheck Warning: File `Presentation.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Presentation.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  1CC7D39B842B6C60CF146BAABF7D1887;315.
- ) 
+ 
 Here is how much of TeX's memory you used:
- 23138 strings out of 492649
- 449383 string characters out of 6129622
- 639144 words of memory out of 5000000
- 26473 multiletter control sequences out of 15000+600000
- 11409 words of font info for 41 fonts, out of 8000000 for 9000
+ 16661 strings out of 492649
+ 317687 string characters out of 6129622
+ 395851 words of memory out of 5000000
+ 20198 multiletter control sequences out of 15000+600000
+ 5452 words of font info for 20 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,15n,59p,846b,554s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables/Presentation.pdf" (15 pages, 127517 bytes).
-PDF statistics:
- 481 PDF objects out of 1000 (max. 8388607)
- 439 compressed objects within 5 object streams
- 39 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 56i,14n,55p,774b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
+/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Individual sections/Results.tex:22:  ==> Fatal error occurred, no output PDF file produced!
