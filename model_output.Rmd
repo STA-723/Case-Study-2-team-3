@@ -7,7 +7,21 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 library(purrr)
-my_ggsave <- partial(ggsave, path = "Deliverables/Figures", width = 5, height = 3.5)
+library(reshape)
+library(ggplot2)
+library(broom)
+library(corrplot)
+
+library(ggmap)
+library(maps)
+library(mapdata)
+#library("geojsonio") # to read geojson files
+library(ggthemes)
+library(sf)
+my_ggsave <- partial(ggsave, path = "Deliverables_2/Figures", width = 5, height = 3.5)
+d_metro <- read_csv("subway and attractions data/subway_loc.csv") %>% 
+  dplyr::rename(latitude = Station.Latitude, longitude = Station.Longitude)
+d_attrac <- read.csv("subway and attractions data/attrac_loc.csv")
 ```
 
 
@@ -26,15 +40,22 @@ my_ggsave("MyPlotName.jpeg")
 ```
 
 ```{r price bma diagnostic plots}
-image(price_bma_JZS , rotate = F)
-#par(mfrow=c(2,2))
+jpeg("Deliverables_2/Figures/diagnostics_price_bma.jpeg")
+#image(price_bma_JZS , rotate = F)
+par(mfrow=c(2,2))
 plot(price_bma_JZS)
+dev.off()
+
+```
+
+```{r coef plot}
 coef.priceJZS <- coef(price_bma_JZS)
 plot(confint(coef.priceJZS, estimator = "HPM"))
 
 ```
+
 ```{r price bma posterior distributions}
-plot(coef.priceJZS, subset = c(4,10,14), ask = F)
+plot(coef.priceJZS, subset = c(1:19), ask = F)
 
 
 ```
@@ -42,18 +63,46 @@ plot(coef.priceJZS, subset = c(4,10,14), ask = F)
 
 
 ```{r price bma residual map}
+#Calculating residuals by hand
+predicted_price_bma <- predict(price_bma_JZS, estimator = "BPM")
+d_price_bma <- d_clean_price_bma_no_outliers %>% drop_na()
+residuals_price_bma <- d_price_bma$price_log - predicted_price_bma$fit
+
 #price_bma 
-d_merge_price <- left_join(d_clean_price_bma_no_outliers, d_clean)
-d_merge_price%>% 
+d_merge_price <- left_join(d_price_bma, d_clean) 
+# d_merge_price%>% 
+#   mutate(residuals_price_bma = residuals_price_bma) %>% 
+#   ggplot(aes(x = longitude, y = latitude, color = residuals_price_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) #+ 
+  #geom_point(data = d_attrac, color = "green", size = 1) +
+  #geom_point(data = d_metro, color = "black", size = 1) 
+
+
+d_merge_price %>%
   mutate(residuals_price_bma = residuals_price_bma) %>% 
-  ggplot(aes(x = longitude, y = latitude, color = residuals_price_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) 
+  mutate(residuals_high = ifelse(residuals_price_bma < quantile(residuals_price_bma,c(0.025,0.975))[2] | residuals_price_bma > quantile(residuals_price_bma,c(0.025,0.975))[1], "TRUE", "FALSE"))  %>% 
+  ggplot(aes(x = longitude, y = latitude)) +
+  geom_point(aes(col = residuals_price_bma)) +
+  geom_point(data = d_attrac, color = "blue", size = 3) +
+  geom_point(data = d_metro, color = "black", size = 3) +
+  xlim(-73.93, -73.828) + 
+  ylim(40.8, 40.9) +
+  scale_color_gradient2(low = "green", mid = "grey", midpoint = 0, high = "red") +
+  #scale_color_brewer(palette = "Set1", name = "Price BMA Residuals", labels = c("< 0.025%", "> 0.975%")) +
+  theme_map()+ theme(legend.position="bottom") 
+
+my_ggsave("map_price_bma.jpeg")
 
 ```
 
 ```{r pop bma diagnostics}
-image(pop_bma_JZS2 , rotate = F)
-#par(mfrow=c(2,2))
+jpeg("Deliverables_2/Figures/diagnostics_pop_bma.jpeg")
+#image(pop_bma_JZS2 , rotate = F)
+par(mfrow=c(2,2))
 plot(pop_bma_JZS2 )
+dev.off()
+```
+
+```{r coef plots pop}
 coef.popJZS2 <- coef(pop_bma_JZS2)
 plot(confint(coef.popJZS2, estimator = "HPM"))
 
@@ -67,14 +116,54 @@ plot(coef.priceJZS, subset = c(2:5,7,12, 14:18), ask = F)
 
 ```{r pop bma residuals map}
 #pop_bma
-d_merge_pop <- left_join(d_clean_pop_bma_no_outliers, d_clean)
-d_merge_pop %>% 
-  mutate(residuals_pop_bma = residuals_pop_bma) %>% 
-  mutate(residuals_pop_bma_ind = ifelse(residuals_pop_bma < 2*sd(residuals_pop_bma) & residuals_pop_bma > -2*sd(residuals_pop_bma) , "Small Residual", "Large Residual")) %>% 
-  ggplot(aes(x = longitude, y = latitude, color = residuals_pop_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) 
+predicted_pop_bma <- predict(pop_bma_JZS, estimator = "BPM")
+d_pop_bma <- d_clean_pop_bma_no_outliers %>% drop_na()
+residuals_pop_bma <- d_pop_bma$popularity_log - predicted_pop_bma$fit
+d_merge_pop <- left_join(d_pop_bma, d_clean) 
+# d_merge_pop %>% 
+#   mutate(residuals_pop_bma = residuals_pop_bma) %>% 
+#   mutate(residuals_pop_bma_ind = ifelse(residuals_pop_bma < 2*sd(residuals_pop_bma) & residuals_pop_bma > -2*sd(residuals_pop_bma) , "Small Residual", "Large Residual")) %>% 
+#   ggplot(aes(x = longitude, y = latitude, color = residuals_pop_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) +
+#   geom_point(data = d_attrac, color = "green", size = 1) +
+#   geom_point(data = d_metro, color = "black", size = 1) 
 
+d_merge_pop %>%
+  mutate(residuals_pop_bma = residuals_pop_bma) %>% 
+  mutate(residuals_high = ifelse(residuals_pop_bma < quantile(residuals_pop_bma,c(0.025,0.975))[2] | residuals_pop_bma > quantile(residuals_pop_bma,c(0.025,0.975))[1], "TRUE", "FALSE"))  %>% 
+  ggplot(aes(x = longitude, y = latitude)) +
+  geom_point(aes(col = residuals_pop_bma)) +
+  geom_point(data = d_attrac, color = "blue", size = 3) +
+  geom_point(data = d_metro, color = "black", size = 3) +
+  xlim(-73.93, -73.828) + 
+  ylim(40.8, 40.9) +
+  scale_color_gradient2(low = "green", mid = "grey", midpoint = 0, high = "red") +
+  #scale_color_brewer(palette = "Set1", name = "Price BMA Residuals", labels = c("< 0.025%", "> 0.975%")) +
+  theme_map()+ theme(legend.position="bottom") 
+
+my_ggsave("map_pop_bma.jpeg")
 
 ```
+
+
+```{r rf residuals}
+rf.residuals.pop <- d_clean_pop_rf_no_outliers$popularity_log - predict(pop_rf) 
+d_clean_pop_rf_no_outliers %>%
+  mutate(rf.residuals.pop = rf.residuals.pop) %>% 
+  mutate(residuals_high = ifelse(rf.residuals.pop < quantile(rf.residuals.pop,c(0.025,0.975))[2] | rf.residuals.pop > quantile(rf.residuals.pop,c(0.025,0.975))[1], "TRUE", "FALSE"))  %>% 
+  ggplot(aes(x = longitude, y = latitude)) +
+  geom_point(aes(col = rf.residuals.pop)) +
+  geom_point(data = d_attrac, color = "blue", size = 3) +
+  geom_point(data = d_metro, color = "black", size = 3) +
+  xlim(-73.93, -73.828) + 
+  ylim(40.8, 40.9) +
+  scale_color_gradient2(low = "green", mid = "grey", midpoint = 0, high = "red") +
+  #scale_color_brewer(palette = "Set1", name = "Price BMA Residuals", labels = c("< 0.025%", "> 0.975%")) +
+  theme_map()+ theme(legend.position="bottom") 
+
+my_ggsave("map_pop_rf.jpeg")
+
+```
+
 
 
 
@@ -84,18 +173,33 @@ How to saving a table objective:
 #https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
 library(xtable)
 load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/price_confint.RDATA")
-tab1<-xtable(price_confint, caption= "Coeffients and 95% Confidence Intervals from Price BMA model")
-
-print(tab1,file="price_bma_coef_confint.tex",append=T,table.placement = "h",
- caption.placement="bottom", hline.after=seq(from=-1,to=nrow(tab),by=1))
+tab1<-xtable(price_confint, type = 'latex', booktabs = TRUE)
+print(tab1,file="Deliverables_2/Figures/price_bma_coef_confint.tex")
 ```
 
 ```{r pop bma estimates and confint}
 #https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
 library(xtable)
 load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_confint.RDATA")
-tab2<-xtable(pop_confint, caption= "Coeffients and 95% Confidence Intervals from Popularity BMA model")
-
-print(ta2b,file="pop_bma_coef_confint.tex",append=T,table.placement = "h",
- caption.placement="bottom", hline.after=seq(from=-1,to=nrow(tab),by=1))
+tab1<-xtable(price_confint, type = 'latex', booktabs = TRUE)
+print(tab1,file="Deliverables_2/Figures/pop_bma_coef_confint.tex")
 ```
+
+```{r price rf importance}
+#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
+library(xtable)
+load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/price_importance.RDATA")
+tab1<-xtable(price_importance, type = 'latex', booktabs = TRUE)
+print(tab1,file="Deliverables_2/Figures/price_rf_importance.tex")
+```
+
+```{r pop rf estimates and confint}
+#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
+library(xtable)
+load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_importance.RDATA")
+tab1<-xtable(pop_importance, type = 'latex', booktabs = TRUE)
+print(tab1,file="Deliverables_2/Figures/pop_rf_importance.tex")
+```
+
+
+
