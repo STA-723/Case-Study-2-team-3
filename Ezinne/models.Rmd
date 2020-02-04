@@ -279,7 +279,10 @@ for (i in 1:dim(confint(coef.priceJZS2))[1]){
 price_confint <- data.frame("Predictors" = price_var_names, "Estimate" = price_betas, "Lower Confint" = price_lower_bound, "Upper Confint" = price_upper_bound)
 #grid.table(price_confint)
 #View(price_confint)
+price_confint <- price_confint %>% 
+  mutate(Significance = if_else((Lower.Confint*Upper.Confint) > 0, "*",""))
 
+View(price_confint)
 save(price_confint, file = "price_confint.RDATA")
 
 ```
@@ -322,7 +325,10 @@ for (i in 1:dim(confint(coef.popJZS2))[1]){
 }
 
 pop_confint <- data.frame("Predictors" = pop_var_names, "Estimate"=pop_betas, "Lower Confint" = pop_lower_bound,"Upper Confint" = pop_upper_bound)
-View(pop_confint)
+
+pop_confint <- pop_confint %>% 
+  mutate(Significance = if_else((Lower.Confint*Upper.Confint) > 0, "*",""))
+#View(pop_confint)
 
 save(pop_confint, file = "pop_confint.RDATA")
 

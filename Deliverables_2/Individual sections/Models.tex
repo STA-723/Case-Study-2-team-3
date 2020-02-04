@@ -34,6 +34,10 @@ Two regression models
 	\item BMA
 	\begin{itemize}
 		\item Linear combination of predictors
+		\item Prior: Cauchy
+		\item N.Models: 2^15
+		\item MCMC.iterations: 10^16
+		\item initprobs = "marg-eplogp"
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -52,7 +56,7 @@ Two regression models
 	\item Sensitivity Analysis
 	\begin{itemize}
 		\item RF: vary $m$ and minimum $n_{leaf}$.
-		\item BMA: consider different priors (Cauchy prior, g prior)
+		\item BMA: consider different priors (Cauchy prior, g prior for g = 1,5,8,100,500,1000)
 	\end{itemize}
 \end{itemize}
 
