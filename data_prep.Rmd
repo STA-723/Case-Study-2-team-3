@@ -79,7 +79,7 @@ d_clean <- d %>%
   
   # Y1: Popularity
   mutate(popularity = if_else(availability_365 > 10, reviews_per_month / availability_365, NA_real_)) %>%
-  mutate(popularity_log = log(popularity + 1)) %>% 
+  mutate(popularity_log = log(popularity)) %>% 
   
   # Y2: price
   mutate(price_log = log(price + 1)) %>%
@@ -170,5 +170,3 @@ d_clean_pop_bma_no_outliers <- d_clean_pop_bma %>%
 save(d_clean_price_rf_no_outliers,d_clean_pop_rf_no_outliers, file = "d_clean_rf_no_outliers.RDATA")
 save(d_clean_pop_bma_no_outliers,d_clean_price_bma_no_outliers, file = "d_clean_bma_no_outliers.RDATA")
 ```
-
-
