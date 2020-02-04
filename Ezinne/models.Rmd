@@ -64,7 +64,7 @@ Decided to run models with cauchy prior instead of g prior because we'd rather h
 ```{r bma, eval = FALSE, include = FALSE}
 ############### Price Models #######################
 #BMA model with Cauchy prior
-price_bma_JZS <- bas.lm(price_log ~ ., data = d_clean_price_bma_no_outliers, prior = "JZS",
+price_bma_JZS2 <- bas.lm(price_log ~ ., data = d_clean_price_bma_no_outliers, prior = "JZS",
                     alpha = 1,
                     n.models = 2^15,
                     modelprior = uniform(),
@@ -72,9 +72,9 @@ price_bma_JZS <- bas.lm(price_log ~ ., data = d_clean_price_bma_no_outliers, pri
                     method = "MCMC",
                     MCMC.iterations = 10^6)
 #Save Model
-saveRDS(price_bma_JZS, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_final.rds")
+#saveRDS(price_bma_JZS, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_final.rds")
 price_bma_JZS <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_final.rds")
-print(price_bma_JZS )
+print(price_bma_JZS)
 # image(price_bma_JZS , rotate = F)
 par(mfrow=c(2,2))
 plot(price_bma_JZS )
@@ -84,13 +84,13 @@ plot(confint(coef.priceJZS))
 # 
 
 #BMA model with g  prior
-price.g <- bas.lm(price_log ~ ., data = df_pricemod, prior = "g-prior",
-                    alpha = 1,
-                    n.models = 2^15,
-                    modelprior = uniform(),
-                    initprobs = "marg-eplogp",
-                    method = "MCMC")
-Save Model
+# price.g <- bas.lm(price_log ~ ., data = df_pricemod, prior = "g-prior",
+#                     alpha = 1,
+#                     n.models = 2^15,
+#                     modelprior = uniform(),
+#                     initprobs = "marg-eplogp",
+#                     method = "MCMC")
+# Save Model
 #saveRDS(price.g, "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_g.rds")
 
 # price_bma_g <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_g.rds")
@@ -192,7 +192,7 @@ pop_bma_JZS2 <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Mo
 print(pop_bma_JZS2)
 image(pop_bma_JZS2, rotate = F)
 par(mfrow=c(2,2))
-plot(pop_bma_JZS2)
+plot(pop_bma_JZS2, which = 1)
 
 
 
@@ -201,7 +201,7 @@ plot(pop_bma_JZS2)
 
 ```{r bma_final_price}
 #final model 
-#price_bma_JZS2 <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_JZS2.rds")
+price_bma_JZS2 <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_JZS2.rds")
 print(price_bma_JZS)
 image(price_bma_JZS , rotate = F)
 par(mfrow=c(2,2))
@@ -212,7 +212,7 @@ plot(confint(coef.priceJZS, estimator = "HPM"))
 plot(coef.priceJZS, subset = c(19), ask = F)
 
 #Calculating residuals by hand
-predicted_price_bma <- predict(price_bma_JZS, estimator = "BPM")
+predicted_price_bma <- predict(price_bma_JZS2, estimator = "BPM")
 residuals_price_bma <- d_clean_price_bma_no_outliers$price_log - predicted_price_bma$fit
 
 #Plot of residuals and map of NY 
