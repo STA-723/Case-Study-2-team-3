@@ -1,0 +1,53 @@
+---
+title: "writeup"
+author: "Melody, Raphael Morsomme, Ezinne Nwankwo"
+date: "2/4/2020"
+output: pdf_document
+---
+
+
+```{r load packages, include = FALSE}
+library(readr)
+library("tidyverse")
+library(ggpubr)
+library("ggmap")
+library("jpeg")
+library(xtable)
+set.seed(2020)
+```
+
+
+```{r load data, include=FALSE, message=FALSE}
+
+airbnb<- read_csv("~/Homework/STAT 723/Case-Study-2-team-3/AB_NYC_2019.csv")
+load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean.RDATA")
+load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean_bma.RDATA")
+load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean_rf.RDATA")
+
+```
+
+
+
+## Introduction 
+
+Airbnb has quickly grown into one of the largest online marketplace for arranging long or short term stays at homes and appartments owned by people, typically a cheaper alternative to booking hotels. Airbnb does not own any of the property on its site; instead it acts as a broker between customers and hosts and earns a commission from each booking. Hosts have full control over aspects such as pricing, how to advertise their listings, and how often their listing is available throughout the year. For this project, we are interested in modelling price and popularity of listsings in order to best advise hosts on tactics that will maximize their profit and popularity on the platform. This includes (i.) identifying influential factors on the price and popularity of the listing (ii.) identifying heterogeniety across boroughs and neighborhoods, in particular which ones have the heaviest traffic and highest prices (iii.) identifying hetoergeneity across listing type and (iv.) providing recommendations on listing location and names. 
+
+### Data 
+
+A total of `r dim(airbnb)[1]` Airbnb listings in New York are including in the given dataset with `r dim(airbnb)[2]` variables. These listing were found on the platform as of 2019, with the oldest review of a listing occuring in `r min((unique(airbnb$last_review)), na.rm = TRUE)`. 
+
+
+## Materials and Methods 
+
+## Results 
+
+### EDA
+
+### Main Results
+
+### Sensitivity 
+
+## Discussion and Future Directions
+
+## Appendix
+
