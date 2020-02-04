@@ -1,0 +1,58 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {./Figures/} }
+
+\title{Modeling Price and Popularity of AirBnB listings in New-York}
+\author{Melody Jiang, Raphael Morsomme, Ezinne Nwankwo}
+\institute{Department of Statistical Science, Duke University}
+\date{02/03/2020}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+
+
+\begin{frame}
+\frametitle{Results - Random Forest Price}
+\input{price_rf_importance.tex}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results - Random Forest Popularity}
+\input{pop_rf_importance.tex}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results - BMA Price}
+\input{price_bma_coef_confint.tex}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results - BMA Popularity}
+\input{pop_bma_coef_confint.tex}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Diagnostic Plots - BMA}
+\includegraphics[scale = 0.8]{diagnostic_price_bma.jpeg}
+\includegraphics[scale = 0.8]{diagnostic_pop_bma.jpeg}
+\begin{itemize}
+	\item Used $R^2$ to diagnose random forest models
+\end{itemize}
+\end{frame} 
+
+\begin{frame}
+\frametitle{Residuals - BMA}
+\includegraphics[scale = 0.8]{map_price_bma.jpeg}
+\includegraphics[scale = 0.8]{map_pop_bma.jpeg}
+\end{frame} 
+
+
+
+
+\end{document}
