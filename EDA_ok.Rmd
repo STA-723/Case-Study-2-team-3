@@ -117,7 +117,7 @@ my_ggsave("availability_density.jpeg")
 ```
 
 
-```{r availability}
+```{r price}
 d_clean %>%
   filter(price<600)%>%
   ggplot(aes(x = price)) + 
