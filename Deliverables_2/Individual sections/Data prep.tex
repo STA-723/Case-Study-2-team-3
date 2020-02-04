@@ -16,49 +16,5 @@
 
 
 
-\begin{frame}
-\frametitle{Data Cleaning}
-Since the data quality is questionable, we narrow down our focus to \textit{active} listing for \textit{short term} stays that are \textit{private}:
-
-\begin{itemize}
-	\item last review is less than $12$ months old
-	\item min number of days inferior to to $29$
-	\item less than $5$ listings per owner
-\end{itemize}
-
-We also incorporate external data:
-\begin{itemize}
-	\item Location of metro stations
-	\item Location of main attractions
-\end{itemize}
-\end{frame}
-
-
-
-\begin{frame}
-\frametitle{Feature Engineering - Proximity to Metro and Attractions}
-EDA suggests spatial modeling:
-\begin{itemize}
-	\item Proximity to closest metro stations
-	$$dist_{Manhattan}(x, y) = |lat_{x} - lat_{y}| +  |long_{x} - long_{y}|$$
-	\item Average proximity to ($36$) attractions
-	$$proximity(X) = \dfrac{1}{n}\sum_{i=1}^{n} \dfrac{1}{dist(X, attraction_i)}
-	$$
-\end{itemize}
-\end{frame}
-
-
-
-\begin{frame}
-\frametitle{Feature Engineering - Textual Data}
-Textual data always invites creativity:
-\begin{itemize}
-	\item Sentiment analysis of listing name
-	$$ Sentiment(W) = \dfrac{1}{n}\sum_{i=1}^{n} dictionary(w_i)$$
-	where $dictionary_{Affin}(w) \in \left\lbrace -5, -4, \dots, 5\right\rbrace$
-	\item Origin of host $\Rightarrow$ frequency of name
-\end{itemize}
-\end{frame}
-
 
 \end{document}
