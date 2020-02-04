@@ -42,8 +42,8 @@ my_ggsave("MyPlotName.jpeg")
 ```{r price bma diagnostic plots}
 jpeg("Deliverables_2/Figures/diagnostics_price_bma.jpeg")
 #image(price_bma_JZS , rotate = F)
-par(mfrow=c(2,2))
-plot(price_bma_JZS)
+par(mfrow=c(1,2))
+plot(price_bma_JZS, which = c(1,4))
 dev.off()
 
 ```
@@ -97,8 +97,8 @@ my_ggsave("map_price_bma.jpeg")
 ```{r pop bma diagnostics}
 jpeg("Deliverables_2/Figures/diagnostics_pop_bma.jpeg")
 #image(pop_bma_JZS2 , rotate = F)
-par(mfrow=c(2,2))
-plot(pop_bma_JZS2 )
+par(mfrow=c(1,2))
+plot(pop_bma_JZS2, which = c(1,4) )
 dev.off()
 ```
 
@@ -181,7 +181,7 @@ print(tab1,file="Deliverables_2/Figures/price_bma_coef_confint.tex")
 #https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
 library(xtable)
 load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_confint.RDATA")
-tab1<-xtable(price_confint, type = 'latex', booktabs = TRUE)
+tab1<-xtable(pop_confint, type = 'latex', booktabs = TRUE)
 print(tab1,file="Deliverables_2/Figures/pop_bma_coef_confint.tex")
 ```
 

@@ -282,6 +282,7 @@ price_confint <- data.frame("Predictors" = price_var_names, "Estimate" = price_b
 price_confint <- price_confint %>% 
   mutate(Significance = if_else((Lower.Confint*Upper.Confint) > 0, "*",""))
 
+
 View(price_confint)
 save(price_confint, file = "price_confint.RDATA")
 
@@ -328,7 +329,7 @@ pop_confint <- data.frame("Predictors" = pop_var_names, "Estimate"=pop_betas, "L
 
 pop_confint <- pop_confint %>% 
   mutate(Significance = if_else((Lower.Confint*Upper.Confint) > 0, "*",""))
-#View(pop_confint)
+View(pop_confint)
 
 save(pop_confint, file = "pop_confint.RDATA")
 
