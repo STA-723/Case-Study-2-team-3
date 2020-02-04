@@ -373,11 +373,11 @@ rf.residuals.price <- d_clean_price_rf_no_outliers$price_log - predict(price_rf)
 
 
 #Saving importance  variables
-price_var_names_rf <- c("Neighbourhood_group", "Room_type", "number of reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365", "name_listing_sentiment", "proximity_attraction","name_host_freq","name_host_special" ,"name_listing_length", "type_stay","proximity_metro") 
+price_var_names_rf <- names(d_clean_pop_rf_no_outliers)
 
 #Extracting variable importance values
 price_imp <- c()
-for (i in 1:14){
+for (i in 1:15){
   price_imp[i] <- round(importance(price_rf), 2)[i] 
 }
 
@@ -404,21 +404,22 @@ rf.residuals.pop <- d_clean_pop_rf_no_outliers$popularity_log - predict(pop_rf)
 
 
 #Saving posterior mean and interval estimates 
-pop_var_names_rf <- c("Neighbourhood_group","latitude","longitude", "Room_type", "number of reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365", "name_listing_sentiment", "proximity_attraction","name_host_freq","name_host_special" ,"name_listing_length", "type_stay","proximity_metro") 
+pop_var_names_rf <- names(d_clean_pop_rf_no_outliers)
 
 #Extracting variable importance values
 pop_imp <- c()
-for (i in 1:16){
+for (i in 1:15){
   pop_imp[i] <- round(importance(pop_rf), 2)[i] 
 }
 
 pop_importance <- data.frame("Predictors"=pop_var_names_rf,"Variable Importance"= pop_imp)
-price_importance <- price_importance %>% arrange(desc(Variable.Importance))
+pop_importance <- pop_importance %>% arrange(desc(Variable.Importance)) 
+View(pop_importance)
 
 save(pop_importance, file = "pop_importance.RDATA")
 
 
-varImpPlot(pop_rf)
+#varImpPlot(pop_rf)
 
 ```
 
