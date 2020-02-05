@@ -1,58 +1,36 @@
----
-title: "writeup"
-author: "Melody, Raphael Morsomme, Ezinne Nwankwo"
-date: "2/4/2020"
-output: pdf_document
----
+\documentclass{article}
+\usepackage[utf8]{inputenc}
 
+\title{Write Up }
+\author{Ezinne Nwankwo}
+\date{February 2020}
 
-```{r load packages, include = FALSE}
-library(readr)
-library("tidyverse")
-library(ggpubr)
-library("ggmap")
-library("jpeg")
-library(xtable)
-set.seed(2020)
-```
+\usepackage{natbib}
+\usepackage{graphicx}
 
+\begin{document}
 
-```{r load data, include=FALSE, message=FALSE}
-
-airbnb<- read_csv("~/Homework/STAT 723/Case-Study-2-team-3/AB_NYC_2019.csv")
-load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean.RDATA")
-load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean_bma.RDATA")
-load("~/Homework/STAT 723/Case-Study-2-team-3/d_clean_rf.RDATA")
-
-```
-
-
-
-## Introduction 
+\maketitle
+\section{Introduction}
 
 Airbnb has quickly grown into one of the largest online marketplace for arranging long or short term stays at homes and appartments owned by people, typically a cheaper alternative to booking hotels. Airbnb does not own any of the property on its site; instead it acts as a broker between customers and hosts and earns a commission from each booking. Hosts have full control over aspects such as pricing, how to advertise their listings, and how often their listing is available throughout the year. For this project, we are interested in modelling price and popularity of listsings in order to best advise hosts on tactics that will maximize their profit and popularity on the platform. This includes (i.) identifying influential factors on the price and popularity of the listing (ii.) identifying heterogeniety across boroughs and neighborhoods, in particular which ones have the heaviest traffic and highest prices (iii.) identifying hetoergeneity across listing type and (iv.) providing recommendations on listing location and names. 
 
-### Data 
+\subsection{Data} 
 
 A total of 48,895 Airbnb listings in New York are including in the given dataset with 16 variables. These listing were found on the platform as of 2019, with the oldest review of a listing occuring on March 28, 2011. 
 
 
-## Materials and Methods 
+\section{Materials and Methods} 
 
 We decided to implement two types simple models, Bayesian Model Averaging (BMA) in linear models and random forests (RF). We build two models separately for log price and log popularity using all the variables as a linear combination of predictors. For the BMA models, we exclude latitude and longitude because we don't believe that there is a linear relationship with the outcome variables. We use pretty standard parameters for these models like a Cauchy prior for the predictors (see Sentivity Analysis section where discuss the use of different priors) and a uniform prior over the model space, which assigns equal probability to all the models. We use an MCMC algorithm with $10^{16}$ iterations to sample from the model space of $2^{15}$ models. Lastly, we approximate the marginal inclusion probabilities of the predictors by taking the p-values from p simple linear regressions. (In R code, this parameter is initprobs = "marg-eplogp"). The posterior inclusion probabilities (PIP) of each predictor was primarily what we used to determine influential factors in price and popularity of a listing. 
 
 For the RF models, we used all the predictors including longitude and latitude since this class of models does not make any linearity assumptions between predictors and outcome variable. We build these models using 1900 trees each built on subsamples of 19000 data points. Due to computational challenges, we could not go beyond this number of trees and subsamples. For the split criteria, we randomly sampled $m = \frac{p}{3} = 4$ variables as candidates for the split (Note that this is the default value for regression) and $n_{leaf} \geq 5$. We used a variable importance measure that is based on an increase in node purity, or Gini-based importance. It is is calculated based on the reduction in sum of squared errors whenever a variable is chosen to split.
 
-## Results 
+\section{Results}
 
-### EDA
+\subsection{Main Results}
 
-### Main Results
+\subsection{Sensitivity} 
+Our model was very sensitive to outliers. When we fit our models, we noticed some outliers in the residuals plot, and thus decided to remove points that were three times the standard deviation away from the mean of the outcome. After refitting, the model residual plots looked much better and had better $R^2$ values. Unfortunately, for the popularity model, the residual plots indicate that our models are not accounting for some relationship in the data very accurately (See residual plots below). For the BMA models, we also varied the choice in prior by testing out the g-prior for g = 1, 5, 8, 50, 100, 500, 1000. The results did not change for the different priors. Lastly, for the RF models, we varied m and the minimum $n_{leaf}$. The final values that we used for those parameters did not result in a change in MSE. 
 
-### Sensitivity 
-Our model was very sensitive to outliers. When we fit our models, we noticed some outliers in the residuals plot, and thus decided to remove points that were three times the standard deviation away from the mean of the outcome. After refitting, the model residual plots looked much better and had better $R^2$ values. Unfortunately, for the popularity model, the residual plots indicate that our model is not accounting for some relationship in the data very accurately (See residual plots below). For the BMA model, we also varied the choice in prior by testing out the g-prior for g = 1, 5, 8, 50, 100, 500, 1000. The results did not change for the different priors.
-
-## Discussion and Future Directions
-
-## Appendix
-
+\end{document}
