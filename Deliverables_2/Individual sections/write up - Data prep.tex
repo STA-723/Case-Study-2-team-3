@@ -1,0 +1,19 @@
+\documentclass{article}
+
+\begin{document}
+	
+\section{Data Preparation}
+\subsection{Data Cleaning}
+
+The quality of the data is questionable and the meaning of some variables is unclear. For instance, the data set contains listings with a price superior to USD$5,000$ per night or equal to $0$, a minimum number of nights superior to $1,000$ and an average number of monthly review superior to $50$. It was also unclear what the price variable represents (average price of booking, average listed price or current listed price?) or how the variable availability\_365 was constructed (average number of available days per year, number of available days in the last year, current number of available days?).
+
+
+For these reasons, we decide to simplify the phenomenon under investigation by removing listings that are not typical of the Airbnb platform. That is, we remove listing for long-term stays (see figure 1) and listings that are owned by business (some owners possess several dozens of listings), since we believe that the set of factors determining their price and popularity strongly differs from that of a typical \textit{short-term}, \textit{privately owned} Airbnb listing. We also exclude listings that have not been reviewed in the last $12$ months since factors that mattered several years ago may no longer be relevant. The resulting data set contains $24,255$ \textit{short-term}, \textit{active} and \textit{privately owned} listings.
+
+In order to complement the limited information included in the data set, we incorporate two sources of external data: the location of all subway stations of New-York, and the location of $36$ famous attractions that we hand-picked.
+
+\subsection{feature Engineering}
+
+
+
+\end{document}
