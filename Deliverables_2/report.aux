@@ -21,24 +21,28 @@
 \jmlr@workshop{STA723 -- Case Study 1}
 \jmlr@title{Modeling Price and Popularity of AirBnB listings in New-York}{Modeling Price and Popularity of AirBnB listings in New-York}
 \jmlr@author{Jiang, Morsomme, Nwankwo}{Melody Jiang \and Raphael Morsomme \and Ezinne Nwankwo}
-\jmlr@date{February 4, 2020}
+\jmlr@date{February 6, 2020}
 \newlabel{jmlrstart}{{}{1}{}{Doc-Start}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.0.1}}
-\newlabel{sec:intro}{{1}{2}{Introduction}{section.0.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Methods}{2}{section.0.2}}
-\newlabel{sec:method}{{2}{2}{Methods}{section.0.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Data}{2}{subsection.0.2.1}}
-\newlabel{sec:data}{{2.1}{2}{Data}{subsection.0.2.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Feature Engineering}{2}{subsection.0.2.2}}
-\newlabel{sec:feature}{{2.2}{2}{Feature Engineering}{subsection.0.2.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Ordinal Logistic Regression Model}{2}{subsection.0.2.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{2}{section.0.3}}
-\newlabel{sec:results}{{3}{2}{Results}{section.0.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}EDA}{2}{subsection.0.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Main Findings}{2}{subsection.0.3.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Sensitivity Analysis}{2}{subsection.0.3.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions and further discussion}{2}{section.0.4}}
-\newlabel{sec:conclusion}{{4}{2}{Conclusions and further discussion}{section.0.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.0.1}}
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.0.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Methods}{1}{section.0.2}}
+\newlabel{sec:method}{{2}{1}{Methods}{section.0.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Data Preparation}{1}{subsection.0.2.1}}
+\newlabel{sec:data}{{2.1}{1}{Data Preparation}{subsection.0.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Feature Engineering}{1}{subsection.0.2.2}}
+\newlabel{sec:feature}{{2.2}{1}{Feature Engineering}{subsection.0.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Spatial Variables}{1}{subsubsection.0.2.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Textual Variables}{2}{subsubsection.0.2.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Model}{2}{subsection.0.2.3}}
+\citation{james2005apartment}
+\citation{belasco2012using}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{3}{section.0.3}}
+\newlabel{sec:results}{{3}{3}{Results}{section.0.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}EDA}{3}{subsection.0.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Main Findings}{3}{subsection.0.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Model Checking and Sensitivity Analysis}{3}{subsection.0.3.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions and further discussion}{3}{section.0.4}}
+\newlabel{sec:conclusion}{{4}{3}{Conclusions and further discussion}{section.0.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {A}Figures and Tables}{4}{section.0.A}}
 \newlabel{appendix:fig}{{A}{4}{Figures and Tables}{section.0.A}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Distribution of minimum number of nights.}}{4}{figure.1}}
@@ -49,7 +53,12 @@
 \newlabel{fig:room_type}{{3}{4}{Output from chi-squared test}{figure.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Map of listings, metro stations, and attractions. Black dots are metro stations, gree dots are attractions, blue dots are listings priced at bottom 80\%, and red dots are listings priced at top 20\%}}{5}{figure.4}}
 \newlabel{fig:map_eda}{{4}{5}{Map of listings, metro stations, and attractions. Black dots are metro stations, gree dots are attractions, blue dots are listings priced at bottom 80\%, and red dots are listings priced at top 20\%}{figure.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Model Checking}{6}{section.0.B}}
-\newlabel{appendix:assumption}{{B}{6}{Model Checking}{section.0.B}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Full Model Output}{6}{section.0.C}}
-\newlabel{jmlrend}{{C}{6}{end of Modeling Price and Popularity of AirBnB listings in New-York}{section*.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Residuals for price BMA model}}{5}{figure.5}}
+\newlabel{fig:map_residuals}{{5}{5}{Residuals for price BMA model}{figure.5}{}}
+\bibdata{bibliography}
+\bibcite{belasco2012using}{{1}{2012}{{Belasco et~al.}}{{Belasco, Farmer, and Lipscomb}}}
+\bibcite{james2005apartment}{{2}{2005}{{James et~al.}}{{James, Wu, Gelfand, and Sirmans}}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Model Checking}{7}{section.0.B}}
+\newlabel{appendix:assumption}{{B}{7}{Model Checking}{section.0.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Full Model Output}{7}{section.0.C}}
+\newlabel{jmlrend}{{C}{7}{end of Modeling Price and Popularity of AirBnB listings in New-York}{section*.2}{}}

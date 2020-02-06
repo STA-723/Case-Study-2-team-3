@@ -180,6 +180,8 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/./Figures/length_stay_density.jpeg
@@ -194,13 +196,23 @@ INPUT ./Figures/room_type.jpeg
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/./Figures/map_eda.jpeg
 INPUT ./Figures/map_eda.jpeg
 INPUT ./Figures/map_eda.jpeg
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/./Figures/residual_map_price.png
+INPUT ./Figures/residual_map_price.png
+INPUT ./Figures/residual_map_price.png
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.bbl
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.bbl
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.aux
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.out
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.out
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb

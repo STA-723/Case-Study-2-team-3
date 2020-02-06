@@ -1,0 +1,21 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Belasco et~al.(2012)Belasco, Farmer, and Lipscomb]{belasco2012using}
+Eric Belasco, Michael Farmer, and Clifford Lipscomb.
+\newblock Using a finite mixture model of heterogeneous households to delineate
+  housing submarkets.
+\newblock \emph{Journal of Real Estate Research}, 34\penalty0 (4):\penalty0
+  577--594, 2012.
+
+\bibitem[James et~al.(2005)James, Wu, Gelfand, and Sirmans]{james2005apartment}
+Valente James, ShanShan Wu, Alan Gelfand, and C~Sirmans.
+\newblock Apartment rent prediction using spatial modeling.
+\newblock \emph{Journal of Real Estate Research}, 27\penalty0 (1):\penalty0
+  105--136, 2005.
+
+\end{thebibliography}
