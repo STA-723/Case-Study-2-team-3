@@ -240,7 +240,7 @@ plot(pop_bma_JZS2, which = 1)
 
 ```{r bma_final_price}
 #final model 
-price_bma_JZS2 <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_JZS2.rds")
+#price_bma_JZS2 <- readRDS("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/saved_Models/price_bma_JZS2.rds")
 print(price_bma_JZS)
 image(price_bma_JZS , rotate = F)
 par(mfrow=c(2,2))
@@ -314,7 +314,6 @@ d_merge_pop %>%
   ggplot(aes(x = longitude, y = latitude, color = residuals_pop_bma_ind)) + geom_point() #+ theme_dark() + scale_color_gradient2(midpoint = 0) 
 
 
-
 #Saving posterior mean and interval estimates 
 pop_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx", "Room_type:Entire home/apt", "Room_type:Shared room", "number of reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365", "name_listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length", "type_stay:Long","proximity_metro") 
 
@@ -377,21 +376,13 @@ pop_rf <- readRDS("~/Homework/STAT 723/pop_rf.rds")
 
 ```{r residuals and variable importance}
 ## residuals for price model
-<<<<<<< HEAD
 rf.residuals.price <- d_clean_price_rf_no_outliers$price_log - predict(price_rf) 
 # plot(rf.residuals.price, ylim = c(-20,30),main = "Residuals from Random Forest Model")
 # df_pricemod_no_outliers %>% 
 #   mutate(residuals_price_rf = rf.residuals.price) %>% 
 #   mutate(residuals_price_rf_ind = ifelse(residuals_price_rf < 2*sd(residuals_price_rf) & residuals_price_rf > -2*sd(residuals_price_rf) , "Small Residual", "Large Residual")) %>% 
 #   ggplot(aes(x = longitude, y = latitude)) + geom_point(aes(color = residuals_price_rf_ind)) + facet_wrap(.~neighbourhood_group)
-=======
-rf.residuals.price <- d_clean_price_rf$price_log - predict(price_rf) 
-plot(rf.residuals.price, ylim = c(-20,30),main = "Residuals from Random Forest Model")
-d_clean_price_rf %>% 
-  mutate(residuals_price_rf = rf.residuals.price) %>% 
-  mutate(residuals_price_rf_ind = ifelse(residuals_price_rf < 2*sd(residuals_price_rf) & residuals_price_rf > -2*sd(residuals_price_rf) , "Small Residual", "Large Residual")) %>% 
-  ggplot(aes(x = longitude, y = latitude)) + geom_point(aes(color = residuals_price_rf_ind)) + facet_wrap(.~neighbourhood_group)
->>>>>>> 61bd00829fd711f2bd362c0788096ba59b4d8a44
+
 
 
 #Saving importance  variables
@@ -416,7 +407,6 @@ varImpPlot(price_rf)
 
 ## residuals for popularity model
 
-<<<<<<< HEAD
 rf.residuals.pop <- d_clean_pop_rf_no_outliers$popularity_log - predict(pop_rf) 
 # plot(rf.residuals.pop, ylim = c(-20,30),main = "Residuals from Random Forest Model")
 # 
@@ -424,15 +414,6 @@ rf.residuals.pop <- d_clean_pop_rf_no_outliers$popularity_log - predict(pop_rf)
 #   mutate(residuals_pop_rf = rf.residuals.pop) %>% 
 #   mutate(residuals_pop_rf_ind = ifelse(residuals_pop_rf < 2*sd(residuals_pop_rf) & residuals_pop_rf > -2*sd(residuals_pop_rf) , "Small Residual", "Large Residual")) %>% 
 #   ggplot(aes(x = longitude, y = latitude)) + geom_point(aes(color = residuals_pop_rf_ind), alpha = 0.1) + facet_wrap(.~neighbourhood_group)
-=======
-rf.residuals.pop <- d_clean_pop_rf$popularity_log - predict(pop_rf) 
-plot(rf.residuals.pop, ylim = c(-20,30),main = "Residuals from Random Forest Model")
-
-df_popmod_no_outliers %>% 
-  mutate(residuals_pop_rf = rf.residuals.pop) %>% 
-  mutate(residuals_pop_rf_ind = ifelse(residuals_pop_rf < 2*sd(residuals_pop_rf) & residuals_pop_rf > -2*sd(residuals_pop_rf) , "Small Residual", "Large Residual")) %>% 
-  ggplot(aes(x = longitude, y = latitude)) + geom_point(aes(color = residuals_pop_rf_ind), alpha = 0.1) + facet_wrap(.~neighbourhood_group)
->>>>>>> 61bd00829fd711f2bd362c0788096ba59b4d8a44
 
 
 #Saving posterior mean and interval estimates 
