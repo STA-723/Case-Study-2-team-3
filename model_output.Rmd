@@ -7,7 +7,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 library(purrr)
-my_ggsave <- partial(ggsave, path = "Deliverables/Figures", width = 5, height = 3.5)
+my_ggsave <- partial(ggsave, path = "Deliverables_2/Figures", width = 5, height = 3.5)
 ```
 
 
@@ -25,39 +25,139 @@ ggplot(diamonds, aes(carat, price)) +
 my_ggsave("MyPlotName.jpeg")
 ```
 
-```{r price bma diagnostic plots}
-image(price_bma_JZS , rotate = F)
-#par(mfrow=c(2,2))
-plot(price_bma_JZS)
-coef.priceJZS <- coef(price_bma_JZS)
-plot(confint(coef.priceJZS, estimator = "HPM"))
+# Diagnostic Plots
 
+```{r price residuals}
+jpeg('Deliverables_2/Figures/price_diagnostic_plot.jpeg')
+plot(price_bma_JZS, which = 1) 
+dev.off()
 ```
+
+```{r pop residuals}
+jpeg('Deliverables_2/Figures/pop_diagnostic_plot.jpeg')
+plot(pop_bma_JZS, which = 1) 
+dev.off()
+```
+
+
 ```{r price bma posterior distributions}
 plot(coef.priceJZS, subset = c(4,10,14), ask = F)
 
+```
 
+# Residual Maps
+
+```{r}
+d_clean %>%
+  mutate(price_high = price < quantile(price, 0.8)) %>%
+ 
+  ggplot(aes(x = longitude, y = latitude)) +
+  geom_point(aes(color = price_high), size = 0.9, alpha = 1) +
+  
+  geom_point(data = d_attrac, color = "green", size = 3) +
+  geom_point(data = d_metro, color = "black", size = 3) +
+  xlim(-73.93, -73.828) + 
+  ylim(40.8, 40.9) +
+  theme_map()+ theme(legend.position="bottom") +
+  scale_color_brewer(palette = "Set1", name = "Price Category", labels = c("Top 20%", "Bottom 80%"))
+```
+
+
+
+
+# TABLES
+
+```{r price bma coef table}
+coef.priceJZS <- coef(price_bma_JZS)
+#Saving posterior mean and interval estimates 
+price_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx", "Room_type:Entire home/apt", "Room_type:Shared room", "number of reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365", "name_listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length", "type_stay:Long","proximity_metro") 
+#Extracting betas and confint values
+price_lower_bound = c()
+price_upper_bound = c()
+price_betas = c()
+for (i in 1:dim(confint(coef.priceJZS))[1]){
+  price_lower_bound[i] <- round(confint(coef.priceJZS)[i,1],2)
+  price_upper_bound[i] <- round(confint(coef.priceJZS)[i,2],2)
+  price_betas[i] <- round(confint(coef.priceJZS)[i,3],2)
+}
+
+price_confint <- data.frame("Predictors" = price_var_names, "Estimate" = price_betas, "Lower Confint" = price_lower_bound, "Upper Confint" = price_upper_bound)
+#grid.table(price_confint)
+#View(price_confint)
+price_confint <- price_confint %>% 
+  mutate(Significance = if_else((Lower.Confint*Upper.Confint) > 0, "*","")) %>% 
+  mutate(PIP = price_bma_JZS$probne0.MCMC) %>% 
+  select(Predictors,PIP, everything()) %>% 
+  arrange(-PIP)
+
+
+View(price_confint)
+save(price_confint, file = "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/price_confint.RDATA")
+
+
+```
+
+
+```{r price bma estimates and confint}
+#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
+library(xtable)
+load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/price_confint.RDATA")
+tab1<-xtable(price_confint, caption= "Coeffients and 95% Confidence Intervals from Price BMA model")
+
+print(tab1,file="Deliverables_2/Figures/price_bma_coef_confint.tex",type = "latex")
 ```
 
 
 
 ```{r price bma residual map}
+
 #price_bma 
 d_merge_price <- left_join(d_clean_price_bma_no_outliers, d_clean)
 d_merge_price%>% 
-  mutate(residuals_price_bma = residuals_price_bma) %>% 
-  ggplot(aes(x = longitude, y = latitude, color = residuals_price_bma)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) 
+  ggplot(aes(x = longitude, y = latitude, color = residuals)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) 
 
 ```
 
 ```{r pop bma diagnostics}
-image(pop_bma_JZS2 , rotate = F)
-#par(mfrow=c(2,2))
-plot(pop_bma_JZS2 )
-coef.popJZS2 <- coef(pop_bma_JZS2)
-plot(confint(coef.popJZS2, estimator = "HPM"))
+coef.popJZS <- coef(pop_bma_JZS)
+
+#Saving posterior mean and interval estimates 
+pop_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx", "Room_type:Entire home/apt", "Room_type:Shared room", "minimum_nights", "number of reviews", "reviews_per_month", "listing count", "listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length","proximity_metro") 
+
+#Extracting betas and confint values
+pop_lower_bound = c()
+pop_upper_bound = c()
+pop_betas = c()
+for (i in 1:dim(confint(coef.popJZS))[1]){
+  pop_lower_bound[i] <- round(confint(coef.popJZS)[i,1],2)
+  pop_upper_bound[i] <- round(confint(coef.popJZS)[i,2],2)
+  pop_betas[i] <- round(confint(coef.popJZS)[i,3],2)
+}
+
+pop_confint <- data.frame("Predictors" = pop_var_names, "Estimate"=pop_betas, "Lower Confint" = pop_lower_bound,"Upper Confint" = pop_upper_bound)
+
+pop_confint <- pop_confint %>% 
+  mutate(Significance = if_else((Lower.Confint*Upper.Confint) > 0, "*","")) %>% 
+  mutate(PIP = pop_bma_JZS$probne0.MCMC) %>% 
+  select(Predictors,PIP, everything()) %>% 
+  arrange(-PIP)
+View(pop_confint)
+
+save(pop_confint, file = "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_confint.RDATA")
 
 ```
+
+```{r pop bma estimates and confint}
+#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
+library(xtable)
+load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_confint.RDATA")
+tab2<-xtable(pop_confint, caption= "Coeffients and 95% Confidence Intervals from Popularity BMA model")
+
+print(tab2,file="Deliverables_2/Figures/pop_bma_coef_confint.tex",type = "latex")
+```
+
+
+
 
 ```{r pop bma posterior distns}
 plot(coef.priceJZS, subset = c(2:5,7,12, 14:18), ask = F)
@@ -78,24 +178,7 @@ d_merge_pop %>%
 
 
 
-How to saving a table objective:
 
-```{r price bma estimates and confint}
-#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
-library(xtable)
-load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/price_confint.RDATA")
-tab1<-xtable(price_confint, caption= "Coeffients and 95% Confidence Intervals from Price BMA model")
 
-print(tab1,file="price_bma_coef_confint.tex",append=T,table.placement = "h",
- caption.placement="bottom", hline.after=seq(from=-1,to=nrow(tab),by=1))
-```
 
-```{r pop bma estimates and confint}
-#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
-library(xtable)
-load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_confint.RDATA")
-tab2<-xtable(pop_confint, caption= "Coeffients and 95% Confidence Intervals from Popularity BMA model")
 
-print(ta2b,file="pop_bma_coef_confint.tex",append=T,table.placement = "h",
- caption.placement="bottom", hline.after=seq(from=-1,to=nrow(tab),by=1))
-```
