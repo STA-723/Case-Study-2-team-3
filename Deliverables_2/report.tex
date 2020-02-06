@@ -37,7 +37,7 @@
 \usepackage[toc,page]{appendix}
 
 \usepackage{geometry}
-\geometry{letterpaper, margin=1in}
+\geometry{letterpaper, margin=0.9in}
 
 
 
@@ -83,7 +83,7 @@
 \maketitle
 
 \begin{abstract}
-In this paper, we seek to understand factors about a typical Airbnb listing that influence its price and popularity. We analyze a dataset with a total of 48,895 Airbnb listings in New York and 16 variables. We focus on feature engineering and fit two types of models: linear model using Bayesian Model Averaging and random forest with popularity and price as the outcome variables. Ultimately, our main finding in which all of our models agreed with was that room type and proximity to metro stations played a huge role in determining price and popularity. 
+In this paper, we seek to understand factors about a typical Airbnb listing that influence its price and popularity. We analyze a dataset with a total of 48,895 Airbnb listings in New York and 16 variables. We focus on feature engineering and fit two types of models: linear model using Bayesian Model Averaging and random forest with popularity and price as the outcome variables. Ultimately, our main finding in which all of our models agreed with was that room type and borough play a huge role in determining price and popularity. 
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,16 +103,16 @@ Airbnb has quickly grown into one of the largest online marketplace for arrangin
 
 \subsection{Data Preparation}
 \label{sec:data}
-The quality of the data is questionable and the meaning of some variables is unclear. For instance, the data set contains listings with a price superior to USD$5,000$ per night or equal to $0$, a minimum number of nights superior to $1,000$ and an average number of monthly review superior to $50$. It was also unclear what the price variable represents (average price of booking, average listed price or current listed price?) or how the variable availability\_365 was constructed (average number of available days per year, number of available days in the last year, current number of available days?).
+The quality of the data is questionable and the meaning of some variables is unclear. For instance, the data set contains listings with a price superior to USD$5,000$ per night or equal to $0$, a minimum number of nights superior to $1,000$ and an average number of monthly review superior to $50$. It was also unclear what the price variable represents - average price of booking, average listed price or current listed price? We also did not know how the variable availability\_365 was constructed - average number of available days per year, number of available days in the last year, or current number of available days.
 
-For these reasons, we decide to simplify the dataset by removing listings that are not typical of the Airbnb platform. That is, we remove listing for long-term stays and listings that are owned by businesses (some owners possess several dozens of listings), since we believe that the set of factors determining their price and popularity strongly differs from that of a typical \textit{short-term}, \textit{privately owned} Airbnb listing. We also exclude listings that have not been reviewed in the last $12$ months since factors that mattered several years ago may no longer be relevant. The resulting data set contains $24,255$ \textit{short-term}, \textit{active} and \textit{privately owned} listings.
+For these reasons, we decide to clean the dataset by removing listings that are not typical of the Airbnb platform. That is, we remove listing for long-term stays and listings that are owned by businesses (some owners possess several dozens of listings), since we believe that the set of factors determining their price and popularity strongly differs from that of a typical \textit{short-term}, \textit{privately owned} Airbnb listing. We also exclude listings that have not been reviewed in the last $12$ months since factors that mattered several years ago may no longer be relevant. The resulting data set contains $24,255$ \textit{short-term}, \textit{active} and \textit{privately owned} listings.
 
 \subsection{Feature Engineering}
 \label{sec:feature}
 \subsubsection{Spatial Variables}
 \figureref{fig:map_eda} suggests that the most expensive listings are located close to metro stations. We therefore construct a variable indicating the proximity of the closest metro station. The proximity between two locations $x$ and $y$ is computed with
 $\text{proximity}(x,y) = \dfrac{1}{\text{dist}(x,y)}$
-where $\text{dist}(x,y)$ measures the distance between $x$ and $y$. We decide to use the \textit{manhattan} distance
+where $\text{dist}(x,y)$ measures the distance between $x$ and $y$. We use the \textit{manhattan} distance
 $$\text{dist}_{\text{Manhattan}}(x,y) = |lat_x - lat_y| + |long_x - long_y|$$
 which approximates the distance traveled by a pedestrian walking on the perpendicular streets of New-York.
 
@@ -122,16 +122,18 @@ $$\text{proximity}_\text{attraction}(x) = \dfrac{1}{36} \sum_{i=1}^{36} \dfrac{1
 \subsubsection{Textual Variables}
 First, we conducted a sentiment analysis on the listing names in order to construct a variable indicating the sentiment of the listing name, that is, how positive the name sounds. The sentiment of a document $W = (w_1, w_2, \dots, w_n)$ composed of $n$ words is
 $$\text{sentiment}(W) = \dfrac{1}{n} \sum_{i=1}^{n} \text{dictionary}(w_i)$$
-where $\text{dictionary}(w_i)$ indicates the sentiment of the word $w_i$ according to some sentiment dictionary. Since the listing names are relatively short, we decide to use the Affin dictionary which provides a gradual sentiment metric ranging from $-5, 5$; the other existing sentiment dictionaries only provide a binary metric ($-1$, $1$) and would provide a sentiment that is too coarse for such short documents.
+where $\text{dictionary}(w_i)$ indicates the sentiment of the word $w_i$ according to some sentiment dictionary. Since the listing names are relatively short, we use the Affin dictionary which provides a gradual sentiment metric ranging from $-5, 5$; the other existing sentiment dictionaries only provide a binary metric ($-1$, $1$) and would provide a sentiment that is too coarse for such short documents.
 
 In addition, we attempted to model the origin of the owner's name. The rationale for this is that we expect renters to be less likely to book a listing whose owner has a name that does not look familiar. We obtained the relatively frequency of a someone's name in the data as a measurement of how common the name is. Since some owners own multiple listings, we filter by unique ID before computing the frequencies.
 
 
 
 \subsection{Model}
-We decided to implement two models, Bayesian Model Averaging (BMA) in linear models and random forests (RF). We build two models separately for log price and log popularity using all the variables as a linear combination of predictors. For the BMA models, we exclude latitude and longitude because there is no inpretable relationship between the magnitiude of, say, latitude and outcome variables. After sensitivity analysis, we decided to use a Cauchy prior for the predictors and a uniform prior over the model space, which assigns equal probability to all the models. We use an MCMC algorithm with $10^{16}$ iterations to sample from the model space of $2^{15}$ models. Lastly, we approximate the marginal inclusion probabilities of the predictors by taking the p-values from p simple linear regressions. The posterior inclusion probabilities (PIP) of each predictor was primarily what we used to determine influential factors in price and popularity of a listing. 
+We implemented two models, Bayesian Model Averaging (BMA) in linear models and random forests (RF). For BMA, we build two models separately for log price and log popularity using all the variables as a linear combination of predictors. We exclude latitude and longitude because there is no inpretable relationship between the magnitiude of, say, latitude and outcome variables. After sensitivity analysis, we decided to use a Cauchy prior for the predictors and a uniform prior over the model space, which assigns equal probability to all the models. We use an MCMC algorithm with $10^{16}$ iterations to sample from the model space of $2^{15}$ models. Lastly, we approximate the marginal inclusion probabilities of the predictors by taking the p-values from p simple linear regressions. The posterior inclusion probabilities (PIP) of each predictor was primarily what we used to determine influential factors in price and popularity of a listing. 
 
 For the RF models, we used all the predictors including longitude and latitude since this class of models does not make any linearity assumptions between predictors and outcome variable. We build these models using 1900 trees each built on subsamples of 19000 data points. Due to computational challenges, we could not go beyond this number of trees and subsamples. For the split criteria, we randomly sampled $m = \frac{p}{3} = 4$ variables as candidates for the split (Note that this is the default value for regression) and $n_{leaf} \geq 5$. We used a variable importance measure that is based on an increase in node purity, or Gini-based importance. It is is calculated based on the reduction in sum of squared errors whenever a variable is chosen to split.
+
+After our initial explanatory analysis, there was only a slight suggestion of linearity for some of the predictors. This provides further justification for our choice to fit a linear and non-linear model and compare the results.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -145,7 +147,7 @@ For the RF models, we used all the predictors including longitude and latitude s
 
 \figureref{fig:length_stay_density} shows the distribution of required minimum number of nights to book a listing. We observe that minimum number of nights is concetnrated at below 14 days and around 30 days. \figureref{fig:availability_density} displays the distribution of days that listings are available for booking in a year. We see that there are data concentrated at 0, which means these listings are not open for booking. Such observation would inform our data cleaning.
 
-To address the quesstion of whether the type of listing (shared room, private room, entire home) vary across neighbourhoods, we performed a chi-square test and plotted the results in \figureref{fig:room_type}. The p-value of the chi-square test was less than $10^{-16}$. In \figureref{fig:room_type}, the size of dots represents the absolute standardized residuals. The color represents the value of standardized residuals. We see that difference in room types is most pronounced in Manhattan and Queens. Manhattan has more entire home than expected and Queens has more private room than expected.
+To address the quesstion of whether the type of listing (shared room, private room, entire home) vary across boroughs, we performed a chi-square test and plotted the results in \figureref{fig:room_type}. The p-value of the chi-square test was less than $10^{-16}$. In \figureref{fig:room_type}, the size of dots represents the absolute standardized residuals. The color represents the value of standardized residuals. We see that difference in room types is most pronounced in Manhattan and Queens. Manhattan has more entire home than expected and Queens has more private room than expected.
 
 \figureref{fig:map_eda} shows a spatial map of  of listings, metro stations, and attractions. Black dots represent metro stations, gree dots attractions, blue dots listings priced at bottom 80\%, and red dots are listings priced at top 20\%. We observe that listings priced at top 20\% distribute close to metro stations. This observation motivates us to include spatial in formation of metro stations as explanatory variables.
 
@@ -153,20 +155,20 @@ To address the quesstion of whether the type of listing (shared room, private ro
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MAIN FINDINGS
 \subsection{Main Findings}
-Main findings.
+
+From our models, we were able to identify the top influential factors for price and popularity. For price, the BMA and RF models agree that room type and boroughs are very influential factors. BMA flagged the variable "name host special" as being significant with the highest value for the estimated effect on price being a 10.42 increase in the average log price given that the name of the host was not common while holding all other variables in the model constant. The next largest estimate was "Room type:Entire Home/Apt", which had a 0.74 change in the average log price given that the room type was an entire home or apartment while holding other variables in the model constant. Next, we saw that the models agreed that neighborhood group, minimum nights and listing sentiments are very influential factors in determining the popularity of a listing. In BMA model, the significant predictors were "listing count", "minimum nights", "name listing length", "number of reviews", and "listing sentiment". The variable "listing sentiment" had the largest estimate effect on log popularity with a 0.16 decrease in the average log popularity holding all other variables in the model constant. 
+
+Appendix B contains outputs from each model, with the predictors ordered from most influential to least influential using posterior inclusion probabilities from the BMA models and variable importance from the RF models. The tables also include the estimated effects for the other variables in the model, a majority of which had an estimated effect of zero. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS
 \subsection{Model Checking and Sensitivity Analysis}
-Our model was very sensitive to outliers. When we fit our models, we noticed some outliers in the residuals plot, and thus decided to remove points that were three times the standard deviation away from the mean of the outcome. After refitting, the model residual plots looked much better and had better $R^2$ values. Unfortunately, for the popularity model, the residual plots indicate that our models are not accounting for some relationship in the data very accurately , as shown in \figureref{fig:price_diag} and \figureref{fig:pop_diag}. For the BMA models, we also varied the choice in prior by testing out the g-prior for g = 1, 5, 8, 50, 100, 500, 1000. The results did not change for the different priors. Lastly, for the RF models, we varied m and the minimum $n_{leaf}$. The final values that we used for those parameters did not result in a change in MSE. 
 
-\section{Conclusions and further discussion}
+Our model was very sensitive to outliers. When we first fit our models, we noticed some outliers in the residuals plot, and thus decided to remove points that were three times the standard deviation away from the mean of the outcome. After refitting, the model residual plots looked much better and had better $R^2$ values, as shown in \figureref{fig:price_diag} and \figureref{fig:pop_diag}. For the BMA models, we also varied the choice in prior by testing out the g-prior for g = 1, 5, 8, 50, 100, 500, 1000. The results did not change for the different priors. Lastly, for the RF models, we varied m and the minimum $n_{leaf}$. The final values that we used for those parameters did not result in a change in MSE. 
+
+\section{Discussion}
 \label{sec:conclusion}
 
-(i) As shwon in our main findings, the most influential factors on price that BMA and RF agree on are room type and borough. For popularity, influential factors that both models agree on are minimum nights, listing sentiment, and borough.
-
-(iii) As shown in the EDA section, the type of listing does vary across neighbourhoods, since the p-value indicates significance. We have also seen the most pronounced difference in Mahhattan and Queens, where Manhattan has more entire home than expected and Queens has more private room than expected.
-
-(ii)(iv) Yes, there is heterogeneity across boroughs, and Manhattan is the most pricy. To make our listing the most pricy, We would locate an entire home/apartment in Manhattan and use a common name as host. Whether to use positive words in the name of listing does not affect the price.
+(i) As shwon in our main findings, the most influential factors on price that BMA and RF agree on are room type and borough. For popularity, influential factors that both models agree on are minimum nights, listing sentiment, and borough. (iii) As shown in the EDA section, the type of listing does vary across neighbourhoods, since the p-value indicates significance. We have also seen the most pronounced difference in Mahhattan and Queens, where Manhattan has more entire home than expected and Queens has more private room than expected. (ii)(iv) Yes, there is heterogeneity across boroughs, and Manhattan is the most pricy. To make our listing the most pricy, We would locate an entire home/apartment in Manhattan and use a common name as host. Whether to use positive words in the name of listing does not affect the price.
 
 We have seen in Results section that variable importance of BMA and random forest do not agree completely. This could be due to nonlinear trend that is hard to pick up in EDA. We could investigate this issue further in future work.
 
@@ -226,7 +228,7 @@ For future improvements, we would like to include spatial modeling. For example,
 \begin{figure}[htbp]
 	\centering
 	\caption{Model diagnostics for BMA for popularity}
-	\includegraphics[width=0.5\linewidth]{pop_diagnostic_plot.jpeg}
+	\includegraphics[width=0.5\linewidth]{pop_diagnostic_plot.png}
 	\label{fig:pop_diag}
 \end{figure}
 
