@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\begin{document}
+	
+\section{Data Preparation}
+\subsection{Data Cleaning}
+
+The quality of the data is questionable and the meaning of some variables is unclear. For instance, the data set contains listings with a price superior to USD$5,000$ per night or equal to $0$, a minimum number of nights superior to $1,000$ and an average number of monthly review superior to $50$. It was also unclear what the price variable represents (average price of booking, average listed price or current listed price?) or how the variable availability\_365 was constructed (average number of available days per year, number of available days in the last year, current number of available days?).
+
+For these reasons, we decide to simplify the phenomenon under investigation by removing listings that are not typical of the Airbnb platform. That is, we remove listing for long-term stays (see figure 1) and listings that are owned by business (some owners possess several dozens of listings), since we believe that the set of factors determining their price and popularity strongly differs from that of a typical \textit{short-term}, \textit{privately owned} Airbnb listing. We also exclude listings that have not been reviewed in the last $12$ months since factors that mattered several years ago may no longer be relevant. The resulting data set contains $24,255$ \textit{short-term}, \textit{active} and \textit{privately owned} listings.
+
+
+
+\subsection{feature Engineering}
+\subsubsection{Spatial Variables}
+Figure 2 suggests that the most expensive listings are located close to metro stations. We therefore construct a variable indicating the proximity of the closest metro station. The proximity between two locations $x$ and $y$ is computed with
+$$\text{proximity}(x,y) = \dfrac{1}{\text{dist}(x,y)}$$
+where $\text{dist}(x,y)$ measures the distance between $x$ and $y$. We decide to use the \textit{manhattan} distance
+$$\text{dist}_{\text{Manhattan}}(x,y) = |lat_x - lat_y| + |long_x - long_y|$$
+which approximates the distance traveled by a pedestrian walking on the perpendicular streets of New-York.
+
+Similarly, we compute the average proximity to the $36$ attractions with
+$$\text{proximity}_\text{attraction}(x) = \dfrac{1}{36} \sum_{i=1}^{36} \dfrac{1}{\text{dist}_{\text{Manhattan}}(x,\text{attraction}_i)}$$
+
+\subsubsection{Textual Variables}
+Textual data always invites creativity. First, we conducted a sentiment analysis on the listing names in order to construct a variable indicating the sentiment of the listing name, that is, how positive the name sounds. The sentiment of a document $W = (w_1, w_2, \dots, w_n)$ composed of $n$ words is
+$$\text{sentiment}(W) = \dfrac{1}{n} \sum_{i=1}^{n} \text{dictionary}(w_i)$$
+where $\text{dictionary}(w_i)$ indicates the sentiment of the word $w_i$ according to some sentiment dictionary. Since the listing names are relatively short, we decide to use the Affin dictionary which provides a gradual sentiment metric ranging from $-5, 5$; the other existing sentiment dictionaries only provide a binary metric ($-1$, $1$) and would provide a sentiment that is too coarse for such short documents.
+
+In addition, we attempted to model the origin of the owner's name. The rationale for this is that we expect renters to be less likely to book a listing whose owner has a name that is not American. Since we could not estimate the origin of the owner's name, we decided to use the relatively frequency of a someone's name in the data set as a proxy for how \textit{american} that name is. Since some owners own multiple listings, we filter by unique ID before computing the frequencies.
+
+\end{document}

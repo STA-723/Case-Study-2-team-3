@@ -18,47 +18,29 @@
 %%%%%%%%%% Section1: Introduction %%%%%%%%%%%
 
 
-\begin{frame}
-\frametitle{Overview}
 
-\begin{itemize}
-\item Data: Airbnblistings in NYC from 2019, 48,895 listings, 16 variables
-
-\item Questions
-\begin{itemize}
-    \item Influential factors on popularity / price
-    \item Heterogeneity among boroughs
-    \item If the type of listing vary across neighbourhoods
-    \item Where to locate listing and how to name listing to make listing most expensive and popular
-\end{itemize}
-
-
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{EDA - Issues with data}
-    \begin{itemize}
-        \item Constructing a measure of popularity from limiting variables (time of last review)
-        \item Improbable values
-        \item ideally , tidy data (Wickham, 2009) with one row per booking
-        \item Focus on data cleanin g and feature en g ineering over modeling.
-        \item EDA will motivate the creation of new variables and the cleaning of the data.
-    \end{itemize}
-\end{frame}
 
 \begin{frame}
     \frametitle{EDA - A city of two tales}
 
     
-    \includegraphics[scale = 0.8]{length_stay_density.jpeg}
+    \includegraphics[scale = 0.2]{length_stay_density.jpeg}
 \end{frame}
+
 
 \begin{frame}
     \frametitle{EDA - Are you available?}
+    \includegraphics[scale = 0.2]{availability_density.jpeg}
+\end{frame}
 
-    
+\begin{frame}
+    \frametitle{EDA - Room type}
+    \begin{itemize}
+        \item $p < 1e-16$
+    \end{itemize}
+    \centering
+    \includegraphics[scale = 0.13]{room_type_chi.jpeg}
+
 \end{frame}
 
 \begin{frame}
@@ -66,132 +48,181 @@
     \includegraphics[scale = 0.8]{map_eda.jpeg}
 \end{frame}
 
+
 \begin{frame}
-    \frametitle{EDA - Attractions}
+\frametitle{Data Cleaning}
+Since the data quality is questionable, we narrow down our focus to \textit{active} listing for \textit{short term} stays that are \textit{private}:
+
+\begin{itemize}
+	\item last review is less than $12$ months old
+	\item min number of days inferior to to $29$
+	\item less than $5$ listings per owner
+\end{itemize}
+
+We also incorporate external data:
+\begin{itemize}
+	\item Location of metro stations
+	\item Location of main attractions
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Feature Engineering - Proximity to Metro and Attractions}
+EDA suggests spatial modeling:
+\begin{itemize}
+	\item Proximity to closest metro stations
+	$$dist_{Manhattan}(x, y) = |lat_{x} - lat_{y}| +  |long_{x} - long_{y}|$$
+	\item Average proximity to ($36$) attractions
+	$$proximity(X) = \dfrac{1}{n}\sum_{i=1}^{n} \dfrac{1}{dist(X, attraction_i)}
+	$$
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Feature Engineering - Textual Data}
+Textual data always invites creativity:
+\begin{itemize}
+	\item Sentiment analysis of listing name
+	$$ Sentiment(W) = \dfrac{1}{n}\sum_{i=1}^{n} dictionary(w_i)$$
+	where $dictionary_{Affin}(w) \in \left\lbrace -5, -4, \dots, 5\right\rbrace$
+	\item Origin of host $\Rightarrow$ frequency of name
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Feature Engineering - Attractions}
     \includegraphics[scale = 0.8]{log_price_vs_prox_attr.jpeg}
 \end{frame}
 
 \begin{frame}
-    \frametitle{EDA - Metro}
+    \frametitle{Feature Engineering - Metro}
     \includegraphics[scale = 0.8]{log_price_vs_prox_metro.jpeg}
 \end{frame}
 
-\section{Data Cleaning}
+\begin{frame}
+\frametitle{Models}
+Two regression models
+\begin{itemize}
+	\item Regression Model
+	\begin{itemize}
+		\item Outcome: price, popularity
+		\begin{itemize}
+            \item $\text{popularity} = \frac{\text{reviews per month}}{\text{availability}}$
+        \end{itemize}
+		\item Predictors: listing sentiment, name frequency, proximity metro, proximity attraction, room type, etc.
+		\item $n = 25,000$, $p=14$
+	\end{itemize}
+	\item Random Forest
+	\begin{itemize}
+		\item $1,900$ trees, subsamples $19,000$
+		\item $m=\frac{p}{3}=4$ variables at each split, $n_{leaf} \ge 5$.
+	\end{itemize}
+	\item BMA
+	\begin{itemize}
+		\item Linear combination of predictors
+		\item Prior: Cauchy
+		\item N.Models: $2^{15}$
+		\item MCMC.iterations: $10^{16}$
+		\item initprobs $=$ "marg-eplogp"
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
 
 
 \begin{frame}
-    \frametitle{Data Cleaning}
-    Drawing on the EDA, focus on \underline{active} listings for \underline{short stay}:
-    
-    Keep listings with
-    
-    (i) last review < 1 year old [lose $15,000$]
-    
-    (ii) minimum number days $< 30$ (short type of stay) [lose $XXX$]
-    
+\frametitle{Models - continued}
+\begin{itemize}
+	\item Important Predictors
+	\begin{itemize}
+		\item RF: variable importance
+		
+		\item BMA: PIP
+	\end{itemize}
+	\item Sensitivity Analysis
+	\begin{itemize}
+		\item RF: vary $m$ and minimum $n_{leaf}$.
+		\item BMA: consider different priors (Cauchy prior, g prior for $g = 1,5,8,100,500,1000$)
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+%%%%%%%
+\begin{frame}
+\frametitle{Results - Random Forest Price}
+\input{Figures/price_rf_importance.tex}
 \end{frame}
 
 \begin{frame}
+\frametitle{Results - Random Forest Popularity}
+\input{Figures/pop_rf_importance.tex}
+\end{frame}
 
-    \frametitle{Data Cleaning}
+\begin{frame}
+\frametitle{Results - BMA Price}
+
+\input{Figures/price_bma_coef_confint.tex}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results - BMA Popularity}
+\begin{center}
+	\input{Figures/pop_bma_coef_confint.tex}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Diagnostic Plots - BMA - Popularity}
+\begin{center}
+	\includegraphics[scale = 0.5]{diagnostics_pop_bma.jpeg}	
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Residuals - BMA}
+\includegraphics[scale = 0.9]{map_price_bma.jpeg}
+\end{frame} 
+
+%%%%%%%
+
+
+\begin{frame}
+    \frametitle{Discussions - Future Directions}
+
     \begin{itemize}
-        \item Days since last review
+        \item Data collection
         \begin{itemize}
-            \item not indicative of price nor popularity
-            \item A rough indicator of activeness of listing
+            \item One row per booking
         \end{itemize}
-        \item Calculated host listings
+        \item Spatial modeling
         \begin{itemize}
-            \item Exclude listings whose calculated host listings $>5$
-            \item Different type of business
+            \item Incusion of boroughs does not work well. Spatial modeling that addresses relationship between houses (Valente, 2005).
         \end{itemize}
-        \item Number of available days in a year
+        \item Domain-specific knowledge
         \begin{itemize}
-            \item Excluded this variable, as we used it to calculate popularity
+            \item Submarkets influence pricing. Finite mixture model by Belasco1, 2012.
+            \item Knowledge in marketing. E.g. consider form of pricing as an influencer of popularity (99 vs 100).
         \end{itemize}
     \end{itemize}
 
 \end{frame}
 
-\section{Feature Engineering}
-\begin{frame}{Feature Engineering - Proximity}
-EDA shows impact of attraction on price. This suggests the creation of a variable measuring the proximity of a listing to attractions. The proximity variable is defined as the average proximity of the listing to the attractions
-$$proximity(X) = \dfrac{1}{n}\sum_{i=1}^{n} \dfrac{1}{dist(X, attraction_i)}
-$$
-where
-$$ 
-dist(x, y) = \mid latitude_{x} - latitutde_{y} \mid +  \mid longitude_{x} - longitude_{y} \mid.
-$$
-is the Manhattan distance.
 
-Similarly, we compute the proximity to the closest metro station.
-\end{frame}
-
-\begin{frame}{Feature Engineering - Textual Data}
-
-Sentiment analysis of listing name
-
-- "documents" too short for topic modeling
-- Afinn dictionary (gradual rating)
-
-$$ Sentiment(X) = \dfrac{1}{n}\sum_{i=1}^{n} dictionary(x_i)
-$$
-where $Afinn(x) \in \left\lbrace -5, -4, \dots, 5\right\rbrace $.
-
-Origin of host name 
-
-- use name frequency as a proxy
-
-\end{frame}
-
-\section{Models}
-\begin{frame}{Models}
-Linear regression model $Y = X \beta$
-where $X$ consists of:
-
-proximity metro, proximity attraction, host name frequency, listing name sentiment, [newly created variables]
-
-X1, X2, X3 [regular variable]
-
-Random forest (n = $1,500$, m = $2/3$)
-
-BMA (setting)
-\end{frame}
-
-\begin{frame}{Influential Factors}
-\textit{Variable Importance} metric from the random forest (n = $1,500$, m = $2/3$)
-
-\textit{Posterior Inclusion Probability} from the BMA
-\end{frame}
-
-\begin{frame}{Sensitivity Analysis}
-Vary the setting of the RF: different levels of pruning, different values for $m$.
-
-Vary the priors in the BMA: prior1, prior2, prior3
-\end{frame}
-
-
-%%%%%%%
-\section{Results}
-\begin{frame}{Results - Influential Factors}
-<Table of variable importance>
-
-<Table of PIP>
-\end{frame}
-
-\begin{frame}{Results - Q3}
-<Figure for Q3>
-\end{frame}
-
-%%%%%%%
 \begin{frame}
     \frametitle{Discussions}
 
-    \begin{itemize}
-        \item Incusion of boroughs does not work well. Spatial modeling that addresses relationship between houses.(http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.532.451&rep=rep1&type=pdf)
-        \item Submarkets influence pricing. Finite mixture model. (https://pages.jh.edu/jrer/papers/pdf/forth/accepted/using%20a%20finite%20mixture%20model%20of%20heterogeneous%20households%20to%20delineate%20housing%20submarkets.pdf)
-    \end{itemize}
-
+    \centering
+    \includegraphics[scale = 0.2]{price.jpeg}
 \end{frame}
 
 
@@ -203,6 +234,22 @@ Vary the priors in the BMA: prior1, prior2, prior3
 		
 		\bibitem[Whickam, 2013]{Whickam2009} Whickam, H. \\
 		\newblock Tidy Data\\
+		\newblock \emph{Journal}, month year
+		
+    \end{thebibliography}
+    
+    \begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+		
+		\bibitem[Valente, 2005]{Valente2005} Valente, j. \\
+		\newblock Apartment Rent Prediction Using Spatial Modeling\\
+		\newblock \emph{Journal}, month year
+		
+    \end{thebibliography}
+    
+    \begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+		
+		\bibitem[Belasco, 2012]{Belasco2012} Belasco, E. \\
+		\newblock Using a Finite Mixture Model of Heterogeneous Households to Delineate Housing Submarkets\\
 		\newblock \emph{Journal}, month year
 		
 	\end{thebibliography}
