@@ -63,8 +63,6 @@ d_clean %>%
 ```
 
 
-
-
 # TABLES
 
 ```{r price bma coef table}
@@ -108,16 +106,6 @@ print(tab1,file="Deliverables_2/Figures/price_bma_coef_confint.tex",type = "late
 ```
 
 
-
-```{r price bma residual map}
-
-#price_bma 
-d_merge_price <- left_join(d_clean_price_bma_no_outliers, d_clean)
-d_merge_price%>% 
-  ggplot(aes(x = longitude, y = latitude, color = residuals)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) 
-
-```
-
 ```{r pop bma diagnostics}
 coef.popJZS <- coef(pop_bma_JZS)
 
@@ -155,6 +143,78 @@ tab2<-xtable(pop_confint, caption= "Coeffients and 95% Confidence Intervals from
 
 print(tab2,file="Deliverables_2/Figures/pop_bma_coef_confint.tex",type = "latex")
 ```
+
+
+
+```{r price rf output}
+#Saving importance  variables
+price_var_names_rf <- names(d_clean_pop_rf_no_outliers)
+
+#Extracting variable importance values
+price_imp <- c()
+for (i in 1:15){
+  price_imp[i] <- round(importance(price_rf), 2)[i] 
+}
+
+price_importance <- data.frame("Predictors"=price_var_names_rf,"Variable Importance"= price_imp)
+price_importance <- price_importance %>% arrange(desc(Variable.Importance))
+View(price_importance)
+
+save(price_importance, file = "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/price_importance.RDATA")
+
+```
+
+
+```{r price rf variable importance}
+#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
+library(xtable)
+load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_confint.RDATA")
+tab3<-xtable(price_importance, caption= "Variance Importance for RF Price Model")
+
+print(tab3,file="Deliverables_2/Figures/price_rf_importance.tex",type = "latex")
+```
+
+
+```{r pop rf output }
+#Saving posterior mean and interval estimates 
+pop_var_names_rf <- names(d_clean_pop_rf_no_outliers)
+
+#Extracting variable importance values
+pop_imp <- c()
+for (i in 1:15){
+  pop_imp[i] <- round(importance(pop_rf), 2)[i] 
+}
+
+pop_importance <- data.frame("Predictors"=pop_var_names_rf,"Variable Importance"= pop_imp)
+pop_importance <- pop_importance %>% arrange(desc(Variable.Importance)) 
+View(pop_importance)
+
+save(pop_importance, file = "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_importance.RDATA")
+
+
+```
+
+
+```{r price rf variable importance}
+#https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
+library(xtable)
+load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_confint.RDATA")
+tab4<-xtable(pop_importance, caption= "Variance Importance for RF Price Model")
+
+print(tab4,file="Deliverables_2/Figures/pop_rf_importance.tex",type = "latex")
+```
+
+## Random plots
+
+```{r price bma residual map}
+
+#price_bma 
+d_merge_price <- left_join(d_clean_price_bma_no_outliers, d_clean)
+d_merge_price%>% 
+  ggplot(aes(x = longitude, y = latitude, color = residuals)) + geom_point() + theme_dark() + scale_color_gradient2(midpoint = 0) 
+
+```
+
 
 
 
