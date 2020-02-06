@@ -80,7 +80,7 @@
 \maketitle
 
 \begin{abstract}
-This is abstract. 
+In this paper, we seek to understand factors about a typical Airbnb listing that influence its price and popularity. We analyze a dataset with a total of 48,895 Airbnb listings in New York and 16 variables. We focus on feature engineering and fit two types of models: linear model using Bayesian Model Averaging and random forest with popularity and price as the outcome variables. Ultimately, our main finding in which all of our models agreed with was that room type and proximity to metro stations played a huge role in determining price and popularity. 
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -142,7 +142,7 @@ For the RF models, we used all the predictors including longitude and latitude s
 
 \figureref{fig:length_stay_density} shows the distribution of required minimum number of nights to book a listing. We observe that minimum number of nights is concetnrated at below 14 days and around 30 days. \figureref{fig:availability_density} displays the distribution of days that listings are available for booking in a year. We see that there are data concentrated at 0, which means these listings are not open for booking. Such observation would inform our data cleaning.
 
-To address the quesstion of whether the type of listing (shared room, private room, entire home) vary across neighbourhoods, we performed a chi-square test and plotted the results in \figureref{fig:room_type}. The p-value of the chi-square test was less than $10^{-16}$, indicating that the type of listing does vary across neighbourhoods. In \figureref{fig:room_type}, the size of dots represents the absolute standardized residuals. The color represents the value of standardized residuals. We see that difference in room types is most pronounced in Manhattan and Queens. Manhattan has more entire home than expected and Queens has more private room than expected.
+To address the quesstion of whether the type of listing (shared room, private room, entire home) vary across neighbourhoods, we performed a chi-square test and plotted the results in \figureref{fig:room_type}. The p-value of the chi-square test was less than $10^{-16}$. In \figureref{fig:room_type}, the size of dots represents the absolute standardized residuals. The color represents the value of standardized residuals. We see that difference in room types is most pronounced in Manhattan and Queens. Manhattan has more entire home than expected and Queens has more private room than expected.
 
 \figureref{fig:map_eda} shows a spatial map of  of listings, metro stations, and attractions. Black dots represent metro stations, gree dots attractions, blue dots listings priced at bottom 80\%, and red dots are listings priced at top 20\%. We observe that listings priced at top 20\% distribute close to metro stations. This observation motivates us to include spatial in formation of metro stations as explanatory variables.
 
@@ -154,11 +154,13 @@ Main findings.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SENSITIVITY ANALYSIS
 \subsection{Model Checking and Sensitivity Analysis}
-Our model was very sensitive to outliers. When we fit our models, we noticed some outliers in the residuals plot, and thus decided to remove points that were three times the standard deviation away from the mean of the outcome. After refitting, the model residual plots looked much better and had better $R^2$ values. Unfortunately, for the popularity model, the residual plots indicate that our models are not accounting for some relationship in the data very accurately (See residual plots below). For the BMA models, we also varied the choice in prior by testing out the g-prior for g = 1, 5, 8, 50, 100, 500, 1000. The results did not change for the different priors. Lastly, for the RF models, we varied m and the minimum $n_{leaf}$. The final values that we used for those parameters did not result in a change in MSE. 
+Our model was very sensitive to outliers. When we fit our models, we noticed some outliers in the residuals plot, and thus decided to remove points that were three times the standard deviation away from the mean of the outcome. After refitting, the model residual plots looked much better and had better $R^2$ values. Unfortunately, for the popularity model, the residual plots indicate that our models are not accounting for some relationship in the data very accurately , as shown in \figureref{fig:price_diag} and \figureref{fig:pop_diag}. For the BMA models, we also varied the choice in prior by testing out the g-prior for g = 1, 5, 8, 50, 100, 500, 1000. The results did not change for the different priors. Lastly, for the RF models, we varied m and the minimum $n_{leaf}$. The final values that we used for those parameters did not result in a change in MSE. 
 
 \section{Conclusions and further discussion}
 \label{sec:conclusion}
 Conclusion and further discussions.
+
+(iii) As shown in the EDA section, the type of listing does vary across neighbourhoods, since the p-value indicates significance. We have also seen the most pronounced difference in Mahhattan and Queens, where Manhattan has more entire home than expected and Queens has more private room than expected.
 
 For future improvements, we would like to include spatial modeling. For example, we could model spatial relationship between houses, as \cite{james2005apartment} has shown that OLS including just boroughs as spatial information does not work well . In addition, we could utilize domain-specific knowledge to improve our modeling of price. We could potentially use a finite mixture model to identify submarkets as in the study by \cite{belasco2012using}. We could also draw from knowledge in marketing to improve our feature engineering, for example consider pricing as an explanatory variable for popularity.
 
@@ -202,6 +204,20 @@ For future improvements, we would like to include spatial modeling. For example,
 	\caption{Map of listings, metro stations, and attractions. Black dots are metro stations, gree dots are attractions, blue dots are listings priced at bottom 80\%, and red dots are listings priced at top 20\%}
 	\includegraphics[width=0.5\linewidth]{map_eda.jpeg}
 	\label{fig:map_eda}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\caption{Model diagnostics for BMA for price}
+	\includegraphics[width=0.5\linewidth]{price_diagnostic_plot.jpeg}
+	\label{fig:price_diag}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\caption{Model diagnostics for BMA for popularity}
+	\includegraphics[width=0.5\linewidth]{pop_diagnostic_plot.jpeg}
+	\label{fig:pop_diag}
 \end{figure}
 
 \begin{figure}[htbp]

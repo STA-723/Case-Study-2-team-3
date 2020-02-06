@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex report"] 1581023365 "report.aux" "report.bbl" "report" 1581023367
+["bibtex report"] 1581027844 "report.aux" "report.bbl" "report" 1581027871
   "/usr/local/texlive/2018/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1480098435 26816 ffe5423d2019860bad9f54bc402fac15 ""
   "bibliography.bib" 1581020464 670 e1f0b8e54b230b115472f8aabd0c2365 ""
-  "report.aux" 1581023367 4816 2664fcbe0056a2af51ed03019b9145fb ""
+  "report.aux" 1581027870 5601 9fc767ef836741ffa4bf23bb4b2a6a43 ""
   (generated)
   "report.blg"
   "report.bbl"
-["pdflatex"] 1581023365 "report.tex" "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.pdf" "report" 1581023367
-  "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.aux" 1581023367 4816 2664fcbe0056a2af51ed03019b9145fb ""
+["pdflatex"] 1581027868 "report.tex" "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.pdf" "report" 1581027871
+  "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.aux" 1581027870 5601 9fc767ef836741ffa4bf23bb4b2a6a43 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1480098698 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -116,17 +116,21 @@
   "Figures/availability_density.jpeg" 1580848732 114255 e3ce1e119e94c4a123245ec0408fabfb ""
   "Figures/length_stay_density.jpeg" 1580846385 68289 253a46cbb8f42ac128baefe57422d2fb ""
   "Figures/map_eda.jpeg" 1580714746 139468 90599f01dbf1523d76bfdb766c744cc3 ""
+  "Figures/pop_diagnostic_plot.jpeg" 1581023957 23811 b42c096eb1c5277b04a28e8cc58f5dbd ""
+  "Figures/pop_rf_importance.tex" 1581025798 812 cfd9e341249aeef67c57527eadb67562 ""
+  "Figures/price_diagnostic_plot.jpeg" 1581023957 31737 cfb1c8b934b7b7e5c0cc809672f4932f ""
+  "Figures/price_rf_importance.tex" 1581023957 814 db0ce8feb115af7ea53530da87263b18 ""
   "Figures/residual_map_price.png" 1581023224 1442181 299ede3c20e8919f86c2d2a9b2f0894d ""
   "Figures/room_type.jpeg" 1580849713 179583 e818da7615387e2921dca488389759fe ""
-  "report.aux" 1581023367 4816 2664fcbe0056a2af51ed03019b9145fb ""
-  "report.bbl" 1581023365 895 8c736c5d76f5ba03e56344bca6bef58e "bibtex report"
-  "report.out" 1581023367 947 accea9401fab9c9729acc9d98f0e9af1 ""
-  "report.tex" 1581023363 14661 7c218e8420dd32e8ed4385d77ba651a6 ""
+  "report.aux" 1581027870 5601 9fc767ef836741ffa4bf23bb4b2a6a43 ""
+  "report.bbl" 1581027844 895 8c736c5d76f5ba03e56344bca6bef58e "bibtex report"
+  "report.out" 1581027870 884 d9234373e3178649cb5c818c5a7d2f8f ""
+  "report.tex" 1581027868 18426 4130c370d3084d0baf800b77122e1699 ""
   (generated)
-  "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.log"
-  "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.pdf"
   "report.pdf"
-  "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.aux"
-  "report.aux"
-  "report.log"
+  "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.log"
   "report.out"
+  "report.log"
+  "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.aux"
+  "/Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.pdf"
+  "report.aux"

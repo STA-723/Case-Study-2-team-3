@@ -196,9 +196,19 @@ INPUT ./Figures/room_type.jpeg
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/./Figures/map_eda.jpeg
 INPUT ./Figures/map_eda.jpeg
 INPUT ./Figures/map_eda.jpeg
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/./Figures/price_diagnostic_plot.jpeg
+INPUT ./Figures/price_diagnostic_plot.jpeg
+INPUT ./Figures/price_diagnostic_plot.jpeg
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/./Figures/pop_diagnostic_plot.jpeg
+INPUT ./Figures/pop_diagnostic_plot.jpeg
+INPUT ./Figures/pop_diagnostic_plot.jpeg
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/./Figures/residual_map_price.png
 INPUT ./Figures/residual_map_price.png
 INPUT ./Figures/residual_map_price.png
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/price_rf_importance.tex
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/price_rf_importance.tex
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/pop_rf_importance.tex
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/pop_rf_importance.tex
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.bbl
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.bbl
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.aux
