@@ -217,6 +217,7 @@ plot(price.g1000, which = 4)
   #ggplot(aes(popularity_log)) + geom_histogram()
 
 #Rerun model with no outliers
+d_clean_pop_bma_no_outliers <- d_clean_pop_bma_no_outliers %>% select(-reviews_per_month)
 pop_bma_JZS2 <- bas.lm(popularity_log ~ ., data = d_clean_pop_bma_no_outliers, prior = "JZS",
                      alpha = 1,
                      n.models = 2^15,
@@ -315,7 +316,7 @@ d_merge_pop %>%
 
 
 #Saving posterior mean and interval estimates 
-pop_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx", "Room_type:Entire home/apt", "Room_type:Shared room", "number of reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365", "name_listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length", "type_stay:Long","proximity_metro") 
+pop_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx", "Room_type:Entire home/apt", "Room_type:Shared room", "number of reviews", "last_review", "calculated_host_listings_count", "name_listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length","proximity_metro") 
 
 #Extracting betas and confint values
 pop_lower_bound = c()

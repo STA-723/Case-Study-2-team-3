@@ -110,7 +110,7 @@ print(tab1,file="Deliverables_2/Figures/price_bma_coef_confint.tex",type = "late
 coef.popJZS <- coef(pop_bma_JZS)
 
 #Saving posterior mean and interval estimates 
-pop_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx", "Room_type:Entire home/apt", "Room_type:Shared room", "minimum_nights", "number of reviews", "reviews_per_month", "listing count", "listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length","proximity_metro") 
+pop_var_names <- c("Intercept", "Neighbourhood_group:Manhattan", "Neighbourhood_group:Queens", "Neighbourhood_group:Staten Island", "Neighbourhood_group:Bronx", "Room_type:Entire home/apt", "Room_type:Shared room", "minimum_nights", "number_of_reviews", "listing_count", "listing_sentiment", "proximity_attraction","name_host_freq","name_host_special:True" ,"name_listing_length","proximity_metro") 
 
 #Extracting betas and confint values
 pop_lower_bound = c()
@@ -199,7 +199,7 @@ save(pop_importance, file = "~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_
 #https://www.r-bloggers.com/export-a-table-created-by-r-to-a-tex-file/
 library(xtable)
 load("~/Homework/STAT 723/Case-Study-2-team-3/Ezinne/pop_confint.RDATA")
-tab4<-xtable(pop_importance, caption= "Variance Importance for RF Price Model")
+tab4<-xtable(pop_importance, caption= "Variance Importance for RF Popularity Model")
 
 print(tab4,file="Deliverables_2/Figures/pop_rf_importance.tex",type = "latex")
 ```
