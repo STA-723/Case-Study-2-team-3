@@ -36,6 +36,9 @@
 
 \usepackage[toc,page]{appendix}
 
+\usepackage{geometry}
+\geometry{letterpaper, margin=1in}
+
 
 
 % start article
@@ -158,9 +161,16 @@ Our model was very sensitive to outliers. When we fit our models, we noticed som
 
 \section{Conclusions and further discussion}
 \label{sec:conclusion}
-Conclusion and further discussions.
+
+(i) As shwon in our main findings, the most influential factors on price that BMA and RF agree on are room type and borough. For popularity, influential factors that both models agree on are minimum nights, listing sentiment, and borough.
 
 (iii) As shown in the EDA section, the type of listing does vary across neighbourhoods, since the p-value indicates significance. We have also seen the most pronounced difference in Mahhattan and Queens, where Manhattan has more entire home than expected and Queens has more private room than expected.
+
+(ii)(iv) Yes, there is heterogeneity across boroughs, and Manhattan is the most pricy. To make our listing the most pricy, We would locate an entire home/apartment in Manhattan and use a common name as host. Whether to use positive words in the name of listing does not affect the price.
+
+We have seen in Results section that variable importance of BMA and random forest do not agree completely. This could be due to nonlinear trend that is hard to pick up in EDA. We could investigate this issue further in future work.
+
+Regarding BMA for popularity, we have seen the anti-intuitive result that popularity declines as sentiment of listing name becomes positive. This calls for a more detailed analysis of listing names.
 
 For future improvements, we would like to include spatial modeling. For example, we could model spatial relationship between houses, as \cite{james2005apartment} has shown that OLS including just boroughs as spatial information does not work well . In addition, we could utilize domain-specific knowledge to improve our modeling of price. We could potentially use a finite mixture model to identify submarkets as in the study by \cite{belasco2012using}. We could also draw from knowledge in marketing to improve our feature engineering, for example consider pricing as an explanatory variable for popularity.
 
@@ -268,33 +278,7 @@ For future improvements, we would like to include spatial modeling. For example,
 \caption{Coeffients and 95\% Confidence Intervals from Price BMA model} 
 \end{table}
 
-\begin{table}[ht]
-	\centering
-	\begin{tabular}{rlrrrrl}
-	  \hline
-	 & Predictors & PIP & Estimate & Lower.Confint & Upper.Confint & Significance \\ 
-	  \hline
-	1 & Intercept & 1.00 & -4.47 & -4.49 & -4.46 & * \\ 
-	  2 & reviews\_per\_month & 1.00 & 0.50 & 0.49 & 0.51 & * \\ 
-	  3 & proximity\_attraction & 1.00 & 0.02 & 0.01 & 0.03 & * \\ 
-	  4 & name\_listing\_length & 1.00 & 0.01 & 0.01 & 0.01 & * \\ 
-	  5 & Neighbourhood\_group:Queens & 1.00 & -0.15 & -0.20 & -0.11 & * \\ 
-	  6 & minimum\_nights & 1.00 & -0.02 & -0.02 & -0.01 & * \\ 
-	  7 & listing count & 1.00 & -0.12 & -0.13 & -0.10 & * \\ 
-	  8 & proximity\_metro & 1.00 & 0.00 & 0.00 & 0.00 &  \\ 
-	  9 & number of reviews & 1.00 & -0.00 & -0.00 & -0.00 &  \\ 
-	  10 & listing\_sentiment & 0.69 & -0.06 & -0.12 & 0.00 &  \\ 
-	  11 & Neighbourhood\_group:Bronx & 0.55 & -0.07 & -0.18 & 0.00 &  \\ 
-	  12 & name\_host\_special:True & 0.33 & -0.02 & -0.10 & 0.00 &  \\ 
-	  13 & Neighbourhood\_group:Staten Island & 0.13 & -0.02 & -0.17 & 0.00 &  \\ 
-	  14 & Neighbourhood\_group:Manhattan & 0.10 & -0.00 & -0.03 & 0.00 &  \\ 
-	  15 & Room\_type:Entire home/apt & 0.05 & -0.00 & -0.01 & 0.00 &  \\ 
-	  16 & Room\_type:Shared room & 0.04 & -0.00 & 0.00 & 0.00 &  \\ 
-	  17 & name\_host\_freq & 0.04 & -0.02 & 0.00 & 0.00 &  \\ 
-	   \hline
-	\end{tabular}
-	\caption{Coeffients and 95\% Confidence Intervals from Popularity BMA model} 
-	\end{table}
+\input{Figures/pop_bma_coef_confint.tex}
 	
 
 \newpage

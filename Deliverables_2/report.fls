@@ -129,6 +129,8 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/multirow/multirow.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/multirow/multirow.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/appendix/appendix.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/appendix/appendix.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.aux
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.aux
 OUTPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.aux
@@ -209,6 +211,8 @@ INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/price_rf_importance.tex
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/pop_rf_importance.tex
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/pop_rf_importance.tex
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/pop_bma_coef_confint.tex
+INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/Figures/pop_bma_coef_confint.tex
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.bbl
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.bbl
 INPUT /Users/yufeng/Developer/STA 723/Case-Study-2-team-3/Deliverables_2/report.aux
